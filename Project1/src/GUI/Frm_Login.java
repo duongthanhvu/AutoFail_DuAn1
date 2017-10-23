@@ -16,6 +16,7 @@ public class Frm_Login extends javax.swing.JFrame {
      */
     public Frm_Login() {
         initComponents();
+        jLabel4.requestFocus();
     }
 
     /**
@@ -52,12 +53,13 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_Login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jTextField1.setText("Username");
         jTextField1.setToolTipText("");
         jTextField1.setBorder(null);
+        GhostText userName = new GhostText(jTextField1, "Tên đăng nhập");
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jPasswordField1.setBorder(null);
+        GhostText pwd = new GhostText(jPasswordField1, "Mật khẩu");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Contacts_32px.png"))); // NOI18N
 
