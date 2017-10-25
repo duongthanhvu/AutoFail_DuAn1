@@ -5,11 +5,23 @@
  */
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.Polygon;
+import javax.swing.JLabel;
+import javax.swing.JWindow;
+
 /**
  *
  * @author vudt9
  */
 public class Frm_Login extends javax.swing.JFrame {
+
+    public int[] x = {0, 20, 300, 300, 20};
+    public int[] y = {20, 0, 0, 40, 40};
+    MessagePopup loiSaiMatKhau;
+    MessagePopup loiDangNhap;
 
     /**
      * Creates new form Frm_Login
@@ -17,6 +29,8 @@ public class Frm_Login extends javax.swing.JFrame {
     public Frm_Login() {
         initComponents();
         jLabel4.requestFocus();
+        loiSaiMatKhau = new MessagePopup(this, "Mật khẩu không đúng");
+        loiDangNhap = new MessagePopup(this, "Tên người dùng không tồn tại");
     }
 
     /**
@@ -39,6 +53,7 @@ public class Frm_Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         button1 = new java.awt.Button();
         jLabel4 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         pnl_Loader = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,10 +71,20 @@ public class Frm_Login extends javax.swing.JFrame {
         jTextField1.setToolTipText("");
         jTextField1.setBorder(null);
         GhostText userName = new GhostText(jTextField1, "Tên đăng nhập");
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         jPasswordField1.setBorder(null);
         GhostText pwd = new GhostText(jPasswordField1, "Mật khẩu");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusGained(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Contacts_32px.png"))); // NOI18N
 
@@ -74,6 +99,11 @@ public class Frm_Login extends javax.swing.JFrame {
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setLabel("Đăng nhập");
         button1.setName(""); // NOI18N
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Delete_32px_1.png"))); // NOI18N
         jLabel4.setToolTipText("");
@@ -83,14 +113,21 @@ public class Frm_Login extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Ghi nhớ tài khoản");
+
         javax.swing.GroupLayout pnl_LoginLayout = new javax.swing.GroupLayout(pnl_Login);
         pnl_Login.setLayout(pnl_LoginLayout);
         pnl_LoginLayout.setHorizontalGroup(
             pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(pnl_LoginLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131)
+                .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnl_LoginLayout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addGroup(pnl_LoginLayout.createSequentialGroup()
@@ -104,7 +141,6 @@ public class Frm_Login extends javax.swing.JFrame {
                                 .addComponent(jSeparator1)
                                 .addComponent(jSeparator2)))))
                 .addGap(143, 143, 143))
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         pnl_LoginLayout.setVerticalGroup(
             pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +161,9 @@ public class Frm_Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox1))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -137,7 +175,7 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_Loader.setLayout(pnl_LoaderLayout);
         pnl_LoaderLayout.setHorizontalGroup(
             pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
         pnl_LoaderLayout.setVerticalGroup(
             pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,6 +202,54 @@ public class Frm_Login extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private boolean isCorrect() {
+        return true;
+    }
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        if (!isCorrect()) {
+            Point location = jTextField1.getLocationOnScreen();
+            loiDangNhap.setLocation(location.x + jTextField1.getWidth(), location.y);
+            loiDangNhap.setVisible(true);
+            jSeparator1.setForeground(Color.red);
+            return;
+        }
+        if (!isCorrect()) {
+            Point location = jPasswordField1.getLocationOnScreen();
+            loiSaiMatKhau.setLocation(location.x + jPasswordField1.getWidth(), location.y);
+            loiSaiMatKhau.setVisible(true);
+            jSeparator2.setForeground(Color.red);
+            return;
+        }
+        new Frm_Main().setVisible(true);
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        loiDangNhap.setVisible(false);
+        jSeparator1.setForeground(new Color(160, 160, 160));
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+        loiSaiMatKhau.setVisible(false);
+        jSeparator2.setForeground(new Color(160, 160, 160));
+    }//GEN-LAST:event_jPasswordField1FocusGained
+
+    class MessagePopup extends JWindow {
+
+        public MessagePopup(javax.swing.JFrame parent, String message) {
+            super(parent);
+            setShape(new Polygon(x, y, 5));
+            setSize(300, 300);
+            getContentPane().setBackground(new Color(190, 75, 73));
+            JLabel lb = new JLabel(message);
+            lb.setForeground(Color.WHITE);
+            lb.setFont(new java.awt.Font("Segoe UI", 0, 18));
+            getContentPane().setLayout(new java.awt.FlowLayout());
+            getContentPane().add(lb);
+            setLocationRelativeTo(parent);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -202,6 +288,7 @@ public class Frm_Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
