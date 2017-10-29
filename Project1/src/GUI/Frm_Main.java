@@ -66,7 +66,7 @@ public class Frm_Main extends javax.swing.JFrame {
      */
     public Frm_Main() {
         //Khởi tạo các panel tại đây
-        
+        pnl_TrangChu = new Pnl_TaoHoaDonNew();
         initComponents();
     }
 
@@ -148,7 +148,7 @@ public class Frm_Main extends javax.swing.JFrame {
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
         pnlMain.setLayout(new java.awt.CardLayout());
 
-        //pnlMain.add(pnl_TrangChu, "card0");
+        pnlMain.add(pnl_TrangChu, "card0");
         //pnlMain.add(pnl_TaoHoaDon, "card1");
         //pnlMain.add(pnl_SanPham, "card2");
         //pnlMain.add(pnl_KhachHang, "card3");
@@ -161,14 +161,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_TrangChu.setBackground(new java.awt.Color(0, 76, 64));
         tab_TrangChu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_TrangChuMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_TrangChuMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_TrangChuMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_TrangChuMousePressed(evt);
             }
         });
 
@@ -201,14 +201,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_TaoHoaDon.setBackground(new java.awt.Color(0, 76, 64));
         tab_TaoHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_TaoHoaDonMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_TaoHoaDonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_TaoHoaDonMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_TaoHoaDonMousePressed(evt);
             }
         });
 
@@ -241,14 +241,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_SanPham.setBackground(new java.awt.Color(0, 76, 64));
         tab_SanPham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_SanPhamMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_SanPhamMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_SanPhamMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_SanPhamMousePressed(evt);
             }
         });
 
@@ -281,14 +281,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_KhachHang.setBackground(new java.awt.Color(0, 76, 64));
         tab_KhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_KhachHangMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_KhachHangMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_KhachHangMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_KhachHangMousePressed(evt);
             }
         });
 
@@ -321,14 +321,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_NhapKho.setBackground(new java.awt.Color(0, 76, 64));
         tab_NhapKho.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_NhapKhoMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_NhapKhoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_NhapKhoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_NhapKhoMousePressed(evt);
             }
         });
 
@@ -362,13 +362,16 @@ public class Frm_Main extends javax.swing.JFrame {
         tab_KhuyenMai.setBackground(new java.awt.Color(0, 76, 64));
         tab_KhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_KhuyenMaiMouseClicked(evt);
+                MaiMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_KhuyenMaiMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_KhuyenMaiMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_KhuyenMaiMousePressed(evt);
             }
         });
 
@@ -401,14 +404,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_BaoCao.setBackground(new java.awt.Color(0, 76, 64));
         tab_BaoCao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_BaoCaoMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_BaoCaoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_BaoCaoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_BaoCaoMousePressed(evt);
             }
         });
 
@@ -441,14 +444,14 @@ public class Frm_Main extends javax.swing.JFrame {
 
         tab_NhanVien.setBackground(new java.awt.Color(0, 76, 64));
         tab_NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tab_NhanVienMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tab_NhanVienMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tab_NhanVienMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tab_NhanVienMousePressed(evt);
             }
         });
 
@@ -534,7 +537,7 @@ public class Frm_Main extends javax.swing.JFrame {
                 .addComponent(tab_BaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(tab_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -546,8 +549,8 @@ public class Frm_Main extends javax.swing.JFrame {
             pnl_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_bgLayout.createSequentialGroup()
                 .addComponent(sidepanel, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 86, Short.MAX_VALUE)
-                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
         );
         pnl_bgLayout.setVerticalGroup(
             pnl_bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,12 +563,14 @@ public class Frm_Main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnl_bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -628,33 +633,9 @@ public class Frm_Main extends javax.swing.JFrame {
         tab_NhanVien.setBackground(new java.awt.Color(0, 76, 64));
     }//GEN-LAST:event_tab_NhanVienMouseExited
 
-    private void tab_TaoHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TaoHoaDonMouseClicked
-        thayDoiPanel("card1", tab_TaoHoaDon);
-    }//GEN-LAST:event_tab_TaoHoaDonMouseClicked
-
-    private void tab_SanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_SanPhamMouseClicked
-        thayDoiPanel("card2", tab_SanPham);
-    }//GEN-LAST:event_tab_SanPhamMouseClicked
-
-    private void tab_KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_KhachHangMouseClicked
-        thayDoiPanel("card3", tab_KhachHang);
-    }//GEN-LAST:event_tab_KhachHangMouseClicked
-
-    private void tab_NhapKhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_NhapKhoMouseClicked
-        thayDoiPanel("card4", tab_NhapKho);
-    }//GEN-LAST:event_tab_NhapKhoMouseClicked
-
-    private void tab_KhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_KhuyenMaiMouseClicked
-        thayDoiPanel("card5", tab_KhuyenMai);
-    }//GEN-LAST:event_tab_KhuyenMaiMouseClicked
-
-    private void tab_BaoCaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_BaoCaoMouseClicked
-        thayDoiPanel("card6", tab_BaoCao);
-    }//GEN-LAST:event_tab_BaoCaoMouseClicked
-
-    private void tab_NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_NhanVienMouseClicked
-        thayDoiPanel("card7", tab_NhanVien);
-    }//GEN-LAST:event_tab_NhanVienMouseClicked
+    private void MaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaiMouseClicked
+        
+    }//GEN-LAST:event_MaiMouseClicked
 
     private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
         jLabel15.setBackground(new java.awt.Color(0, 121, 107));
@@ -664,10 +645,6 @@ public class Frm_Main extends javax.swing.JFrame {
         jLabel15.setBackground(new java.awt.Color(0, 76, 64));
     }//GEN-LAST:event_jLabel15MouseExited
 
-    private void tab_TrangChuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TrangChuMouseClicked
-        thayDoiPanel("card0", tab_TrangChu);
-    }//GEN-LAST:event_tab_TrangChuMouseClicked
-
     private void tab_TrangChuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TrangChuMouseEntered
         tab_TrangChu.setBackground(new java.awt.Color(0, 121, 107));
     }//GEN-LAST:event_tab_TrangChuMouseEntered
@@ -675,10 +652,42 @@ public class Frm_Main extends javax.swing.JFrame {
     private void tab_TrangChuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TrangChuMouseExited
         tab_TrangChu.setBackground(new java.awt.Color(0, 76, 64));
     }//GEN-LAST:event_tab_TrangChuMouseExited
+
+    private void tab_TrangChuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TrangChuMousePressed
+        thayDoiPanel("card0", tab_TrangChu);
+    }//GEN-LAST:event_tab_TrangChuMousePressed
+
+    private void tab_TaoHoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_TaoHoaDonMousePressed
+        thayDoiPanel("card1", tab_TaoHoaDon);
+    }//GEN-LAST:event_tab_TaoHoaDonMousePressed
+
+    private void tab_SanPhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_SanPhamMousePressed
+        thayDoiPanel("card2", tab_SanPham);
+    }//GEN-LAST:event_tab_SanPhamMousePressed
+
+    private void tab_KhachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_KhachHangMousePressed
+        thayDoiPanel("card3", tab_KhachHang);
+    }//GEN-LAST:event_tab_KhachHangMousePressed
+
+    private void tab_NhapKhoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_NhapKhoMousePressed
+        thayDoiPanel("card4", tab_NhapKho);
+    }//GEN-LAST:event_tab_NhapKhoMousePressed
+
+    private void tab_KhuyenMaiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_KhuyenMaiMousePressed
+        thayDoiPanel("card5", tab_KhuyenMai);
+    }//GEN-LAST:event_tab_KhuyenMaiMousePressed
+
+    private void tab_BaoCaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_BaoCaoMousePressed
+        thayDoiPanel("card6", tab_BaoCao);
+    }//GEN-LAST:event_tab_BaoCaoMousePressed
+
+    private void tab_NhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_NhanVienMousePressed
+        thayDoiPanel("card7", tab_NhanVien);
+    }//GEN-LAST:event_tab_NhanVienMousePressed
     
     private void thayDoiPanel(String tenCard, JPanel tab) {
-        //CardLayout cl = (CardLayout) (pnlMain.getLayout());
-        //cl.show(pnlMain, tenCard);
+        CardLayout cl = (CardLayout) (pnlMain.getLayout());
+        cl.show(pnlMain, tenCard);
         tab_TrangChu.setBorder(null);
         tab_TaoHoaDon.setBorder(null);
         tab_SanPham.setBorder(null);
