@@ -67,6 +67,9 @@ public class Frm_Main extends javax.swing.JFrame {
     public Frm_Main() {
         //Khởi tạo các panel tại đây
         pnl_TrangChu = new Pnl_TaoHoaDonNew();
+        pnl_TaoHoaDon = new Pnl_TaoHoaDonNew();
+        pnl_SanPham = new PnlSanPham();
+        pnl_KhachHang = new PnlKhachHang();
         initComponents();
     }
 
@@ -149,9 +152,9 @@ public class Frm_Main extends javax.swing.JFrame {
         pnlMain.setLayout(new java.awt.CardLayout());
 
         pnlMain.add(pnl_TrangChu, "card0");
-        //pnlMain.add(pnl_TaoHoaDon, "card1");
-        //pnlMain.add(pnl_SanPham, "card2");
-        //pnlMain.add(pnl_KhachHang, "card3");
+        pnlMain.add(pnl_TaoHoaDon, "card1");
+        pnlMain.add(pnl_SanPham, "card2");
+        pnlMain.add(pnl_KhachHang, "card3");
         //pnlMain.add(pnl_NhapKho, "card4");
         //pnlMain.add(pnl_KhuyenMai, "card5");
         //pnlMain.add(pnl_BaoCao, "card6");
