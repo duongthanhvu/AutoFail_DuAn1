@@ -70,6 +70,8 @@ public class Frm_Main extends javax.swing.JFrame {
         pnl_TaoHoaDon = new Pnl_TaoHoaDonNew();
         pnl_SanPham = new PnlSanPham();
         pnl_KhachHang = new PnlKhachHang();
+        pnl_NhanVien = new Pnl_NhanVien();
+        pnl_NhapKho = new Pnl_TaoPhieuNhap();
         initComponents();
     }
 
@@ -155,10 +157,10 @@ public class Frm_Main extends javax.swing.JFrame {
         pnlMain.add(pnl_TaoHoaDon, "card1");
         pnlMain.add(pnl_SanPham, "card2");
         pnlMain.add(pnl_KhachHang, "card3");
-        //pnlMain.add(pnl_NhapKho, "card4");
+        pnlMain.add(pnl_NhapKho, "card4");
         //pnlMain.add(pnl_KhuyenMai, "card5");
         //pnlMain.add(pnl_BaoCao, "card6");
-        //pnlMain.add(pnl_NhanVien, "card7");
+        pnlMain.add(pnl_NhanVien, "card7");
 
         sidepanel.setBackground(new java.awt.Color(0, 76, 64));
 
