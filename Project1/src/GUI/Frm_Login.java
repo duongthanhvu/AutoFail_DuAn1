@@ -6,9 +6,12 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
 
@@ -22,6 +25,7 @@ public class Frm_Login extends javax.swing.JFrame {
     public int[] y = {20, 0, 0, 40, 40};
     MessagePopup loiSaiMatKhau;
     MessagePopup loiDangNhap;
+    public static boolean checkLoadDone = false;
 
     /**
      * Creates new form Frm_Login
@@ -43,6 +47,8 @@ public class Frm_Login extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_bg = new javax.swing.JPanel();
+        pnl_Loader = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         pnl_Login = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
@@ -54,7 +60,6 @@ public class Frm_Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
-        pnl_Loader = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -63,6 +68,30 @@ public class Frm_Login extends javax.swing.JFrame {
 
         pnl_bg.setBackground(new java.awt.Color(255, 255, 255));
         pnl_bg.setLayout(new java.awt.CardLayout());
+
+        pnl_Loader.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/loader.gif"))); // NOI18N
+        jLabel5.setText("jLabel5");
+
+        javax.swing.GroupLayout pnl_LoaderLayout = new javax.swing.GroupLayout(pnl_Loader);
+        pnl_Loader.setLayout(pnl_LoaderLayout);
+        pnl_LoaderLayout.setHorizontalGroup(
+            pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_LoaderLayout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        pnl_LoaderLayout.setVerticalGroup(
+            pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_LoaderLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+
+        pnl_bg.add(pnl_Loader, "card3");
 
         pnl_Login.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -178,21 +207,6 @@ public class Frm_Login extends javax.swing.JFrame {
 
         pnl_bg.add(pnl_Login, "card2");
 
-        pnl_Loader.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnl_LoaderLayout = new javax.swing.GroupLayout(pnl_Loader);
-        pnl_Loader.setLayout(pnl_LoaderLayout);
-        pnl_LoaderLayout.setHorizontalGroup(
-            pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
-        );
-        pnl_LoaderLayout.setVerticalGroup(
-            pnl_LoaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
-        );
-
-        pnl_bg.add(pnl_Loader, "card3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,7 +229,12 @@ public class Frm_Login extends javax.swing.JFrame {
     private boolean isCorrect() {
         return true;
     }
-
+    
+    public void doiThe(){
+        CardLayout cl = (CardLayout) (pnl_bg.getLayout());
+        cl.show(pnl_bg, "card2");
+    }
+    
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
         loiDangNhap.setVisible(false);
         jSeparator1.setForeground(new Color(160, 160, 160));
@@ -241,7 +260,9 @@ public class Frm_Login extends javax.swing.JFrame {
             jSeparator2.setForeground(Color.red);
             return;
         }
-        new Frm_Main().setVisible(true);
+        Frm_Main.main();
+        this.setVisible(false);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
@@ -249,7 +270,7 @@ public class Frm_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseEntered
 
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setBackground(new Color(0,76,64));
+        jButton1.setBackground(new Color(0, 76, 64));
     }//GEN-LAST:event_jButton1MouseExited
 
     class MessagePopup extends JWindow {
@@ -271,7 +292,7 @@ public class Frm_Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -310,6 +331,7 @@ public class Frm_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

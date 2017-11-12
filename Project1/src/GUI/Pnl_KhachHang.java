@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author vudt9
  */
-public class PnlKhachHang extends javax.swing.JPanel {
+public class Pnl_KhachHang extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlSanPham
      */
-    public PnlKhachHang() {
+    public Pnl_KhachHang() {
         initComponents();
         CustomInitComponents();
     }

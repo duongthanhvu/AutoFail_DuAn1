@@ -6,45 +6,9 @@
 package GUI;
 
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -66,12 +30,14 @@ public class Frm_Main extends javax.swing.JFrame {
      */
     public Frm_Main() {
         //Khởi tạo các panel tại đây
-        pnl_TrangChu = new Pnl_TaoHoaDonNew();
+        pnl_TrangChu = new Pnl_TrangChu();
         pnl_TaoHoaDon = new Pnl_TaoHoaDonNew();
-        pnl_SanPham = new PnlSanPham();
-        pnl_KhachHang = new PnlKhachHang();
+        pnl_SanPham = new Pnl_SanPham();
+        pnl_KhachHang = new Pnl_KhachHang();
         pnl_NhanVien = new Pnl_NhanVien();
         pnl_NhapKho = new Pnl_TaoPhieuNhap();
+        pnl_KhuyenMai = new Pnl_KhuyenMai();
+        pnl_BaoCao = new Pnl_BaoCao();
         initComponents();
     }
 
@@ -158,8 +124,8 @@ public class Frm_Main extends javax.swing.JFrame {
         pnlMain.add(pnl_SanPham, "card2");
         pnlMain.add(pnl_KhachHang, "card3");
         pnlMain.add(pnl_NhapKho, "card4");
-        //pnlMain.add(pnl_KhuyenMai, "card5");
-        //pnlMain.add(pnl_BaoCao, "card6");
+        pnlMain.add(pnl_KhuyenMai, "card5");
+        pnlMain.add(pnl_BaoCao, "card6");
         pnlMain.add(pnl_NhanVien, "card7");
 
         sidepanel.setBackground(new java.awt.Color(0, 76, 64));
@@ -499,6 +465,9 @@ public class Frm_Main extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel15MouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel15MousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout sidepanelLayout = new javax.swing.GroupLayout(sidepanel);
@@ -689,6 +658,13 @@ public class Frm_Main extends javax.swing.JFrame {
     private void tab_NhanVienMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tab_NhanVienMousePressed
         thayDoiPanel("card7", tab_NhanVien);
     }//GEN-LAST:event_tab_NhanVienMousePressed
+
+    private void jLabel15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MousePressed
+        Frm_Login login = new Frm_Login();
+        login.setVisible(true);
+        login.doiThe();
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel15MousePressed
     
     private void thayDoiPanel(String tenCard, JPanel tab) {
         CardLayout cl = (CardLayout) (pnlMain.getLayout());
@@ -707,7 +683,7 @@ public class Frm_Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main() {
         /* Set System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {

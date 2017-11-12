@@ -123,7 +123,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="pnlMain.add(pnl_TrangChu, &quot;card0&quot;);&#xa;pnlMain.add(pnl_TaoHoaDon, &quot;card1&quot;);&#xa;pnlMain.add(pnl_SanPham, &quot;card2&quot;);&#xa;pnlMain.add(pnl_KhachHang, &quot;card3&quot;);&#xa;pnlMain.add(pnl_NhapKho, &quot;card4&quot;);&#xa;//pnlMain.add(pnl_KhuyenMai, &quot;card5&quot;);&#xa;//pnlMain.add(pnl_BaoCao, &quot;card6&quot;);&#xa;pnlMain.add(pnl_NhanVien, &quot;card7&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="pnlMain.add(pnl_TrangChu, &quot;card0&quot;);&#xa;pnlMain.add(pnl_TaoHoaDon, &quot;card1&quot;);&#xa;pnlMain.add(pnl_SanPham, &quot;card2&quot;);&#xa;pnlMain.add(pnl_KhachHang, &quot;card3&quot;);&#xa;pnlMain.add(pnl_NhapKho, &quot;card4&quot;);&#xa;pnlMain.add(pnl_KhuyenMai, &quot;card5&quot;);&#xa;pnlMain.add(pnl_BaoCao, &quot;card6&quot;);&#xa;pnlMain.add(pnl_NhanVien, &quot;card7&quot;);"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -663,6 +663,7 @@
               <Events>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel15MouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel15MouseExited"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel15MousePressed"/>
               </Events>
             </Component>
           </SubComponents>

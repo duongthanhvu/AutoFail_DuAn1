@@ -84,18 +84,19 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Thông tin cơ bản", "Ngày tạo", "Chức vụ", "Tình trạng"
+                "Danh sách nhân viên"
             }
         ));
+        jTable1.setColumnSelectionAllowed(true);
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(35);
+        jTable1.setRowHeight(224);
         jTable1.setSelectionBackground(new java.awt.Color(72, 169, 153));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.setShowHorizontalLines(false);
@@ -103,7 +104,7 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setCellRenderer(new TenNhanVienRenderer());
+            jTable1.getColumnModel().getColumn(0).setCellRenderer(new NhanVienRenderer());
         }
 
         btn_TimKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N

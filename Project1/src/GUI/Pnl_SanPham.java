@@ -27,12 +27,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author vudt9
  */
-public class PnlSanPham extends javax.swing.JPanel {
+public class Pnl_SanPham extends javax.swing.JPanel {
 
     /**
      * Creates new form pnlSanPham
      */
-    public PnlSanPham() {
+    public Pnl_SanPham() {
         initComponents();
         CustomInitComponents();
     }
