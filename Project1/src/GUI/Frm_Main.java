@@ -31,7 +31,7 @@ public class Frm_Main extends javax.swing.JFrame {
     public Frm_Main() {
         //Khởi tạo các panel tại đây
         pnl_TrangChu = new Pnl_TrangChu();
-        pnl_TaoHoaDon = new Pnl_TaoHoaDonNew();
+        pnl_TaoHoaDon = new Pnl_TaoHoaDon();
         pnl_SanPham = new Pnl_SanPham();
         pnl_KhachHang = new Pnl_KhachHang();
         pnl_NhanVien = new Pnl_NhanVien();
