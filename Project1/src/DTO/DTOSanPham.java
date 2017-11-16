@@ -11,69 +11,40 @@ package DTO;
  * @author vudtpk0074
  */
 public class DTOSanPham {
-    int iDSanPham;
-    String maSP;
+    int maSP;
     String tenSP;
-    int soLuong;
-    String donViTinh;
-    int giaNhap;
-    int giaBan;
     int maLoaiSP;
     String tenLoai;
-    String moTa;
+    int soLuong;
+    int giaBanLe;
+    String barcode;
+    boolean available;
 
     public DTOSanPham() {
     }
 
-    public DTOSanPham(int iDSanPham, String maSP, String tenSP, int soLuong, String donViTinh, int giaNhap, int giaBan, int maLoaiSP, String tenLoai, String moTa) {
-        this.iDSanPham = iDSanPham;
+    public DTOSanPham(int maSP, String tenSP, int maLoaiSP, int giaBanLe, String barcode, boolean available) {
         this.maSP = maSP;
         this.tenSP = tenSP;
-        this.soLuong = soLuong;
-        this.donViTinh = donViTinh;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
         this.maLoaiSP = maLoaiSP;
-        this.tenLoai = tenLoai;
-        this.moTa = moTa;
+        this.giaBanLe = giaBanLe;
+        this.barcode = barcode;
+        this.available = available;
     }
 
-    public DTOSanPham(String maSP, String tenSP, int soLuong, String donViTinh, int giaNhap, int giaBan, int maLoaiSP, String tenLoai, String moTa) {
-        this.maSP = maSP;
+    public DTOSanPham(String tenSP, int maLoaiSP, int giaBanLe, String barcode, boolean available) {
         this.tenSP = tenSP;
-        this.soLuong = soLuong;
-        this.donViTinh = donViTinh;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
         this.maLoaiSP = maLoaiSP;
-        this.tenLoai = tenLoai;
-        this.moTa = moTa;
+        this.giaBanLe = giaBanLe;
+        this.barcode = barcode;
+        this.available = available;
     }
 
-    public DTOSanPham(String maSP, String tenSP, int soLuong, String donViTinh, int giaNhap, int giaBan, int maLoaiSP, String moTa) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.soLuong = soLuong;
-        this.donViTinh = donViTinh;
-        this.giaNhap = giaNhap;
-        this.giaBan = giaBan;
-        this.maLoaiSP = maLoaiSP;
-        this.moTa = moTa;
-    }
-
-    public int getiDSanPham() {
-        return iDSanPham;
-    }
-
-    public void setiDSanPham(int iDSanPham) {
-        this.iDSanPham = iDSanPham;
-    }
-
-    public String getMaSP() {
+    public int getMaSP() {
         return maSP;
     }
 
-    public void setMaSP(String maSP) {
+    public void setMaSP(int maSP) {
         this.maSP = maSP;
     }
 
@@ -83,38 +54,6 @@ public class DTOSanPham {
 
     public void setTenSP(String tenSP) {
         this.tenSP = tenSP;
-    }
-
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
-
-    public String getDonViTinh() {
-        return donViTinh;
-    }
-
-    public void setDonViTinh(String donViTinh) {
-        this.donViTinh = donViTinh;
-    }
-
-    public int getGiaNhap() {
-        return giaNhap;
-    }
-
-    public void setGiaNhap(int giaNhap) {
-        this.giaNhap = giaNhap;
-    }
-
-    public int getGiaBan() {
-        return giaBan;
-    }
-
-    public void setGiaBan(int giaBan) {
-        this.giaBan = giaBan;
     }
 
     public int getMaLoaiSP() {
@@ -133,26 +72,48 @@ public class DTOSanPham {
         this.tenLoai = tenLoai;
     }
 
-    public String getMoTa() {
-        return moTa;
+    public int getSoLuong() {
+        return soLuong;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public int getGiaBanLe() {
+        return giaBanLe;
+    }
+
+    public void setGiaBanLe(int giaBanLe) {
+        this.giaBanLe = giaBanLe;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
     
     public Object[] getAll(){
-        Object[] item = new Object[10];
-        item[0] = getiDSanPham();
-        item[1] = getMaSP();
-        item[2] = getTenSP();
-        item[3] = getSoLuong();
-        item[4] = getDonViTinh();
-        item[5] = getGiaNhap();
-        item[6] = getGiaBan();
-        item[7] = getMaLoaiSP();
-        item[8] = getTenLoai();
-        item[9] = getMoTa();
+        Object[] item = new Object[8];
+        item[0] = getMaSP();
+        item[1] = getTenSP();
+        item[2] = getMaLoaiSP();
+        item[3] = getTenLoai();
+        item[4] = getSoLuong();
+        item[5] = getGiaBanLe();
+        item[6] = getBarcode();
+        item[7] = isAvailable();
         return item;
     }
 }

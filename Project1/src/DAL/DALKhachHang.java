@@ -16,36 +16,42 @@ import java.sql.SQLException;
 public class DALKhachHang {
 
     public static int them(DTOKhachHang item) {
-        String query = "Set Dateformat DMY Insert into KhachHang Values(N'"+item.getTenKH()+"',"+item.getGioiTinh()+",'"+item.getSoDT()+"','"+item.getNgaySinh()+"',N'"+item.getDiaChi()+"',N'"+item.getGhiChu()+"')";
+        String query = "Insert into KhachHang Values('"+item.getMaKH()+"', N'"+item.getTenKH()+"', "+item.getMaLoaiKH()+", "+item.isGioiTinhNam()+", '"+item.getSoDT()+"', '"+item.getEmail()+"', N'"+item.getDiaChi()+"', "+item.getNgaySinh()+", "+item.getDiem()+", "+item.getNgayTao()+", "+item.getGhiChu()+")";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
 
-    public static int xoa(int maKH) {
-        String query = "Delete from KhachHang where MaKH = " + maKH;
+    public static int xoa(int id_KH) {
+        String query = "Delete from KhachHang where ID_KH = " + id_KH;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
 
-    public static int sua(int maKH, DTOKhachHang newItem) {
-        String query = "Set Dateformat DMY Update KhachHang set TenKH = N'"+newItem.getTenKH()+"', GioiTinh = "+newItem.getGioiTinh()+", SoDT = '"+newItem.getSoDT()+"', NgaySinh = '"+newItem.getNgaySinh()+"', DiaChi = N'"+newItem.getDiaChi()+"', GhiChu = N'"+newItem.getGhiChu()+"' where MaKH = "+maKH;
+    public static int sua(int id_KH, DTOKhachHang newItem) {
+        String query = "Update KhachHang set MaKH = '"+newItem.getMaKH()+"', TenKH = N'"+newItem.getMaKH()+"', MaLoaiKH = "+newItem.getMaLoaiKH()+", GioiTinh = "+newItem.isGioiTinhNam()+", SoDT = '"+newItem.getSoDT()+"', Email = '"+newItem.getEmail()+"', DiaChi = N'"+newItem.getDiaChi()+"', NgaySinh = "+newItem.getNgaySinh()+", Diem = "+newItem.getDiem()+", NgayTao = "+newItem.getNgayTao()+", GhiChu = N'"+newItem.getGhiChu()+"' where id_KH = " + id_KH;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
 
-    public static DTOKhachHang layDuLieu(int maKH) {
-        String query = "Select MaKH, TenKH, GioiTinh, SoDT, Convert(varchar,NgaySinh,103) as NGaySinh , DiaChi, GhiChu from KhachHang where maKH = " + maKH;
+    public static DTOKhachHang layDuLieu(int id_KH) {
+        String query = "Select ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu, TenLoai from KhachHang join LoaiKhachHang on KhachHang.MaLoaiKH = LoaiKhachHang.MaLoaiKH where ID_KH = " + id_KH;
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             if (rs.next()) {
                 DTOKhachHang kh = new DTOKhachHang();
-                kh.setMaKH(rs.getInt(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getInt(3));
-                kh.setSoDT(rs.getString(4));
-                kh.setNgaySinh(rs.getString(5));
-                kh.setDiaChi(rs.getString(6));
-                kh.setGhiChu(rs.getString(7));
+                kh.setID_KH(rs.getInt("ID_KH"));
+                kh.setMaKH(rs.getString("MaKH"));
+                kh.setTenKH(rs.getString("TenKH"));
+                kh.setMaLoaiKH(rs.getInt("MaLoaiKH"));
+                kh.setGioiTinhNam(rs.getBoolean("GioiTinh"));
+                kh.setSoDT(rs.getString("SoDT"));
+                kh.setEmail(rs.getString("Email"));
+                kh.setDiaChi(rs.getString("DiaChi"));
+                kh.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                kh.setDiem(rs.getInt("Diem"));
+                kh.setNgayTao(rs.getTimestamp("NgayTao"));
+                kh.setGhiChu(rs.getString("GhiChu"));
+                kh.setTenLoai(rs.getString("TenLoai"));
                 return kh;
             }
         } catch (SQLException ex) {
@@ -55,7 +61,7 @@ public class DALKhachHang {
     }
 
     public static DTOKhachHang[] layDuLieu() {
-        String query = "Select count(MaKH) from KhachHang";
+        String query = "Select count(ID_KH) from KhachHang";
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         int soLuong = 0;
         try {
@@ -68,18 +74,23 @@ public class DALKhachHang {
             System.out.println("Lỗi " + ex);
         }
         DTOKhachHang[] arrKhachHang = new DTOKhachHang[soLuong];
-        query = "Select MaKH, TenKH, GioiTinh, SoDT, Convert(varchar,NgaySinh,103) as NGaySinh , DiaChi, GhiChu from KhachHang";
+        query = "Select ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu from KhachHang";
         rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             for (int i = 0; rs.next(); i++) {
                 DTOKhachHang kh = new DTOKhachHang();
-                kh.setMaKH(rs.getInt(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getInt(3));
-                kh.setSoDT(rs.getString(4));
-                kh.setNgaySinh(rs.getString(5));
-                kh.setDiaChi(rs.getString(6));
-                kh.setGhiChu(rs.getString(7));
+                kh.setID_KH(rs.getInt("ID_KH"));
+                kh.setMaKH(rs.getString("MaKH"));
+                kh.setTenKH(rs.getString("TenKH"));
+                kh.setMaLoaiKH(rs.getInt("MaLoaiKH"));
+                kh.setGioiTinhNam(rs.getBoolean("GioiTinh"));
+                kh.setSoDT(rs.getString("SoDT"));
+                kh.setEmail(rs.getString("Email"));
+                kh.setDiaChi(rs.getString("DiaChi"));
+                kh.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                kh.setDiem(rs.getInt("Diem"));
+                kh.setNgayTao(rs.getTimestamp("NgayTao"));
+                kh.setGhiChu(rs.getString("GhiChu"));
                 arrKhachHang[i] = kh;
             }
         } catch (SQLException ex) {
@@ -92,7 +103,7 @@ public class DALKhachHang {
         if(keyWord.length() == 0){
             return new DTOKhachHang[0];
         }
-        String query = "Select count(MaKH) from KhachHang where TenKH like N'%" + keyWord + "%' or SoDT like N'%" + keyWord + "%'";
+        String query = "Select count(ID_KH) from KhachHang where TenKH like N'%" + keyWord + "%' or SoDT like N'%" + keyWord + "%' or MaKH like N'%"+keyWord+"%'";
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         int soLuong = 0;
         try {
@@ -103,18 +114,23 @@ public class DALKhachHang {
             System.out.println("Lỗi " + ex);
         }
         DTOKhachHang[] arrKhachHang = new DTOKhachHang[soLuong];
-        query = "Select MaKH, TenKH, GioiTinh, SoDT, Convert(varchar,NgaySinh,103) as NGaySinh , DiaChi, GhiChu from KhachHang where TenKH like N'%" + keyWord + "%' or SoDT like N'%" + keyWord + "%'";
+        query = "Select ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu from KhachHang";
         rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             for (int i = 0; rs.next(); i++) {
                 DTOKhachHang kh = new DTOKhachHang();
-                kh.setMaKH(rs.getInt(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getInt(3));
-                kh.setSoDT(rs.getString(4));
-                kh.setNgaySinh(rs.getString(5));
-                kh.setDiaChi(rs.getString(6));
-                kh.setGhiChu(rs.getString(7));
+                kh.setID_KH(rs.getInt("ID_KH"));
+                kh.setMaKH(rs.getString("MaKH"));
+                kh.setTenKH(rs.getString("TenKH"));
+                kh.setMaLoaiKH(rs.getInt("MaLoaiKH"));
+                kh.setGioiTinhNam(rs.getBoolean("GioiTinh"));
+                kh.setSoDT(rs.getString("SoDT"));
+                kh.setEmail(rs.getString("Email"));
+                kh.setDiaChi(rs.getString("DiaChi"));
+                kh.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                kh.setDiem(rs.getInt("Diem"));
+                kh.setNgayTao(rs.getTimestamp("NgayTao"));
+                kh.setGhiChu(rs.getString("GhiChu"));
                 arrKhachHang[i] = kh;
             }
         } catch (SQLException ex) {
@@ -124,18 +140,23 @@ public class DALKhachHang {
     }
     
     public static DTOKhachHang layKHVuaThem(){
-        String query = "Select top 1 MaKH, TenKH, GioiTinh, SoDT, Convert(varchar,NgaySinh,103) as NGaySinh , DiaChi, GhiChu from KhachHang order by MaKH desc";
+        String query = "Select top 1 ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu from KhachHang order by ID_KH desc";
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             if (rs.next()) {
                 DTOKhachHang kh = new DTOKhachHang();
-                kh.setMaKH(rs.getInt(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getInt(3));
-                kh.setSoDT(rs.getString(4));
-                kh.setNgaySinh(rs.getString(5));
-                kh.setDiaChi(rs.getString(6));
-                kh.setGhiChu(rs.getString(7));
+                kh.setID_KH(rs.getInt("ID_KH"));
+                kh.setMaKH(rs.getString("MaKH"));
+                kh.setTenKH(rs.getString("TenKH"));
+                kh.setMaLoaiKH(rs.getInt("MaLoaiKH"));
+                kh.setGioiTinhNam(rs.getBoolean("GioiTinh"));
+                kh.setSoDT(rs.getString("SoDT"));
+                kh.setEmail(rs.getString("Email"));
+                kh.setDiaChi(rs.getString("DiaChi"));
+                kh.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                kh.setDiem(rs.getInt("Diem"));
+                kh.setNgayTao(rs.getTimestamp("NgayTao"));
+                kh.setGhiChu(rs.getString("GhiChu"));
                 return kh;
             }
         } catch (SQLException ex) {

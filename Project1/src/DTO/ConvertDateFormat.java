@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package DTO;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,7 +26,7 @@ public class ConvertDateFormat {
         try {
             return dateFormat.parse(date);
         } catch (ParseException ex) {
-            System.out.println("Lỗi "+ex);
+            System.out.println("Lỗi " + ex);
             return null;
         }
     }
