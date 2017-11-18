@@ -59,20 +59,26 @@ public class DTOKhachHang {
         this.ghiChu = ghiChu;
     }
 
-    public DTOKhachHang(String maKH, String tenKH, int maLoaiKH, String gioiTinh, String soDT, String email, String diaChi, Date ngaySinh, int diem, Date ngayTao, String ghiChu) {
+    public DTOKhachHang(String maKH, String tenKH, String maLoaiKH, String gioiTinh, String soDT, String email, String diaChi, Date ngaySinh, String diem, Date ngayTao, String ghiChu) {
         this.maKH = maKH;
         this.tenKH = tenKH;
-        this.maLoaiKH = maLoaiKH;
+        if (maLoaiKH.equals("Member")) {
+            this.maLoaiKH = 1;
+        } else if (maLoaiKH.equals("Silver")) {
+            this.maLoaiKH = 2;
+        } else {
+            this.maLoaiKH = 3;
+        }
         this.gioiTinhNam = gioiTinh.equals("Nam");
         this.soDT = soDT;
         this.email = email;
         this.diaChi = diaChi;
         this.ngaySinh = ngaySinh;
-        this.diem = diem;
+        this.diem = Integer.parseInt(diem);
         this.ngayTao = ngayTao;
         this.ghiChu = ghiChu;
     }
-    
+
     public int getID_KH() {
         return ID_KH;
     }
@@ -124,6 +130,11 @@ public class DTOKhachHang {
             return "Nữ";
         }
     }
+    
+    public int getGioiTinh_int() {
+        int myInt = (isGioiTinhNam()) ? 1 : 0;
+        return myInt;
+    }
 
     public void setGioiTinhNam(boolean gioiTinhNam) {
         this.gioiTinhNam = gioiTinhNam;
@@ -157,11 +168,20 @@ public class DTOKhachHang {
         return ngaySinh;
     }
 
-    public String getNgaySinh_String() {
+    public String getNgaySinh_DMY() {
         if (ngaySinh == null) {
             return "";
         } else {
             String sNgaySinh = ConvertDateFormat.chuyenNgay(ngaySinh);
+            return sNgaySinh;
+        }
+    }
+
+    public String getNgaySinh_forSQL() {
+        if (ngaySinh == null) {
+            return "NULL";
+        } else {
+            String sNgaySinh = ConvertDateFormat.chuyenNgayYMD(ngaySinh);
             return sNgaySinh;
         }
     }
@@ -189,6 +209,16 @@ public class DTOKhachHang {
 
     public String getNgayTao_String() {
         String sNgayTao = ConvertDateFormat.chuyenNgay(ngayTao);
+        return sNgayTao;
+    }
+
+    public String getGioTao() {
+        String sNgayTao = ConvertDateFormat.chuyenGio(ngayTao);
+        return sNgayTao;
+    }
+
+    public String getNgayTao_forSQL() {
+        String sNgayTao = ConvertDateFormat.chuyenNgayVaGio(ngayTao);
         return sNgayTao;
     }
 

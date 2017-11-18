@@ -30,4 +30,19 @@ public class ConvertDateFormat {
             return null;
         }
     }
+    
+    public static String chuyenNgayVaGio(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(date);
+    }
+    
+    public static String chuyenNgayYMD (Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
+    
+    public static String chuyenGio(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        return dateFormat.format(date);
+    }
 }

@@ -19,10 +19,7 @@ public class Pnl_KhachHang extends javax.swing.JPanel {
      */
     public Pnl_KhachHang() {
         initComponents();
-        int[] mangID = new int[2];
-        mangID[0] = 1;
-        mangID[1] = 2;
-        capNhatDanhSachKH(mangID);
+        capNhatDanhSachKH();
     }
 
     /**
@@ -94,6 +91,7 @@ public class Pnl_KhachHang extends javax.swing.JPanel {
         );
 
         jScrollPane1.setBorder(null);
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16); //Tăng tốc độ cuộn
 
         pnl_bg.setLayout(new javax.swing.BoxLayout(pnl_bg, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(pnl_bg);
@@ -144,12 +142,17 @@ public class Pnl_KhachHang extends javax.swing.JPanel {
         dlg_ThemKhachHang themKH_dlg = new dlg_ThemKhachHang(null, true);
         themKH_dlg.setLocationRelativeTo(this);
         themKH_dlg.setVisible(true);
+        if(themKH_dlg.getMaKHVuaTao() != null){
+            capNhatDanhSachKH();
+        }
     }//GEN-LAST:event_btn_ThemKHActionPerformed
 
-    private void capNhatDanhSachKH(int[] id_KH) {
-        for (int i = 0; i < id_KH.length; i++) {
-            pnl_bg.setVisible(false);
-            JPanel card = new KhachHang_ChiTiet(id_KH[i]);
+    private void capNhatDanhSachKH() {
+        pnl_bg.setVisible(false);
+        pnl_bg.removeAll();
+        DTO.DTOKhachHang[] kh = DAL.DALKhachHang.layDuLieu();
+        for (int i = 0; i < kh.length; i++) {
+            JPanel card = new KhachHang_ChiTiet(kh[i].getID_KH());
             pnl_bg.add(card);
             pnl_bg.setVisible(true);
         }

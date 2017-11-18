@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class DALNhanVien {
 
     public static int them(DTONhanVien item) {
-        String query = "Set Dateformat DMY Insert into NhanVien Values(N'" + item.getTenNV() + "'," + item.getGioiTinh() + ",'" + item.getSoDT() + "','" + item.getNgaySinh() + "',N'" + item.getDiaChi() + "','" + item.getSoCMND() + "',N'" + item.getGhiChu() + "')";
+        String query = "Insert into NhanVien Values(N'" + item.getTenNV() + "', '" + item.getSoDT() + "',"+item.getGioiTinh()+", '" + item.getNgaySinh() + "',N'" + item.getDiaChi() + "','" + item.getNgayTao() + "','" + item.getTenDangNhap() + "','"+item.getMatKhau()+"',"+item.getMaQuyen()+","+item.isAvailable()+")";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
@@ -30,25 +30,30 @@ public class DALNhanVien {
     }
 
     public static int sua(int maNV, DTONhanVien newItem) {
-        String query = "Set Dateformat DMY Update NhanVien set TenNV = N'" + newItem.getTenNV() + "', GioiTinh = " + newItem.getGioiTinh() + ", SoDT = '" + newItem.getSoDT() + "', NgaySinh = '" + newItem.getNgaySinh() + "', DiaChi = '" + newItem.getDiaChi() + "', SoCMND = " + newItem.getSoCMND() + ", GhiChu = N'" + newItem.getGhiChu() + "' where MaNV = " + maNV;
+        String query = "Update NhanVien set TenNV = N'" + newItem.getTenNV() + "', SoDT = '"+newItem.getSoDT()+"', GioiTinh = " + newItem.getGioiTinh() + ", NgaySinh = '" + newItem.getNgaySinh() + "', CMND = '"+newItem.getCmnd()+"', DiaChi = '" + newItem.getDiaChi() + "', NgayTao = '"+newItem.getNgayTao()+"', TenDangNhap = '"+newItem.getTenDangNhap()+"', MatKhau = '"+newItem.getMatKhau()+"', MaQuyen = " + newItem.getMaQuyen() + ", TinhTrang = "+newItem.isAvailable()+" where MaNV = " + maNV;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
 
     public static DTONhanVien layDuLieu(int maNV) throws SQLException {
-        String query = "Select * from NhanVien where MaNV = " + maNV;
+        String query = "Select * from NhanVien join Quyen on NhanVien.MaQuyen = Quyen.MaQuyen where MaNV = " + maNV;
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             if (rs.next()) {
                 DTONhanVien nv = new DTONhanVien();
-                nv.setMaNV(rs.getInt(1));
-                nv.setTenNV(rs.getString(2));
-                nv.setGioiTinh(rs.getInt(3));
-                nv.setSoDT(rs.getString(4));
-                nv.setNgaySinh(rs.getString(5));
-                nv.setDiaChi(rs.getString(6));
-                nv.setSoCMND(rs.getString(7));
-                nv.setGhiChu(rs.getString(8));
+                nv.setMaNV(rs.getInt("MaNV"));
+                nv.setTenNV(rs.getString("TenNV"));
+                nv.setSoDT(rs.getString("SoDT"));
+                nv.setGioiTinh(rs.getInt("GioiTinh"));
+                nv.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                nv.setCmnd(rs.getString("CMND"));
+                nv.setDiaChi(rs.getString("DiaChi"));
+                nv.setNgayTao(rs.getTimestamp("NgayTao"));
+                nv.setTenDangNhap(rs.getString("TenDangNhap"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                nv.setMaQuyen(rs.getInt("MaQuyen"));
+                nv.setTenQuyen(rs.getString("TenQuyen"));
+                nv.setAvailable(rs.getBoolean("TinhTrang"));
                 return nv;
             }
         } catch (SQLException ex) {
@@ -71,19 +76,24 @@ public class DALNhanVien {
             System.out.println("Lỗi DALNhanVien " + ex);
         }
         DTONhanVien[] arrNhanVien = new DTONhanVien[soLuong];
-        query = "Select * from NhanVien";
+        query = "Select * from NhanVien join Quyen on NhanVien.MaQuyen = Quyen.MaQuyen";
         rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             for (int i = 0; rs.next(); i++) {
                 DTONhanVien nv = new DTONhanVien();
-                nv.setMaNV(rs.getInt(1));
-                nv.setTenNV(rs.getString(2));
-                nv.setGioiTinh(rs.getInt(3));
-                nv.setSoDT(rs.getString(4));
-                nv.setNgaySinh(rs.getString(5));
-                nv.setDiaChi(rs.getString(6));
-                nv.setSoCMND(rs.getString(7));
-                nv.setGhiChu(rs.getString(8));
+                nv.setMaNV(rs.getInt("MaNV"));
+                nv.setTenNV(rs.getString("TenNV"));
+                nv.setSoDT(rs.getString("SoDT"));
+                nv.setGioiTinh(rs.getInt("GioiTinh"));
+                nv.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                nv.setCmnd(rs.getString("CMND"));
+                nv.setDiaChi(rs.getString("DiaChi"));
+                nv.setNgayTao(rs.getTimestamp("NgayTao"));
+                nv.setTenDangNhap(rs.getString("TenDangNhap"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                nv.setMaQuyen(rs.getInt("MaQuyen"));
+                nv.setTenQuyen(rs.getString("TenQuyen"));
+                nv.setAvailable(rs.getBoolean("TinhTrang"));
                 arrNhanVien[i] = nv;
             }
         } catch (SQLException ex) {

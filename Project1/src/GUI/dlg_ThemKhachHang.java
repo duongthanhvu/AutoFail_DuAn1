@@ -230,13 +230,13 @@ public class dlg_ThemKhachHang extends javax.swing.JDialog {
         DTOKhachHang kh = new DTOKhachHang(
                 txt_MaKH.getText(), 
                 txt_TenKH.getText(), 
-                1,
+                "Member",
                 cbb_GioiTinh.getSelectedItem().toString(),
                 txt_SDT.getText(), 
                 txt_Email.getText(), 
                 txt_DiaChi.getText(),
                 date_NgaySinh.getDate(), 
-                0, 
+                "0", 
                 new java.util.Date(),
                 txt_GhiChu.getText());
         ThongBao tb = BLLKhachHang.them(kh);

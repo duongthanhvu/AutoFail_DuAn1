@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DTO;
+
+import java.text.DecimalFormat;
 
 /**
  *
  * @author vudtpk0074
  */
 public class DTOSanPham {
+
     int maSP;
     String tenSP;
     int maLoaiSP;
@@ -38,6 +40,18 @@ public class DTOSanPham {
         this.giaBanLe = giaBanLe;
         this.barcode = barcode;
         this.available = available;
+    }
+
+    public DTOSanPham(String tenSP, int maLoaiSP, String giaBanLe, String barcode, String tinhTrang) {
+        this.tenSP = tenSP;
+        this.maLoaiSP = maLoaiSP;
+        this.giaBanLe = Integer.parseInt(giaBanLe);
+        this.barcode = barcode;
+        if(tinhTrang.equals("Còn hàng")){
+            this.available = true;
+        }else{
+            this.available = false;
+        }
     }
 
     public int getMaSP() {
@@ -84,6 +98,17 @@ public class DTOSanPham {
         return giaBanLe;
     }
 
+    public String getGiaBanLe_String() {
+        String sGiaBanLe = String.valueOf(giaBanLe);
+        return sGiaBanLe;
+    }
+
+    public String getGiaBanLe_Formatted() {
+        DecimalFormat formatter = new DecimalFormat("###,###.###");
+        String sGiaBanLe = formatter.format(giaBanLe);
+        return sGiaBanLe;
+    }
+
     public void setGiaBanLe(int giaBanLe) {
         this.giaBanLe = giaBanLe;
     }
@@ -100,11 +125,19 @@ public class DTOSanPham {
         return available;
     }
 
+    public String getTinhTrang() {
+        if (isAvailable()) {
+            return "Còn hàng";
+        } else {
+            return "Ngừng kinh doanh";
+        }
+    }
+
     public void setAvailable(boolean available) {
         this.available = available;
     }
-    
-    public Object[] getAll(){
+
+    public Object[] getAll() {
         Object[] item = new Object[8];
         item[0] = getMaSP();
         item[1] = getTenSP();

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import DTO.DTOKhachHang;
 import java.awt.CardLayout;
 
 /**
@@ -62,11 +63,11 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_Diem = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_GhiChu = new javax.swing.JTextArea();
-        txt_NgaySinh = new javax.swing.JTextField();
         btn_LuuThayDoi = new javax.swing.JButton();
         btn_CapNhat = new javax.swing.JButton();
         btn_XemLSMuaHang = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        date_NgaySinh = new com.toedter.calendar.JDateChooser();
         pnl_ThongTinTT = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jButton6 = new javax.swing.JButton();
@@ -128,6 +129,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_DiaChi.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txt_DiaChi);
 
+        txt_Diem.setEditable(false);
         txt_Diem.setText("100");
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -137,8 +139,6 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_GhiChu.setRows(5);
         txt_GhiChu.setWrapStyleWord(true);
         jScrollPane2.setViewportView(txt_GhiChu);
-
-        txt_NgaySinh.setText("100");
 
         btn_LuuThayDoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Save_24px_1.png"))); // NOI18N
         btn_LuuThayDoi.setContentAreaFilled(false);
@@ -178,20 +178,15 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                 .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_SDT)
                     .addComponent(cbb_GioiTinh, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_Email)
-                    .addComponent(txt_TenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(txt_Email, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(txt_TenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                     .addComponent(txt_MaKH)
                     .addComponent(cbb_LoaiKH, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
                 .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_ChiTietKHLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_NgaySinh))
-                    .addComponent(jLabel14)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_ChiTietKHLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(pnl_ChiTietKHLayout.createSequentialGroup()
                         .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -199,8 +194,15 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                         .addGap(34, 34, 34)
                         .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(txt_Diem, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
-                .addGap(19, 19, 19)
+                            .addComponent(txt_Diem, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                    .addGroup(pnl_ChiTietKHLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnl_ChiTietKHLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(date_NgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,10 +234,10 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                             .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel14)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(12, 12, 12)
-                            .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGap(9, 9, 9)
+                            .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel12)
-                                .addComponent(txt_NgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(date_NgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(pnl_ChiTietKHLayout.createSequentialGroup()
                             .addGroup(pnl_ChiTietKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
@@ -347,9 +349,12 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         });
 
         lbl_Ten.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_Ten.setText("<html>\n<h4>Dương Thành Vũ</h4>\n<p>DW2FS</p>\n</html>");
+        lbl_Ten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/member.png"))); // NOI18N
+        lbl_Ten.setText("<html> <h4>Dương Thành Vũ</h4> <p>DW2FS</p> </html>");
         lbl_Ten.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbl_Ten.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(243, 243, 243)));
+        lbl_Ten.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_Ten.setIconTextGap(5);
 
         lbl_SoDienThoai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbl_SoDienThoai.setText("098 539 0133");
@@ -360,7 +365,9 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         lbl_Diem.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(243, 243, 243)));
 
         lbl_NgayTao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbl_NgayTao.setText("20/05/2016");
+        lbl_NgayTao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_NgayTao.setText("<html>\n<p>20/05/2016</p>\n<p>13:45:45</p>\n</html>");
+        lbl_NgayTao.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         lbl_indicator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Expand_Arrow_24px.png"))); // NOI18N
 
@@ -388,7 +395,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                     .addComponent(lbl_Diem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_Ten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                     .addComponent(lbl_SoDienThoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_NgayTao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbl_NgayTao, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -413,15 +420,30 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void doDuLieuLenPanel() {
-        DTO.DTOKhachHang kh = DAL.DALKhachHang.layDuLieu(id_KH);
+        DTOKhachHang kh = DAL.DALKhachHang.layDuLieu(id_KH);
         lbl_Ten.setText("<html>\n"
-                + "<h4>"+kh.getTenKH()+"</h4>\n"
-                + "<p>"+kh.getMaKH()+"</p>\n"
+                + "<h4>" + kh.getTenKH() + "</h4>\n"
+                + "<p>" + kh.getMaKH() + "</p>\n"
                 + "</html>");
+        switch(kh.getTenLoai()){
+            case "Member": 
+                lbl_Ten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/member.png")));
+                break;
+            case "Silver":
+                lbl_Ten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/silver.png")));
+                break;
+            case "Gold":
+                lbl_Ten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/gold.png")));
+                break;
+        }
         lbl_SoDienThoai.setText(kh.getSoDT());
         lbl_Diem.setText(kh.getDiem_String());
-        lbl_NgayTao.setText(kh.getNgayTao_String());
-        //Set text cho phần chỉnh sửa thông tin
+        lbl_NgayTao.setText("<html>\n"
+                + "<p></p>\n"
+                + "<p>" + kh.getNgayTao_String() + "</p>\n"
+                + "<p>" + kh.getGioTao() + "</p>\n"
+                + "</html>");
+        //Set text cho phần chỉnh sửa thông tin (Done)
         txt_TenKH.setText(kh.getTenKH());
         txt_MaKH.setText(kh.getMaKH());
         cbb_LoaiKH.setSelectedItem(kh.getTenLoai());
@@ -431,7 +453,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_DiaChi.setText(kh.getDiaChi());
         txt_Diem.setText(kh.getDiem_String());
         txt_GhiChu.setText(kh.getGhiChu());
-        txt_NgaySinh.setText(kh.getNgaySinh_String());
+        date_NgaySinh.setDate(kh.getNgaySinh());
     }
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
@@ -445,7 +467,24 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel1MousePressed
 
     private void btn_LuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LuuThayDoiActionPerformed
-        // TODO add your handling code here:
+        //Code kiểm tra tính hợp lệ của thông tin nhập vào
+
+        this.setVisible(false);
+        DTOKhachHang kh = new DTOKhachHang(
+                txt_MaKH.getText(),
+                txt_TenKH.getText(),
+                cbb_LoaiKH.getSelectedItem().toString(),
+                cbb_GioiTinh.getSelectedItem().toString(),
+                txt_SDT.getText(),
+                txt_Email.getText(),
+                txt_DiaChi.getText(),
+                date_NgaySinh.getDate(),
+                txt_Diem.getText(),
+                new java.util.Date(),
+                txt_GhiChu.getText());
+        XuLyThongBao.hienThiThongBao(BLL.BLLKhachHang.sua(id_KH, kh));
+        doDuLieuLenPanel();
+        this.setVisible(true);
     }//GEN-LAST:event_btn_LuuThayDoiActionPerformed
 
     private void btn_XemLSMuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XemLSMuaHangActionPerformed
@@ -465,6 +504,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     private javax.swing.JButton btn_XemLSMuaHang;
     private javax.swing.JComboBox<String> cbb_GioiTinh;
     private javax.swing.JComboBox<String> cbb_LoaiKH;
+    private com.toedter.calendar.JDateChooser date_NgaySinh;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
@@ -498,7 +538,6 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     private javax.swing.JTextField txt_Email;
     private javax.swing.JTextArea txt_GhiChu;
     private javax.swing.JTextField txt_MaKH;
-    private javax.swing.JTextField txt_NgaySinh;
     private javax.swing.JTextField txt_SDT;
     private javax.swing.JTextField txt_TenKH;
     // End of variables declaration//GEN-END:variables

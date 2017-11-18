@@ -6,6 +6,8 @@
 
 package DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author vudtpk0074
@@ -13,35 +15,50 @@ package DTO;
 public class DTONhanVien implements DTO{
     int maNV;
     String tenNV;
-    int gioiTinh;
     String soDT;
-    String ngaySinh;
+    int gioiTinh;
+    Date ngaySinh;
+    String cmnd;
     String diaChi;
-    String soCMND;
-    String ghiChu;
+    Date ngayTao;
+    String tenDangNhap;
+    String matKhau;
+    int maQuyen;
+    String tenQuyen;
+    boolean available;
 
     public DTONhanVien() {
     }
 
-    public DTONhanVien(int maNV, String tenNV, int gioiTinh, String soDT, String ngaySinh, String diaChi, String soCMND, String ghiChu) {
+    public DTONhanVien(int maNV, String tenNV, String soDT, int gioiTinh, Date ngaySinh, String cmnd, String diaChi, Date ngayTao, String tenDangNhap, String matKhau, int maQuyen, String tenQuyen, boolean available) {
         this.maNV = maNV;
         this.tenNV = tenNV;
-        this.gioiTinh = gioiTinh;
         this.soDT = soDT;
+        this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
+        this.cmnd = cmnd;
         this.diaChi = diaChi;
-        this.soCMND = soCMND;
-        this.ghiChu = ghiChu;
+        this.ngayTao = ngayTao;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.maQuyen = maQuyen;
+        this.tenQuyen = tenQuyen;
+        this.available = available;
     }
 
-    public DTONhanVien(String tenNV, int gioiTinh, String soDT, String ngaySinh, String diaChi, String soCMND, String ghiChu) {
+    public DTONhanVien(String tenNV, String soDT, int gioiTinh, Date ngaySinh, String cmnd, String diaChi, Date ngayTao, String tenDangNhap, String matKhau, int maQuyen, String tenQuyen, boolean available) {
         this.tenNV = tenNV;
-        this.gioiTinh = gioiTinh;
         this.soDT = soDT;
+        this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
+        this.cmnd = cmnd;
         this.diaChi = diaChi;
-        this.soCMND = soCMND;
-        this.ghiChu = ghiChu;
+        this.ngayTao = ngayTao;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.maQuyen = maQuyen;
+        this.tenQuyen = tenQuyen;
+        this.available = available;
     }
 
     public int getMaNV() {
@@ -60,14 +77,6 @@ public class DTONhanVien implements DTO{
         this.tenNV = tenNV;
     }
 
-    public int getGioiTinh() {
-        return gioiTinh;
-    }
-
-    public void setGioiTinh(int gioiTinh) {
-        this.gioiTinh = gioiTinh;
-    }
-
     public String getSoDT() {
         return soDT;
     }
@@ -76,12 +85,41 @@ public class DTONhanVien implements DTO{
         this.soDT = soDT;
     }
 
-    public String getNgaySinh() {
-        return ngaySinh;
+    public int getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public String getGioiTinh_String() {
+        if(gioiTinh == 1){
+            return "Nam";
+        }else{
+            return "Nữ";
+        }
+    }
+    
+    public void setGioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+    
+    public String getNgaySinh_String() {
+        String sNgaySinh = ConvertDateFormat.chuyenNgay(ngaySinh);
+        return sNgaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
+    }
+
+    public String getCmnd() {
+        return cmnd;
+    }
+
+    public void setCmnd(String cmnd) {
+        this.cmnd = cmnd;
     }
 
     public String getDiaChi() {
@@ -92,22 +130,61 @@ public class DTONhanVien implements DTO{
         this.diaChi = diaChi;
     }
 
-    public String getSoCMND() {
-        return soCMND;
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+    
+    public String getNgayTao_String() {
+        String sNgayTao = ConvertDateFormat.chuyenNgayVaGio(ngayTao);
+        return sNgayTao;
     }
 
-    public void setSoCMND(String soCMND) {
-        this.soCMND = soCMND;
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
+    public String getTenDangNhap() {
+        return tenDangNhap;
     }
 
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
     }
 
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public int getMaQuyen() {
+        return maQuyen;
+    }
+
+    public void setMaQuyen(int maQuyen) {
+        this.maQuyen = maQuyen;
+    }
+
+    public String getTenQuyen() {
+        return tenQuyen;
+    }
+
+    public void setTenQuyen(String tenQuyen) {
+        this.tenQuyen = tenQuyen;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+    
+    
+    
     @Override
     public int getKey() {
         return maNV;

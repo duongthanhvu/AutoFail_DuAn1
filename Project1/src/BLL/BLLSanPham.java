@@ -18,8 +18,6 @@ public class BLLSanPham {
     public static ThongBao them(DTOSanPham sp) {
         if (sp.getTenSP().trim().length() < 1 || sp.getTenSP().trim().length() > 30) {
             return new ThongBao("Độ dài tên không hợp lệ.", ThongBao.LOI);
-        } else if (sp.getMoTa().trim().length() > 50) {
-            return new ThongBao("Độ dài mô tả quá lớn", ThongBao.LOI);
         } else {
             int kq = DALSanPham.them(sp);
             if (kq < 0) {
@@ -35,8 +33,6 @@ public class BLLSanPham {
     public static ThongBao sua(int maSanPham, DTOSanPham sp) {
         if (sp.getTenSP().trim().length() < 1 || sp.getTenSP().trim().length() > 30) {
             return new ThongBao("Độ dài tên không hợp lệ.", ThongBao.LOI);
-        } else if (sp.getMoTa().trim().length() > 50) {
-            return new ThongBao("Độ dài mô tả quá lớn", ThongBao.LOI);
         } else {
             int kq = DALSanPham.sua(maSanPham, sp);
             if (kq < 0) {

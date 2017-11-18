@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import DTO.DTONhanVien;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
@@ -41,7 +42,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        lbl_Avatar = new javax.swing.JLabel();
         lbl_DiaChi = new javax.swing.JLabel();
         lbl_NgayTao = new javax.swing.JLabel();
         lbl_SoDienThoai = new javax.swing.JLabel();
@@ -107,17 +108,17 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
 
         jPanel2.setOpaque(false);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/NhanVien_Pictures/nv1.png"))); // NOI18N
+        lbl_Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/NhanVien_Pictures/1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_Avatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_Avatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2);
@@ -174,6 +175,15 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        DTO.DTONhanVien nv = (DTONhanVien)value;
+        lbl_Ten.setText(nv.getTenNV());
+        lbl_SoDienThoai.setText("SĐT: " + nv.getSoDT());
+        lbl_GioiTinh.setText("Giới tính: " + nv.getGioiTinh_String());
+        lbl_NgaySinh.setText("Ngày sinh: " + nv.getNgaySinh_String());
+        lbl_CMND.setText("CMND: " + nv.getCmnd());
+        lbl_DiaChi.setText("Địa chỉ: " + nv.getDiaChi());
+        lbl_NgayTao.setText("Ngày tạo: " + nv.getNgayTao_String());
+        lbl_Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/NhanVien_Pictures/"+nv.getMaNV()+".png")));
         if (isSelected) {
             this.setBackground(table.getSelectionBackground());
             setTextColor(Color.WHITE);
@@ -197,10 +207,10 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbl_Avatar;
     private javax.swing.JLabel lbl_CMND;
     private javax.swing.JLabel lbl_DiaChi;
     private javax.swing.JLabel lbl_GioiTinh;

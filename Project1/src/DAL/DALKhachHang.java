@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DALKhachHang {
 
     public static int them(DTOKhachHang item) {
-        String query = "Insert into KhachHang Values('"+item.getMaKH()+"', N'"+item.getTenKH()+"', "+item.getMaLoaiKH()+", "+item.isGioiTinhNam()+", '"+item.getSoDT()+"', '"+item.getEmail()+"', N'"+item.getDiaChi()+"', "+item.getNgaySinh()+", "+item.getDiem()+", "+item.getNgayTao()+", "+item.getGhiChu()+")";
+        String query = "Insert into KhachHang Values('"+item.getMaKH()+"', N'"+item.getTenKH()+"', "+item.getMaLoaiKH()+", "+item.getGioiTinh_int()+", '"+item.getSoDT()+"', '"+item.getEmail()+"', N'"+item.getDiaChi()+"', '"+item.getNgaySinh_forSQL()+"', "+item.getDiem()+", '"+item.getNgayTao_forSQL()+"', N'"+item.getGhiChu()+"')";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
@@ -28,7 +28,7 @@ public class DALKhachHang {
     }
 
     public static int sua(int id_KH, DTOKhachHang newItem) {
-        String query = "Update KhachHang set MaKH = '"+newItem.getMaKH()+"', TenKH = N'"+newItem.getMaKH()+"', MaLoaiKH = "+newItem.getMaLoaiKH()+", GioiTinh = "+newItem.isGioiTinhNam()+", SoDT = '"+newItem.getSoDT()+"', Email = '"+newItem.getEmail()+"', DiaChi = N'"+newItem.getDiaChi()+"', NgaySinh = "+newItem.getNgaySinh()+", Diem = "+newItem.getDiem()+", NgayTao = "+newItem.getNgayTao()+", GhiChu = N'"+newItem.getGhiChu()+"' where id_KH = " + id_KH;
+        String query = "Update KhachHang set MaKH = '"+newItem.getMaKH()+"', TenKH = N'"+newItem.getTenKH()+"', MaLoaiKH = "+newItem.getMaLoaiKH()+", GioiTinh = "+newItem.getGioiTinh_int()+", SoDT = '"+newItem.getSoDT()+"', Email = '"+newItem.getEmail()+"', DiaChi = N'"+newItem.getDiaChi()+"', NgaySinh = '"+newItem.getNgaySinh_forSQL()+"', Diem = "+newItem.getDiem()+", GhiChu = N'"+newItem.getGhiChu()+"' where id_KH = " + id_KH;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }

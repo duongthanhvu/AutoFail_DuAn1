@@ -169,6 +169,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jScrollPane1.getVerticalScrollBar().setUnitIncrement(16); //T&#x103;ng t&#x1ed1;c &#x111;&#x1ed9; cu&#x1ed9;n"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>

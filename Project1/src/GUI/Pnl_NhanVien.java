@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author vudt9
@@ -18,6 +19,7 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
      */
     public Pnl_NhanVien() {
         initComponents();
+        doDuLieuLenTable();
     }
 
     /**
@@ -33,7 +35,7 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         txt_QueryInput = new javax.swing.JTextField();
         btn_Search = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_NhanVien = new javax.swing.JTable();
         btn_TimKH = new javax.swing.JButton();
         btn_SuaKH = new javax.swing.JButton();
         btn_ThemKH = new javax.swing.JButton();
@@ -81,8 +83,8 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_NhanVien.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        tbl_NhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -93,18 +95,18 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
                 "Danh sách nhân viên"
             }
         ));
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(224);
-        jTable1.setSelectionBackground(new java.awt.Color(72, 169, 153));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setCellRenderer(new NhanVienRenderer());
+        tbl_NhanVien.setColumnSelectionAllowed(true);
+        tbl_NhanVien.setGridColor(new java.awt.Color(255, 255, 255));
+        tbl_NhanVien.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tbl_NhanVien.setRowHeight(224);
+        tbl_NhanVien.setSelectionBackground(new java.awt.Color(72, 169, 153));
+        tbl_NhanVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbl_NhanVien.setShowHorizontalLines(false);
+        tbl_NhanVien.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tbl_NhanVien);
+        tbl_NhanVien.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tbl_NhanVien.getColumnModel().getColumnCount() > 0) {
+            tbl_NhanVien.getColumnModel().getColumn(0).setCellRenderer(new NhanVienRenderer());
         }
 
         btn_TimKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
@@ -198,6 +200,16 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         }
     }
     
+    private void doDuLieuLenTable() {
+        DTO.DTONhanVien[] arrNV = DAL.DALNhanVien.layDuLieu();
+        DefaultTableModel model = (DefaultTableModel)tbl_NhanVien.getModel();
+        model.setRowCount(0);
+        for(int i = 0; i < arrNV.length; i++){
+            Object[] obj = new Object[1];
+            obj[0] = arrNV[i];
+            model.addRow(obj);
+        }
+    }
     private void btn_SearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SearchMouseEntered
         diChuotVaoNutSearch(true);
     }//GEN-LAST:event_btn_SearchMouseEntered
@@ -247,7 +259,7 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
     private javax.swing.JButton btn_ThemKH1;
     private javax.swing.JButton btn_TimKH;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_NhanVien;
     private javax.swing.JTextField txt_QueryInput;
     // End of variables declaration//GEN-END:variables
 }
