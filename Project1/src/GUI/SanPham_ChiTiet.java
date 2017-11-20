@@ -121,22 +121,19 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        pnl_AnhSP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnl_AnhSPMouseEntered(evt);
-            }
+        pnl_AnhSP.setLayout(new javax.swing.OverlayLayout(pnl_AnhSP));
+
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnl_AnhSPMouseExited(evt);
+                jPanel5MouseExited(evt);
             }
         });
-        pnl_AnhSP.setLayout(new javax.swing.OverlayLayout(pnl_AnhSP));
 
         btn_ChangePP.setBackground(new java.awt.Color(0, 76, 64));
         btn_ChangePP.setForeground(new java.awt.Color(255, 255, 255));
         btn_ChangePP.setText("Thay đổi ảnh");
         btn_ChangePP.setContentAreaFilled(false);
         btn_ChangePP.setOpaque(true);
-        btn_ChangePP.setVisible(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -159,7 +156,15 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
                     .addContainerGap(52, Short.MAX_VALUE)))
         );
 
+        jPanel5.setVisible(false);
+
         pnl_AnhSP.add(jPanel5);
+
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel4MouseEntered(evt);
+            }
+        });
 
         lbl_AnhSP.setText("Hình ảnh sản phẩm");
 
@@ -438,13 +443,13 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         cl.show(pnl_MoRong, "card3");
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void pnl_AnhSPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_AnhSPMouseEntered
-        btn_ChangePP.setVisible(true);
-    }//GEN-LAST:event_pnl_AnhSPMouseEntered
+    private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
+        jPanel5.setVisible(true);
+    }//GEN-LAST:event_jPanel4MouseEntered
 
-    private void pnl_AnhSPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_AnhSPMouseExited
-        btn_ChangePP.setVisible(false);
-    }//GEN-LAST:event_pnl_AnhSPMouseExited
+    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+        jPanel5.setVisible(false);
+    }//GEN-LAST:event_jPanel5MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

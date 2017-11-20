@@ -260,7 +260,7 @@ public class Frm_Login extends javax.swing.JFrame {
             jSeparator2.setForeground(Color.red);
             return;
         }
-        Frm_Main.main();
+        Frm_Main.main("DuongVu"); // <- set tên của user hiện tại vào đây
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton1ActionPerformed

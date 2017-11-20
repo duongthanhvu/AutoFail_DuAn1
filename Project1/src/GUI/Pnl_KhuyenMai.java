@@ -19,6 +19,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
      */
     public Pnl_KhuyenMai() {
         initComponents();
+        loadDSChuongTrinhKM();
     }
 
     /**
@@ -30,23 +31,175 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlg_ThemCTKM = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        txt_TenKM = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        date_begin = new com.toedter.calendar.JDateChooser();
+        date_end = new com.toedter.calendar.JDateChooser();
+        chk_member = new javax.swing.JCheckBox();
+        chk_gold = new javax.swing.JCheckBox();
+        chk_silver = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_MoTa = new javax.swing.JTextArea();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        txt_KieuKM = new javax.swing.JTextField();
+        btn_Tao = new javax.swing.JButton();
+        btn_Huy = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_TaoCTKM = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnl_bg = new javax.swing.JPanel();
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        dlg_ThemCTKM.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        dlg_ThemCTKM.setSize(new java.awt.Dimension(400, 463));
+
+        jLabel1.setText("Tên khuyến mãi");
+
+        jLabel2.setText("Ngày bắt đầu");
+
+        jLabel3.setText("Ngày kết thúc");
+
+        jLabel4.setText("Kiểu khuyến mãi");
+
+        jLabel5.setText("Đối tượng áp dụng");
+
+        jLabel6.setText("Mô tả");
+
+        date_begin.setDateFormatString("dd/MM/yyyy");
+
+        date_end.setDateFormatString("dd/MM/yyyy");
+
+        chk_member.setText("Member");
+        chk_member.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chk_memberActionPerformed(evt);
             }
         });
+
+        chk_gold.setText("Gold");
+
+        chk_silver.setText("Silver");
+
+        txt_MoTa.setColumns(20);
+        txt_MoTa.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_MoTa.setLineWrap(true);
+        txt_MoTa.setRows(5);
+        txt_MoTa.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txt_MoTa);
+
+        jCheckBox4.setText("Đến khi hết quà khuyến mãi");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
+
+        btn_Tao.setText("Tạo");
+
+        btn_Huy.setText("Hủy");
+
+        javax.swing.GroupLayout dlg_ThemCTKMLayout = new javax.swing.GroupLayout(dlg_ThemCTKM.getContentPane());
+        dlg_ThemCTKM.getContentPane().setLayout(dlg_ThemCTKMLayout);
+        dlg_ThemCTKMLayout.setHorizontalGroup(
+            dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlg_ThemCTKMLayout.createSequentialGroup()
+                        .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(date_begin, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(date_end, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(149, 149, 149))
+                    .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                        .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel6))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(chk_member)
+                                .addGap(18, 18, 18)
+                                .addComponent(chk_silver)
+                                .addGap(18, 18, 18)
+                                .addComponent(chk_gold)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(btn_Tao)
+                                .addGap(103, 103, 103)
+                                .addComponent(btn_Huy)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addContainerGap())))
+                    .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                        .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_KieuKM))
+                            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                                .addGap(94, 94, 94)
+                                .addComponent(jCheckBox4)))
+                        .addContainerGap())))
+        );
+        dlg_ThemCTKMLayout.setVerticalGroup(
+            dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(date_begin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(date_end, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jCheckBox4)
+                .addGap(18, 18, 18)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txt_KieuKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chk_member)
+                    .addComponent(chk_silver)
+                    .addComponent(chk_gold)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(dlg_ThemCTKMLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(dlg_ThemCTKMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Tao)
+                    .addComponent(btn_Huy))
+                .addGap(27, 27, 27))
+        );
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả chương trình KM", "Chương trình KM sắp diễn ra", "Chương trình KM đang chạy", "Chương trình KM đã kết thúc" }));
 
@@ -60,12 +213,17 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 76, 64));
-        jButton3.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Tạo khuyến mãi");
-        jButton3.setContentAreaFilled(false);
-        jButton3.setOpaque(true);
+        btn_TaoCTKM.setBackground(new java.awt.Color(0, 76, 64));
+        btn_TaoCTKM.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        btn_TaoCTKM.setForeground(new java.awt.Color(255, 255, 255));
+        btn_TaoCTKM.setText("Tạo khuyến mãi");
+        btn_TaoCTKM.setContentAreaFilled(false);
+        btn_TaoCTKM.setOpaque(true);
+        btn_TaoCTKM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_TaoCTKMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,14 +231,12 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(btn_TaoCTKM)
                 .addGap(115, 115, 115)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(105, 105, 105))
+                .addGap(152, 152, 152))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,9 +246,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
                     .addComponent(jButton2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jComboBox1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3))))
+                        .addComponent(btn_TaoCTKM)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -119,13 +273,26 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pnl_bg.setVisible(false);
+    private void loadDSChuongTrinhKM() {
         pnl_bg.setLayout(new WrapLayout(FlowLayout.LEFT, 10, 10));
-        JPanel card = new KhuyenMai_Card();
-        pnl_bg.add(card);
-        pnl_bg.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        DTO.DTOChuongTrinhKM[] arrKM = DAL.DALChuongTrinhKM.layDuLieu();
+        for (int i = 0; i < arrKM.length; i++) {
+            JPanel card = new KhuyenMai_Card(arrKM[i].getMaKhuyenMai());
+            pnl_bg.add(card);
+        }
+    }
+    private void chk_memberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_memberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chk_memberActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        date_end.setEnabled(false);
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void btn_TaoCTKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoCTKMActionPerformed
+        dlg_ThemCTKM.setLocationRelativeTo(this);
+        dlg_ThemCTKM.setVisible(true);
+    }//GEN-LAST:event_btn_TaoCTKMActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -133,12 +300,30 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_Huy;
+    private javax.swing.JButton btn_Tao;
+    private javax.swing.JButton btn_TaoCTKM;
+    private javax.swing.JCheckBox chk_gold;
+    private javax.swing.JCheckBox chk_member;
+    private javax.swing.JCheckBox chk_silver;
+    private com.toedter.calendar.JDateChooser date_begin;
+    private com.toedter.calendar.JDateChooser date_end;
+    private javax.swing.JDialog dlg_ThemCTKM;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pnl_bg;
+    private javax.swing.JTextField txt_KieuKM;
+    private javax.swing.JTextArea txt_MoTa;
+    private javax.swing.JTextField txt_TenKM;
     // End of variables declaration//GEN-END:variables
 }

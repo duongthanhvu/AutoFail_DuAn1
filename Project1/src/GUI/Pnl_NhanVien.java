@@ -94,7 +94,15 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
             new String [] {
                 "Danh sách nhân viên"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbl_NhanVien.setColumnSelectionAllowed(true);
         tbl_NhanVien.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_NhanVien.setIntercellSpacing(new java.awt.Dimension(0, 0));

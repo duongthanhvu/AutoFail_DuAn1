@@ -683,7 +683,7 @@ public class Frm_Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main() {
+    public static void main(String tenUser) {
         /* Set System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
@@ -705,7 +705,9 @@ public class Frm_Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm_Main().setVisible(true);
+                Frm_Main frm = new Frm_Main();
+                frm.setTitle("Phần mềm quản lý bán hàng v1.0 - User hiện tại: " + tenUser);
+                frm.setVisible(true);
             }
         });
     }

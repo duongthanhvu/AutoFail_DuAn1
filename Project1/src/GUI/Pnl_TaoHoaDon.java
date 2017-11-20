@@ -5,8 +5,15 @@
  */
 package GUI;
 
+import DAL.DALSanPham;
+import DTO.DTOSanPham;
+import DTO.ThongBao;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,6 +26,12 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
      */
     public Pnl_TaoHoaDon() {
         initComponents();
+        pnl_bg.add(new ChiTietGioHang());
+        pnl_bg.add(new ChiTietGioHang());
+        pnl_bg.add(new ChiTietGioHang());
+        pnl_bg.add(new ChiTietGioHang());
+        pnl_bg.add(new ChiTietGioHang());
+        pnl_bg.add(new ChiTietGioHang());
     }
 
     /**
@@ -30,25 +43,24 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popMenuTimKiem = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_TenKH = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_MaKH = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_DiaChi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_SoDT = new javax.swing.JTextField();
         btn_TimKH = new javax.swing.JButton();
         btn_SuaKH = new javax.swing.JButton();
         btn_ThemKH = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         SearchBar = new javax.swing.JPanel();
-        txt_QueryInput = new javax.swing.JTextField();
+        txtKhungTimKiem = new javax.swing.JTextField();
         btn_Search = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -59,8 +71,10 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pnl_bg = new javax.swing.JPanel();
+        btn_TaoMoi = new javax.swing.JButton();
+        btn_ThanhToan = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,22 +86,21 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Tên KH");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField1.setText("Dương Thành Vũ");
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_TenKH.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txt_TenKH.setText("Dương Thành Vũ");
+        txt_TenKH.setToolTipText("");
+        txt_TenKH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Mã KH");
 
-        jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField2.setText("SFE23423W");
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_MaKH.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txt_MaKH.setText("SFE23423W");
+        txt_MaKH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_MaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txt_MaKHActionPerformed(evt);
             }
         });
 
@@ -95,22 +108,22 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Địa chỉ");
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField3.setText("49/7 y ơn, bmt , đak lăk ");
-        jTextField3.setToolTipText("");
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_DiaChi.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txt_DiaChi.setText("49/7 y ơn, bmt , đak lăk ");
+        txt_DiaChi.setToolTipText("");
+        txt_DiaChi.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Số điện thoại");
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jTextField4.setText("0985390133");
-        jTextField4.setToolTipText("");
-        jTextField4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txt_SoDT.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        txt_SoDT.setText("0985390133");
+        txt_SoDT.setToolTipText("");
+        txt_SoDT.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txt_SoDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txt_SoDTActionPerformed(evt);
             }
         });
 
@@ -165,13 +178,13 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_SoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_DiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_MaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_TenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(59, 59, 59)
@@ -187,19 +200,19 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_DiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_SoDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_TimKH)
@@ -208,18 +221,23 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5, jTextField1, jTextField2, jTextField3, jTextField4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5, txt_DiaChi, txt_MaKH, txt_SoDT, txt_TenKH});
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         SearchBar.setBackground(new java.awt.Color(255, 255, 255));
         SearchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txt_QueryInput.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txt_QueryInput.setToolTipText("");
-        txt_QueryInput.setBorder(null);
-        txt_QueryInput.setSelectionColor(new java.awt.Color(72, 169, 153));
-        GhostText queryInput = new GhostText(txt_QueryInput, "Tìm kiếm");
+        txtKhungTimKiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtKhungTimKiem.setToolTipText("");
+        txtKhungTimKiem.setBorder(null);
+        txtKhungTimKiem.setSelectionColor(new java.awt.Color(72, 169, 153));
+        GhostText queryInput = new GhostText(txtKhungTimKiem, "Tìm kiếm");
+        txtKhungTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtKhungTimKiemKeyReleased(evt);
+            }
+        });
 
         btn_Search.setBackground(new java.awt.Color(255, 255, 255));
         btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Search_24px.png"))); // NOI18N
@@ -239,7 +257,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         SearchBarLayout.setHorizontalGroup(
             SearchBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SearchBarLayout.createSequentialGroup()
-                .addComponent(txt_QueryInput, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(txtKhungTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_Search))
         );
@@ -248,32 +266,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
             .addGroup(SearchBarLayout.createSequentialGroup()
                 .addGroup(SearchBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btn_Search, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_QueryInput, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(txtKhungTimKiem, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Sản phẩm", "Số lượng", "Chiết khấu", "Thành tiền", ""
-            }
-        ));
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(35);
-        jTable1.setSelectionBackground(new java.awt.Color(72, 169, 153));
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(jTable1);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel6.setText("Tổng cộng");
@@ -343,39 +338,46 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addGap(17, 17, 17))
         );
 
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setOpaque(false);
+
+        pnl_bg.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_bg.setLayout(new javax.swing.BoxLayout(pnl_bg, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane2.setViewportView(pnl_bg);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 33, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -389,27 +391,32 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jButton1.setBackground(new java.awt.Color(0, 76, 64));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Tạo mới");
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setOpaque(true);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_TaoMoi.setBackground(new java.awt.Color(0, 76, 64));
+        btn_TaoMoi.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btn_TaoMoi.setForeground(new java.awt.Color(255, 255, 255));
+        btn_TaoMoi.setText("Tạo mới");
+        btn_TaoMoi.setBorder(null);
+        btn_TaoMoi.setContentAreaFilled(false);
+        btn_TaoMoi.setOpaque(true);
+        btn_TaoMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_TaoMoiActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 76, 64));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Thanh toán");
-        jButton2.setToolTipText("");
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setOpaque(true);
+        btn_ThanhToan.setBackground(new java.awt.Color(0, 76, 64));
+        btn_ThanhToan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btn_ThanhToan.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ThanhToan.setText("Thanh toán");
+        btn_ThanhToan.setToolTipText("");
+        btn_ThanhToan.setBorder(null);
+        btn_ThanhToan.setContentAreaFilled(false);
+        btn_ThanhToan.setOpaque(true);
+        btn_ThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ThanhToanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -422,9 +429,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_TaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -436,10 +443,10 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_TaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -455,13 +462,13 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         }
     }
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_MaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MaKHActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_MaKHActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txt_SoDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_SoDTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txt_SoDTActionPerformed
 
     private void btn_SearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SearchMouseEntered
         diChuotVaoNutSearch(true);
@@ -495,19 +502,66 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         btn_ThemKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Add_User_Male_24px.png")));
     }//GEN-LAST:event_btn_ThemKHMouseExited
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
+        this.removeAll();
+        initComponents();
+    }//GEN-LAST:event_btn_TaoMoiActionPerformed
 
+    private void txtKhungTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKhungTimKiemKeyReleased
+        if (evt.getKeyCode() == evt.VK_UP || evt.getKeyCode() == evt.VK_DOWN) {
+            popMenuTimKiem.requestFocus();
+            return;
+        }
+        String keyWord = txtKhungTimKiem.getText();
+        DTOSanPham arrItem[] = DALSanPham.searchBy(keyWord);
+        popMenuTimKiem.removeAll();
+        popMenuTimKiem.setVisible(false);
+        for (DTOSanPham item : arrItem) {
+            CustomMenuItem menuItem = new CustomMenuItem(item.getMaSP(), item.getTenSP());
+            //Thêm sự kiện cho menuItem: khi click vào item -> đổ thông tin sản phẩm tương ứng lên form
+            menuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    txtKhungTimKiem.setText("");
+                    themSPVaoGioHang(item.getMaSP());
+                }
+            });
+            popMenuTimKiem.add(menuItem);
+        }
+        popMenuTimKiem.show(txtKhungTimKiem, 0, txtKhungTimKiem.getHeight());
+        txtKhungTimKiem.requestFocus();
+    }//GEN-LAST:event_txtKhungTimKiemKeyReleased
+
+    private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
+        int soLuongSP = pnl_bg.getComponentCount();
+        if(soLuongSP == 0){
+            XuLyThongBao.hienThiThongBao(new ThongBao("Không có sản phẩm nào trong giỏ hàng!", ThongBao.LOI));
+            return;
+        }
+        //Transaction tạo hóa đơn
+    }//GEN-LAST:event_btn_ThanhToanActionPerformed
+
+    private void themSPVaoGioHang(int maSP) {
+        int slMatHang = pnl_bg.getComponentCount();
+        for(int i = 0; i < slMatHang; i++){
+            ChiTietGioHang ctgh = (ChiTietGioHang) pnl_bg.getComponent(i);
+            if(maSP == ctgh.getMaSP()){
+                ctgh.tangSoLuong(1);
+                return;
+            }
+        }
+        JPanel card = new ChiTietGioHang(maSP);
+        pnl_bg.add(card);
+        pnl_bg.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SearchBar;
     private javax.swing.JButton btn_Search;
     private javax.swing.JButton btn_SuaKH;
+    private javax.swing.JButton btn_TaoMoi;
+    private javax.swing.JButton btn_ThanhToan;
     private javax.swing.JButton btn_ThemKH;
     private javax.swing.JButton btn_TimKH;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -524,13 +578,14 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField txt_QueryInput;
+    private javax.swing.JPanel pnl_bg;
+    private javax.swing.JPopupMenu popMenuTimKiem;
+    private javax.swing.JTextField txtKhungTimKiem;
+    private javax.swing.JTextField txt_DiaChi;
+    private javax.swing.JTextField txt_MaKH;
+    private javax.swing.JTextField txt_SoDT;
+    private javax.swing.JTextField txt_TenKH;
     // End of variables declaration//GEN-END:variables
 }
