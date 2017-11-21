@@ -114,7 +114,7 @@ public class DALKhachHang {
             System.out.println("Lỗi " + ex);
         }
         DTOKhachHang[] arrKhachHang = new DTOKhachHang[soLuong];
-        query = "Select ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu from KhachHang";
+        query = "Select * from KhachHang where TenKH like N'%" + keyWord + "%' or SoDT like N'%" + keyWord + "%' or MaKH like N'%"+keyWord+"%'";
         rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             for (int i = 0; rs.next(); i++) {

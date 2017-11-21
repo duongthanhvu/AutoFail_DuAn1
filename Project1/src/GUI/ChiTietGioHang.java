@@ -16,6 +16,7 @@ import javax.swing.text.NumberFormatter;
 public class ChiTietGioHang extends javax.swing.JPanel {
 
     private int maSP;
+    private int giaSP;
 
     /**
      * Creates new form ChiTietGioHang
@@ -54,6 +55,7 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         spn_SoLuong = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 234, 234)));
 
         lbl_TenSP.setText("Tên sản phẩm");
         lbl_TenSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
@@ -63,7 +65,7 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         lbl_ChietKhau.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
 
         lbl_ThanhTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_ThanhTien.setText("Thành tiền");
+        lbl_ThanhTien.setText("0");
         lbl_ThanhTien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
 
         btn_xoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Cancel_24px_1.png"))); // NOI18N
@@ -87,6 +89,11 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         spn_SoLuong.setOpaque(false);
         JFormattedTextField txt = ((JSpinner.NumberEditor) spn_SoLuong.getEditor()).getTextField();
         ((NumberFormatter) txt.getFormatter()).setAllowsInvalid(false);
+        spn_SoLuong.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spn_SoLuongStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,17 +136,30 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         this.getParent().remove(this);
     }//GEN-LAST:event_btn_xoaActionPerformed
 
+    private void spn_SoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spn_SoLuongStateChanged
+        int soLuong = (Integer)spn_SoLuong.getValue();
+        int thanhTien = soLuong * giaSP;
+        lbl_ThanhTien.setText(String.valueOf(thanhTien));
+        ((Pnl_TaoHoaDon)(this.getParent().getParent().getParent().getParent().getParent())).updateTongGia();
+    }//GEN-LAST:event_spn_SoLuongStateChanged
+
     private void doDuLieuLenPanel() {
         DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(maSP);
         lbl_TenSP.setText(sp.getTenSP());
         lbl_ChietKhau.setText("waiting");
-        int thanhTien = sp.getGiaBanLe() * (Integer)spn_SoLuong.getValue();
-        lbl_ThanhTien.setText(String.valueOf(thanhTien));        
+        lbl_ThanhTien.setText(String.valueOf(sp.getGiaBanLe()));
+        giaSP = sp.getGiaBanLe();
     }
     
     public void tangSoLuong(int amount) {
         int soLuong = (Integer)spn_SoLuong.getValue() + amount;
         spn_SoLuong.setValue(soLuong);
+        int thanhTien = soLuong * giaSP;
+        lbl_ThanhTien.setText(String.valueOf(thanhTien));
+    }
+    
+    public int getThanhTien() {
+        return Integer.parseInt(lbl_ThanhTien.getText());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

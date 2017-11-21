@@ -139,8 +139,7 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pmn_TuyChon.setLocation(jButton1.getLocationOnScreen().x, jButton1.getLocationOnScreen().y + jButton1.getHeight());
-        pmn_TuyChon.setVisible(true);
+        pmn_TuyChon.show(jButton1, 0, jButton1.getHeight());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

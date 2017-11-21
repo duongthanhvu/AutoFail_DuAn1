@@ -251,7 +251,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
         );
 
         jScrollPane1.setBorder(null);
-        jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(5);
 
         pnl_bg.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         jScrollPane1.setViewportView(pnl_bg);
