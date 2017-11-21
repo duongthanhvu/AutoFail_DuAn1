@@ -462,7 +462,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         popMenuTimKiem.removeAll();
         popMenuTimKiem.setVisible(false);
         for (DTOSanPham item : arrItem) {
-            CustomMenuItem menuItem = new CustomMenuItem(item.getMaSP(), item.getTenSP());
+            CustomMenuItem menuItem = new CustomMenuItem(item.getMaSP(), item.getTenSP(),true);
             //Thêm sự kiện cho menuItem: khi click vào item -> đổ thông tin sản phẩm tương ứng lên form
             menuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -503,7 +503,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         popMenuTimKiem.removeAll();
         popMenuTimKiem.setVisible(false);
         for (DTO.DTOKhachHang item : arrItem) {
-            CustomMenuItem menuItem = new CustomMenuItem(item.getID_KH(), item.getTenKH());
+            CustomMenuItem menuItem = new CustomMenuItem(item.getID_KH(), item.getTenKH(),false);
             //Thêm sự kiện cho menuItem: khi click vào item -> đổ thông tin sản phẩm tương ứng lên form
             menuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent e) {

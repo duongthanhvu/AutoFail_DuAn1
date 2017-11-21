@@ -108,8 +108,6 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
 
         jPanel2.setOpaque(false);
 
-        lbl_Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/NhanVien_Pictures/1.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -183,7 +181,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
         lbl_CMND.setText("CMND: " + nv.getCmnd());
         lbl_DiaChi.setText("Địa chỉ: " + nv.getDiaChi());
         lbl_NgayTao.setText("Ngày tạo: " + nv.getNgayTao_String());
-        lbl_Avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/NhanVien_Pictures/"+nv.getMaNV()+".png")));
+        lbl_Avatar.setIcon(new GetImageHelper().getImgNV(nv.getMaNV(),128,200));
         if (isSelected) {
             this.setBackground(table.getSelectionBackground());
             setTextColor(Color.WHITE);

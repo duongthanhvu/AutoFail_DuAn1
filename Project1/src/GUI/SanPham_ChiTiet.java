@@ -123,6 +123,7 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
 
         pnl_AnhSP.setLayout(new javax.swing.OverlayLayout(pnl_AnhSP));
 
+        jPanel5.setOpaque(false);
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jPanel5MouseExited(evt);
@@ -166,15 +167,13 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
             }
         });
 
-        lbl_AnhSP.setText("Hình ảnh sản phẩm");
+        lbl_AnhSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(lbl_AnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lbl_AnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,6 +410,7 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         cbb_LoaiSP.setSelectedItem(sp.getTenLoai());
         cbb_TinhTrang.setSelectedItem(sp.getTinhTrang());
         txt_GiaBanLe.setText(sp.getGiaBanLe_String());
+        lbl_AnhSP.setIcon(new GetImageHelper().getImgSP(maSP, 80, 120));
     }
 
     private void pnl_GocMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_GocMousePressed
