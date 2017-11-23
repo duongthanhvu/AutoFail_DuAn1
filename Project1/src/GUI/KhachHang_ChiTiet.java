@@ -454,6 +454,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_Diem.setText(kh.getDiem_String());
         txt_GhiChu.setText(kh.getGhiChu());
         date_NgaySinh.setDate(kh.getNgaySinh());
+        txt_DiaChi.setCaretPosition(0);
     }
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed

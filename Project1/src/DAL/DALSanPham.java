@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DALSanPham {
 
     public static int them(DTOSanPham item) {
-        String query = "INSERT into SanPham VALUES (N'"+item.getTenSP()+"', "+item.getMaLoaiSP()+", "+item.getGiaBanLe()+", N'"+item.getBarcode()+"', "+item.isAvailable()+")";
+        String query = "INSERT into SanPham VALUES (N'"+item.getTenSP()+"', "+item.getMaLoaiSP()+", "+item.getGiaBanLe()+", N'"+item.getBarcode()+"', '"+item.isAvailable()+"')";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
@@ -28,7 +28,7 @@ public class DALSanPham {
     }
 
     public static int sua(int maSP, DTOSanPham newItem) {
-        String query = "";
+        String query = "Update SanPham set TenSP = N'"+newItem.getTenSP()+"', MaLoaiSP = "+newItem.getMaLoaiSP()+", GiaBanLe = "+newItem.getGiaBanLe()+", TinhTrang = '"+newItem.isAvailable()+"' where MaSP = "+maSP;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }

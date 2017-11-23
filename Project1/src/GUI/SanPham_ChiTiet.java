@@ -94,11 +94,9 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
 
         jLabel9.setText("Giá bán lẻ");
 
-        txt_GiaBanLe.setText("0985390133");
+        cbb_TinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Còn hàng", "Ngừng kinh doanh" }));
 
-        cbb_TinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nữ", "Nam" }));
-
-        cbb_LoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Member", "Silver", "Gold" }));
+        cbb_LoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinh dưỡng phụ nữ mang thai", "Dinh dưỡng trẻ em", "Dinh dưỡng người lớn", "Dinh dưỡng chuyên biệt" }));
 
         btn_LuuThayDoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Save_24px_1.png"))); // NOI18N
         btn_LuuThayDoi.setContentAreaFilled(false);
@@ -427,7 +425,7 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         //Code kiểm tra tính hợp lệ của thông tin nhập vào
 
         this.setVisible(false);
-        DTOSanPham sp = new DTOSanPham(txt_TenSP.getText(), 1, txt_GiaBanLe.getText(), txt_Barcode.getText(),cbb_TinhTrang.getSelectedItem().toString());
+        DTOSanPham sp = new DTOSanPham(txt_TenSP.getText(), cbb_LoaiSP.getSelectedIndex() + 1, txt_GiaBanLe.getText(), txt_Barcode.getText(), cbb_TinhTrang.getSelectedItem().toString());
         XuLyThongBao.hienThiThongBao(BLL.BLLSanPham.sua(maSP, sp));
         doDuLieuLenPanel();
         this.setVisible(true);

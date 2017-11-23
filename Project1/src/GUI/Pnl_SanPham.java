@@ -40,7 +40,7 @@ public class Pnl_SanPham extends javax.swing.JPanel {
         lbl_NgayTao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnl_bg = new javax.swing.JPanel();
-        btn_ThemKH = new javax.swing.JButton();
+        btn_ThemSP = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Danh sách sản phẩm");
@@ -96,15 +96,15 @@ public class Pnl_SanPham extends javax.swing.JPanel {
         pnl_bg.setLayout(new javax.swing.BoxLayout(pnl_bg, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(pnl_bg);
 
-        btn_ThemKH.setBackground(new java.awt.Color(0, 76, 64));
-        btn_ThemKH.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btn_ThemKH.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ThemKH.setText("Thêm sản phẩm");
-        btn_ThemKH.setContentAreaFilled(false);
-        btn_ThemKH.setOpaque(true);
-        btn_ThemKH.addActionListener(new java.awt.event.ActionListener() {
+        btn_ThemSP.setBackground(new java.awt.Color(0, 76, 64));
+        btn_ThemSP.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btn_ThemSP.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ThemSP.setText("Thêm sản phẩm");
+        btn_ThemSP.setContentAreaFilled(false);
+        btn_ThemSP.setOpaque(true);
+        btn_ThemSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThemKHActionPerformed(evt);
+                btn_ThemSPActionPerformed(evt);
             }
         });
 
@@ -120,7 +120,7 @@ public class Pnl_SanPham extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(btn_ThemKH)
+                .addComponent(btn_ThemSP)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,7 +130,7 @@ public class Pnl_SanPham extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ThemKH))
+                    .addComponent(btn_ThemSP))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,14 +138,14 @@ public class Pnl_SanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_ThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemKHActionPerformed
-        dlg_ThemKhachHang themKH_dlg = new dlg_ThemKhachHang(null, true);
-        themKH_dlg.setLocationRelativeTo(this);
-        themKH_dlg.setVisible(true);
-        if(themKH_dlg.getMaKHVuaTao() != null){
+    private void btn_ThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemSPActionPerformed
+        dlg_ThemSanPham themSP_dlg = new dlg_ThemSanPham(null, true);
+        themSP_dlg.setLocationRelativeTo(this);
+        themSP_dlg.setVisible(true);
+        if(themSP_dlg.getMaSPVuaTao() != null){
             capNhatDanhSachSP();
         }
-    }//GEN-LAST:event_btn_ThemKHActionPerformed
+    }//GEN-LAST:event_btn_ThemSPActionPerformed
 
     private void capNhatDanhSachSP() {
         pnl_bg.setVisible(false);
@@ -159,7 +159,7 @@ public class Pnl_SanPham extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ThemKH;
+    private javax.swing.JButton btn_ThemSP;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

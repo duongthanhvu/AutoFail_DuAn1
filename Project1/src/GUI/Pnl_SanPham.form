@@ -24,7 +24,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jComboBox1" min="-2" pref="146" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="btn_ThemKH" min="-2" max="-2" attributes="0"/>
+              <Component id="btn_ThemSP" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -36,7 +36,7 @@
               <Group type="103" groupAlignment="3" max="-2" attributes="0">
                   <Component id="jLabel1" alignment="3" pref="35" max="32767" attributes="0"/>
                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_ThemKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_ThemSP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btn_ThemKH">
+    <Component class="javax.swing.JButton" name="btn_ThemSP">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="40" green="4c" red="0" type="rgb"/>
@@ -199,7 +199,7 @@
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ThemKHActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ThemSPActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
