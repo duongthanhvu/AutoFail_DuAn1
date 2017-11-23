@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  * @author vudtpk00714
  */
 public class DBConnection {
-    String connectionString = "jdbc:sqlserver://DESKTOP-QI78FEN;"
-            + "databaseName=AutoFail_Project1_db; user=sa; password=ngay12thang9;";
+    String connectionString = "jdbc:sqlserver://PHONGVA-KIB40T3\\KIRA;"
+            + "databaseName=AutoFail_Project1_db; user=sa; password=bao29081997;";
     Connection conn;
     
     public DBConnection(){
