@@ -40,7 +40,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_NghiViec = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lbl_Avatar = new javax.swing.JLabel();
         lbl_DiaChi = new javax.swing.JLabel();
@@ -73,14 +73,14 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
 
-        jLabel2.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Đã nghỉ việc");
-        jLabel2.setToolTipText("");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lbl_NghiViec.setBackground(new java.awt.Color(0, 102, 102));
+        lbl_NghiViec.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        lbl_NghiViec.setForeground(new java.awt.Color(255, 0, 0));
+        lbl_NghiViec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_NghiViec.setText("Đã nghỉ việc");
+        lbl_NghiViec.setToolTipText("");
+        lbl_NghiViec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
+        lbl_NghiViec.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -91,15 +91,15 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(lbl_NghiViec)))
+                .addGap(45, 45, 45))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(lbl_NghiViec, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -108,15 +108,17 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
 
         jPanel2.setOpaque(false);
 
+        lbl_Avatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_Avatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbl_Avatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbl_Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel1.add(jPanel2);
@@ -140,14 +142,14 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_Ten, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_GioiTinh)
-                    .addComponent(lbl_NgaySinh)
-                    .addComponent(lbl_CMND)
-                    .addComponent(lbl_DiaChi)
-                    .addComponent(lbl_NgayTao)
-                    .addComponent(lbl_SoDienThoai))
-                .addContainerGap(97, Short.MAX_VALUE))
+                    .addComponent(lbl_Ten, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(lbl_GioiTinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_NgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_CMND, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_DiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_SoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_NgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +169,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_NgayTao)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,6 +184,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
         lbl_DiaChi.setText("Địa chỉ: " + nv.getDiaChi());
         lbl_NgayTao.setText("Ngày tạo: " + nv.getNgayTao_String());
         lbl_Avatar.setIcon(new GetImageHelper().getImgNV(nv.getMaNV(),128,200));
+        lbl_NghiViec.setVisible(!nv.isAvailable());
         if (isSelected) {
             this.setBackground(table.getSelectionBackground());
             setTextColor(Color.WHITE);
@@ -204,7 +207,6 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -214,6 +216,7 @@ public class NhanVienRenderer extends javax.swing.JPanel implements TableCellRen
     private javax.swing.JLabel lbl_GioiTinh;
     private javax.swing.JLabel lbl_NgaySinh;
     private javax.swing.JLabel lbl_NgayTao;
+    private javax.swing.JLabel lbl_NghiViec;
     private javax.swing.JLabel lbl_SoDienThoai;
     private javax.swing.JLabel lbl_Ten;
     // End of variables declaration//GEN-END:variables

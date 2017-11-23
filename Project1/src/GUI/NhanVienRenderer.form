@@ -17,19 +17,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbl_Ten" min="-2" pref="297" max="-2" attributes="0"/>
-                  <Component id="lbl_GioiTinh" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_NgaySinh" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_CMND" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_DiaChi" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_NgayTao" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbl_SoDienThoai" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_Ten" pref="297" max="32767" attributes="0"/>
+                  <Component id="lbl_GioiTinh" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_NgaySinh" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_CMND" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_DiaChi" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_SoDienThoai" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_NgayTao" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,7 +52,7 @@
               <Component id="lbl_NgayTao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="jPanel1" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -107,19 +107,19 @@
                           <Component id="jLabel1" min="-2" pref="89" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_NghiViec" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace pref="137" max="32767" attributes="0"/>
+                      <Component id="lbl_NghiViec" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="28" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -145,7 +145,7 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="lbl_NghiViec">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -179,17 +179,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbl_Avatar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_Avatar" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbl_Avatar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lbl_Avatar" alignment="0" min="-2" pref="224" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lbl_Avatar">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

@@ -19,13 +19,22 @@ public class DTOChuongTrinhKM {
     private Date ngayBatDau;
     private Date ngayKetThuc;
     private String kieuKhuyenMai;
-    private int doiTuongApDung;
+    private boolean hetHangKM;
+
+    public boolean isHetHangKM() {
+        return hetHangKM;
+    }
+
+    public void setHetHangKM(boolean hetHangKM) {
+        this.hetHangKM = hetHangKM;
+    }
+    private String doiTuongApDung;
     private String moTa;
 
     public DTOChuongTrinhKM() {
     }
 
-    public DTOChuongTrinhKM(int maKhuyenMai, String tenKM, Date ngayBatDau, Date ngayKetThuc, String kieuKhuyenMai, int doiTuongApDung, String moTa) {
+    public DTOChuongTrinhKM(int maKhuyenMai, String tenKM, Date ngayBatDau, Date ngayKetThuc, String kieuKhuyenMai, String doiTuongApDung, String moTa) {
         this.maKhuyenMai = maKhuyenMai;
         this.tenKM = tenKM;
         this.ngayBatDau = ngayBatDau;
@@ -35,7 +44,7 @@ public class DTOChuongTrinhKM {
         this.moTa = moTa;
     }
 
-    public DTOChuongTrinhKM(String tenKM, Date ngayBatDau, Date ngayKetThuc, String kieuKhuyenMai, int doiTuongApDung, String moTa) {
+    public DTOChuongTrinhKM(String tenKM, Date ngayBatDau, Date ngayKetThuc, String kieuKhuyenMai, String doiTuongApDung, String moTa) {
         this.tenKM = tenKM;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
@@ -84,11 +93,11 @@ public class DTOChuongTrinhKM {
         this.kieuKhuyenMai = kieuKhuyenMai;
     }
 
-    public int getDoiTuongApDung() {
+    public String getDoiTuongApDung() {
         return doiTuongApDung;
     }
 
-    public void setDoiTuongApDung(int doiTuongApDung) {
+    public void setDoiTuongApDung(String doiTuongApDung) {
         this.doiTuongApDung = doiTuongApDung;
     }
 
