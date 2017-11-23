@@ -91,10 +91,10 @@ public class DALHoaDon {
         return arrHoaDon;
     }
 
-    public static ThongBao taoHoaDonTransaction(int maKH, int maNV, String ngayTao, String ghiChu, int[][] dsSanPham, int thanhTien) {
+    public static ThongBao taoHoaDonTransaction(int id_KH, int maNV, String ngayTao, String ghiChu, int[][] dsSanPham, int thanhTien) {
         try {
             Conn.connection.setAutoCommit(false);
-            String query = "set dateformat dmy insert into HoaDon values(" + maNV + "," + maKH + ",'" + ngayTao + "',0,'" + ghiChu + "')";
+            String query = "Insert into HoaDon values(" + maNV + "," + id_KH + ", "+thanhTien+", Getdate())";
             Conn.connection.ExcuteNonQuery(query);
             query = "select top 1 MaHD from HoaDon order by MaHD desc";
             ResultSet rs = Conn.connection.ExcuteQuerySelect(query);

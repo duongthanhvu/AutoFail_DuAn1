@@ -26,6 +26,12 @@ public class DALChuongTrinhKM {
 //        int result = Conn.connection.ExcuteNonQuery(query);
 //        return result;
 //    }
+    
+    public static int stopCTKM(int maKM) {
+        String query = "Update ChuongTrinhKM set HetHangKM = 1 where MaKhuyenMai = "+maKM;
+        int result = Conn.connection.ExcuteNonQuery(query);
+        return result;
+    }
 
     public static int sua(int maKM, DTOChuongTrinhKM newItem) {
         String query = "";
@@ -44,7 +50,8 @@ public class DALChuongTrinhKM {
                 km.setNgayBatDau(rs.getDate("NgayBatDau"));
                 km.setNgayKetThuc(rs.getDate("NgayKetThuc"));
                 km.setKieuKhuyenMai(rs.getString("KieuKM"));
-                km.setDoiTuongApDung(rs.getInt("DoiTuongApDung"));
+                km.setHetHangKM(rs.getBoolean("hetHangKM"));
+                km.setDoiTuongApDung(rs.getString("DoiTuongApDung"));
                 km.setMoTa(rs.getString("MoTa"));
                 return km;
             }
@@ -79,7 +86,8 @@ public class DALChuongTrinhKM {
                 km.setNgayBatDau(rs.getDate("NgayBatDau"));
                 km.setNgayKetThuc(rs.getDate("NgayKetThuc"));
                 km.setKieuKhuyenMai(rs.getString("KieuKM"));
-                km.setDoiTuongApDung(rs.getInt("DoiTuongApDung"));
+                km.setHetHangKM(rs.getBoolean("hetHangKM"));
+                km.setDoiTuongApDung(rs.getString("DoiTuongApDung"));
                 km.setMoTa(rs.getString("MoTa"));
                 arrKM[i] = km;
             }
@@ -157,4 +165,39 @@ public class DALChuongTrinhKM {
 //        }
 //        return arrSanPham;
 //    }
+    
+    public static DTOChuongTrinhKM[] layKMDuocApDung(int maLoaiKH){
+        String query = "Select Count(MaKhuyenMai) from ChuongTrinhKM where NgayBatDau < Getdate() and (NgayKetThuc > Getdate() or NgayKetThuc is null) and HetHangKM = 0 and DoiTuongApDung like '%"+maLoaiKH+"%'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        int soLuong = 0;
+        try {
+            if (rs.next()) {
+                soLuong = rs.getInt(1);
+            } else {
+                return new DTOChuongTrinhKM[0];
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi " + ex);
+        }
+        DTOChuongTrinhKM[] arrKM = new DTOChuongTrinhKM[soLuong];
+        query = "Select * from ChuongTrinhKM where NgayBatDau < Getdate() and (NgayKetThuc > Getdate() or NgayKetThuc is null) and HetHangKM = 0 and DoiTuongApDung like '%"+maLoaiKH+"%'";
+        rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            for (int i = 0; rs.next(); i++) {
+                DTOChuongTrinhKM km = new DTOChuongTrinhKM();
+                km.setMaKhuyenMai(rs.getInt("MaKhuyenMai"));
+                km.setTenKM(rs.getString("TenKM"));
+                km.setNgayBatDau(rs.getDate("NgayBatDau"));
+                km.setNgayKetThuc(rs.getDate("NgayKetThuc"));
+                km.setKieuKhuyenMai(rs.getString("KieuKM"));
+                km.setHetHangKM(rs.getBoolean("hetHangKM"));
+                km.setDoiTuongApDung(rs.getString("DoiTuongApDung"));
+                km.setMoTa(rs.getString("MoTa"));
+                arrKM[i] = km;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi " + ex);
+        }
+        return arrKM;
+    }
 }

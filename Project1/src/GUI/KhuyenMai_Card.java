@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JViewport;
+
 /**
  *
  * @author vudt9
@@ -44,39 +50,45 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
     private void initComponents() {
 
         pmn_TuyChon = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
+        mi_SuaKM = new javax.swing.JMenuItem();
+        mi_DungKM = new javax.swing.JMenuItem();
+        pnl_ThoiGianApDung = new javax.swing.JPanel();
         lbl_BeginEnd = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         lbl_TenKM = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txt_NoiDung = new javax.swing.JTextArea();
 
         pmn_TuyChon.setBackground(new java.awt.Color(255, 255, 255));
-        pmn_TuyChon.setBorder(null);
         pmn_TuyChon.setBorderPainted(false);
         pmn_TuyChon.setInvoker(jButton1);
         pmn_TuyChon.setLabel("");
 
-        jMenuItem1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem1.setText("Chỉnh sửa KM");
-        jMenuItem1.setContentAreaFilled(false);
-        jMenuItem1.setOpaque(true);
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mi_SuaKM.setBackground(new java.awt.Color(255, 255, 255));
+        mi_SuaKM.setText("Chỉnh sửa KM");
+        mi_SuaKM.setContentAreaFilled(false);
+        mi_SuaKM.setOpaque(true);
+        mi_SuaKM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mi_SuaKMActionPerformed(evt);
             }
         });
-        pmn_TuyChon.add(jMenuItem1);
+        pmn_TuyChon.add(mi_SuaKM);
 
-        jMenuItem2.setBackground(new java.awt.Color(255, 255, 255));
-        jMenuItem2.setText("Dừng chương trình KM");
-        jMenuItem2.setContentAreaFilled(false);
-        jMenuItem2.setOpaque(true);
-        pmn_TuyChon.add(jMenuItem2);
+        mi_DungKM.setBackground(new java.awt.Color(255, 255, 255));
+        mi_DungKM.setText("Dừng chương trình KM");
+        mi_DungKM.setContentAreaFilled(false);
+        mi_DungKM.setOpaque(true);
+        mi_DungKM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_DungKMActionPerformed(evt);
+            }
+        });
+        pmn_TuyChon.add(mi_DungKM);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(0, 121, 107));
+        pnl_ThoiGianApDung.setBackground(new java.awt.Color(0, 121, 107));
 
         lbl_BeginEnd.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         lbl_BeginEnd.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,18 +96,18 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
         lbl_BeginEnd.setText("<html>\n<center>\n<font size=\"12\">12 </font>\n<p>Thg Hai 2017</p>\n<p>10:00 SA</p>\n<p></p>\n<center><font size=\"12\">25 </font></center>\n<p>Thg Năm 2017</p>\n<p>23:00 SA</p>\n</center>\n</html>");
         lbl_BeginEnd.setComponentPopupMenu(pmn_TuyChon);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_ThoiGianApDungLayout = new javax.swing.GroupLayout(pnl_ThoiGianApDung);
+        pnl_ThoiGianApDung.setLayout(pnl_ThoiGianApDungLayout);
+        pnl_ThoiGianApDungLayout.setHorizontalGroup(
+            pnl_ThoiGianApDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_ThoiGianApDungLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_BeginEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnl_ThoiGianApDungLayout.setVerticalGroup(
+            pnl_ThoiGianApDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_ThoiGianApDungLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_BeginEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -113,28 +125,46 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
         lbl_TenKM.setText("<html>\n<p>Chương trình khuyến mãi</p> \n<p>tháng 6 năm 2017</p>\n</html>");
         lbl_TenKM.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        jScrollPane1.setBorder(null);
+
+        txt_NoiDung.setEditable(false);
+        txt_NoiDung.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_NoiDung.setLineWrap(true);
+        txt_NoiDung.setRows(5);
+        txt_NoiDung.setWrapStyleWord(true);
+        txt_NoiDung.setBorder(null);
+        jScrollPane1.setViewportView(txt_NoiDung);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_ThoiGianApDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(pnl_ThoiGianApDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbl_TenKM, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,9 +172,14 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
         pmn_TuyChon.show(jButton1, 0, jButton1.getHeight());
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mi_SuaKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_SuaKMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mi_SuaKMActionPerformed
+
+    private void mi_DungKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_DungKMActionPerformed
+        pnl_ThoiGianApDung.setBackground(Color.GRAY);
+        DAL.DALChuongTrinhKM.stopCTKM(maKM);
+    }//GEN-LAST:event_mi_DungKMActionPerformed
 
     private void loadThongTinKM() {
         DTO.DTOChuongTrinhKM km = DAL.DALChuongTrinhKM.layDuLieu(maKM);
@@ -160,15 +195,26 @@ public class KhuyenMai_Card extends javax.swing.JPanel {
                 + "<p>23:00 SA</p>\n"
                 + "</center>\n"
                 + "</html>");
+        txt_NoiDung.setText(km.getMoTa());
+        txt_NoiDung.setCaretPosition(0);
+        Date timeHienTai = new Date();
+        if(km.getNgayBatDau().getTime() < timeHienTai.getTime() && (km.getNgayKetThuc() == null || km.getNgayKetThuc().getTime() > timeHienTai.getTime()) && km.isHetHangKM() == false){
+            pnl_ThoiGianApDung.setBackground(new java.awt.Color(0, 121, 107));
+        }else{
+            pnl_ThoiGianApDung.setBackground(Color.GRAY);
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_BeginEnd;
     private javax.swing.JLabel lbl_TenKM;
+    private javax.swing.JMenuItem mi_DungKM;
+    private javax.swing.JMenuItem mi_SuaKM;
     private javax.swing.JPopupMenu pmn_TuyChon;
+    private javax.swing.JPanel pnl_ThoiGianApDung;
+    private javax.swing.JTextArea txt_NoiDung;
     // End of variables declaration//GEN-END:variables
 }

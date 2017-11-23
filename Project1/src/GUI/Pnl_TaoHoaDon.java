@@ -11,6 +11,7 @@ import DTO.ThongBao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
     private int id_KH;
+    private int[] arrMaKM;
     /**
      * Creates new form CommonPanel
      */
@@ -66,6 +68,8 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         pnl_bg = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        pnl_KhuyenMai = new javax.swing.JPanel();
         btn_TaoMoi = new javax.swing.JButton();
         btn_ThanhToan = new javax.swing.JButton();
 
@@ -313,6 +317,10 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         pnl_bg.setLayout(new javax.swing.BoxLayout(pnl_bg, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2.setViewportView(pnl_bg);
 
+        jLabel7.setText("Khuyễn mãi áp dụng: ");
+
+        pnl_KhuyenMai.setLayout(new javax.swing.BoxLayout(pnl_KhuyenMai, javax.swing.BoxLayout.Y_AXIS));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -320,7 +328,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addContainerGap(101, Short.MAX_VALUE)
                         .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 33, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -334,9 +342,15 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbl_TongTien, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnl_KhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +359,10 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnl_KhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,6 +568,16 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     public void loadThongTinKH(int id_KH) {
         DTO.DTOKhachHang kh = DAL.DALKhachHang.layDuLieu(id_KH);
         this.id_KH = id_KH;
+        DTO.DTOChuongTrinhKM[] arrKM = DAL.DALChuongTrinhKM.layKMDuocApDung(kh.getMaLoaiKH());
+        arrMaKM = new int[arrKM.length];
+        for(int i = 0; i < arrMaKM.length; i++){
+            arrMaKM[i] = arrKM[i].getMaKhuyenMai();
+        }
+        for(DTO.DTOChuongTrinhKM item : arrKM){
+            JCheckBox chkKM = new JCheckBox(item.getTenKM());
+            chkKM.setSelected(true);
+            pnl_KhuyenMai.add(chkKM);
+        }
         txt_TenKH.setText(kh.getTenKH());
         txt_MaKH.setText(kh.getMaKH());
         txt_DiaChi.setText(kh.getDiaChi());
@@ -570,6 +598,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -578,6 +607,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_TongTien;
+    private javax.swing.JPanel pnl_KhuyenMai;
     private javax.swing.JPanel pnl_bg;
     private javax.swing.JPopupMenu popMenuTimKiem;
     private javax.swing.JTextField txtKhungTimKiem;

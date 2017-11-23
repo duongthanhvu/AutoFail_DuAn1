@@ -52,7 +52,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
         btn_Huy = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        btn_Reload = new javax.swing.JButton();
         btn_TaoCTKM = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnl_bg = new javax.swing.JPanel();
@@ -203,13 +203,13 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả chương trình KM", "Chương trình KM sắp diễn ra", "Chương trình KM đang chạy", "Chương trình KM đã kết thúc" }));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_Reload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
+        btn_Reload.setContentAreaFilled(false);
+        btn_Reload.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_Reload.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btn_Reload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_ReloadActionPerformed(evt);
             }
         });
 
@@ -235,7 +235,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
                 .addGap(115, 115, 115)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btn_Reload)
                 .addGap(152, 152, 152))
         );
         jPanel1Layout.setVerticalGroup(
@@ -243,7 +243,7 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
+                    .addComponent(btn_Reload)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jComboBox1)
                         .addComponent(btn_TaoCTKM)))
@@ -294,13 +294,15 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
         dlg_ThemCTKM.setVisible(true);
     }//GEN-LAST:event_btn_TaoCTKMActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btn_ReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReloadActionPerformed
+        pnl_bg.removeAll();
+        loadDSChuongTrinhKM();
+    }//GEN-LAST:event_btn_ReloadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Huy;
+    private javax.swing.JButton btn_Reload;
     private javax.swing.JButton btn_Tao;
     private javax.swing.JButton btn_TaoCTKM;
     private javax.swing.JCheckBox chk_gold;
@@ -309,7 +311,6 @@ public class Pnl_KhuyenMai extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser date_begin;
     private com.toedter.calendar.JDateChooser date_end;
     private javax.swing.JDialog dlg_ThemCTKM;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

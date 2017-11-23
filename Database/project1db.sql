@@ -135,7 +135,8 @@ Create Table ChuongTrinhKM (
 	NgayBatDau datetime not null,
 	NgayKetThuc datetime null,
 	KieuKM varchar(50) not null,
-	DoiTuongApDung int not null, -- Căn cứ vào loại Khách hàng (vd: 3 - chỉ dành cho Gold, 23 - dành cho Silver và Gold, 123 - áp dụng cho tất cả)
+	HetHangKM bit not null, --1 là hết hàng, 0 là còn hàng
+	DoiTuongApDung varchar(3) not null, -- Căn cứ vào loại Khách hàng (vd: 3 - chỉ dành cho Gold, 23 - dành cho Silver và Gold, 123 - áp dụng cho tất cả)
 	MoTa text not null
 	)
 

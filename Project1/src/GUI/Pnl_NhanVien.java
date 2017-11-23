@@ -7,7 +7,9 @@ package GUI;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author vudt9
@@ -19,7 +21,7 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
      */
     public Pnl_NhanVien() {
         initComponents();
-        doDuLieuLenTable();
+        doDuLieuLenTable(1);
     }
 
     /**
@@ -31,15 +33,44 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pmn_KieuDanhSach = new javax.swing.JPopupMenu();
+        mitem_NVDangLam = new javax.swing.JMenuItem();
+        mitem_NVDaNghi = new javax.swing.JMenuItem();
+        mitem_TatCaNV = new javax.swing.JMenuItem();
         SearchBar = new javax.swing.JPanel();
         txt_QueryInput = new javax.swing.JTextField();
         btn_Search = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_NhanVien = new javax.swing.JTable();
-        btn_TimKH = new javax.swing.JButton();
-        btn_SuaKH = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_ViewType = new javax.swing.JButton();
         btn_ThemKH = new javax.swing.JButton();
-        btn_ThemKH1 = new javax.swing.JButton();
+        btn_ChinhSuaKH = new javax.swing.JButton();
+
+        mitem_NVDangLam.setText("Nhân viên chính thức");
+        mitem_NVDangLam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitem_NVDangLamActionPerformed(evt);
+            }
+        });
+        pmn_KieuDanhSach.add(mitem_NVDangLam);
+
+        mitem_NVDaNghi.setText("Nhân viên đã nghỉ");
+        mitem_NVDaNghi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitem_NVDaNghiActionPerformed(evt);
+            }
+        });
+        pmn_KieuDanhSach.add(mitem_NVDaNghi);
+
+        mitem_TatCaNV.setText("Tất cả nhân viên");
+        mitem_TatCaNV.setToolTipText("");
+        mitem_TatCaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitem_TatCaNVActionPerformed(evt);
+            }
+        });
+        pmn_KieuDanhSach.add(mitem_TatCaNV);
 
         SearchBar.setBackground(new java.awt.Color(255, 255, 255));
         SearchBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -117,25 +148,30 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
             tbl_NhanVien.getColumnModel().getColumn(0).setCellRenderer(new NhanVienRenderer());
         }
 
-        btn_TimKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
-        btn_TimKH.setContentAreaFilled(false);
-        btn_TimKH.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
+        btn_update.setContentAreaFilled(false);
+        btn_update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_TimKHMouseEntered(evt);
+                btn_updateMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_TimKHMouseExited(evt);
+                btn_updateMouseExited(evt);
             }
         });
 
-        btn_SuaKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_List_24px.png"))); // NOI18N
-        btn_SuaKH.setContentAreaFilled(false);
-        btn_SuaKH.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_ViewType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_List_24px.png"))); // NOI18N
+        btn_ViewType.setContentAreaFilled(false);
+        btn_ViewType.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_SuaKHMouseEntered(evt);
+                btn_ViewTypeMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_SuaKHMouseExited(evt);
+                btn_ViewTypeMouseExited(evt);
+            }
+        });
+        btn_ViewType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ViewTypeActionPerformed(evt);
             }
         });
 
@@ -150,14 +186,14 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
             }
         });
 
-        btn_ThemKH1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png"))); // NOI18N
-        btn_ThemKH1.setContentAreaFilled(false);
-        btn_ThemKH1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_ChinhSuaKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png"))); // NOI18N
+        btn_ChinhSuaKH.setContentAreaFilled(false);
+        btn_ChinhSuaKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_ThemKH1MouseEntered(evt);
+                btn_ChinhSuaKHMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_ThemKH1MouseExited(evt);
+                btn_ChinhSuaKHMouseExited(evt);
             }
         });
 
@@ -174,11 +210,11 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(btn_ThemKH)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_ThemKH1)
+                        .addComponent(btn_ChinhSuaKH)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_TimKH)
+                        .addComponent(btn_update)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_SuaKH)))
+                        .addComponent(btn_ViewType)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,10 +224,10 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btn_TimKH)
+                        .addComponent(btn_update)
                         .addComponent(btn_ThemKH)
-                        .addComponent(btn_SuaKH)
-                        .addComponent(btn_ThemKH1)))
+                        .addComponent(btn_ViewType)
+                        .addComponent(btn_ChinhSuaKH)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addContainerGap())
@@ -207,15 +243,37 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
             btn_Search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Search_24px.png")));
         }
     }
-    
-    private void doDuLieuLenTable() {
+
+    private void doDuLieuLenTable(int luaChon) {
         DTO.DTONhanVien[] arrNV = DAL.DALNhanVien.layDuLieu();
-        DefaultTableModel model = (DefaultTableModel)tbl_NhanVien.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_NhanVien.getModel();
         model.setRowCount(0);
-        for(int i = 0; i < arrNV.length; i++){
-            Object[] obj = new Object[1];
-            obj[0] = arrNV[i];
-            model.addRow(obj);
+        switch (luaChon) {
+            case 1:
+                for (int i = 0; i < arrNV.length; i++) {
+                    if (arrNV[i].isAvailable()) {
+                        Object[] obj = new Object[1];
+                        obj[0] = arrNV[i];
+                        model.addRow(obj);
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < arrNV.length; i++) {
+                    if (!arrNV[i].isAvailable()) {
+                        Object[] obj = new Object[1];
+                        obj[0] = arrNV[i];
+                        model.addRow(obj);
+                    }
+                }
+                break;
+            default:
+                for (int i = 0; i < arrNV.length; i++) {
+                    Object[] obj = new Object[1];
+                    obj[0] = arrNV[i];
+                    model.addRow(obj);
+                }
+                break;
         }
     }
     private void btn_SearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SearchMouseEntered
@@ -226,21 +284,21 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         diChuotVaoNutSearch(false);
     }//GEN-LAST:event_btn_SearchMouseExited
 
-    private void btn_TimKHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TimKHMouseEntered
-        btn_TimKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Search_24px_3.png")));
-    }//GEN-LAST:event_btn_TimKHMouseEntered
+    private void btn_updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateMouseEntered
+        btn_update.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px_1.png")));
+    }//GEN-LAST:event_btn_updateMouseEntered
 
-    private void btn_TimKHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TimKHMouseExited
-        btn_TimKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Search_24px_4.png")));
-    }//GEN-LAST:event_btn_TimKHMouseExited
+    private void btn_updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateMouseExited
+        btn_update.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png")));
+    }//GEN-LAST:event_btn_updateMouseExited
 
-    private void btn_SuaKHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SuaKHMouseEntered
-        btn_SuaKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px_1.png")));
-    }//GEN-LAST:event_btn_SuaKHMouseEntered
+    private void btn_ViewTypeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ViewTypeMouseEntered
+        btn_ViewType.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_List_24px_1.png")));
+    }//GEN-LAST:event_btn_ViewTypeMouseEntered
 
-    private void btn_SuaKHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SuaKHMouseExited
-        btn_SuaKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png")));
-    }//GEN-LAST:event_btn_SuaKHMouseExited
+    private void btn_ViewTypeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ViewTypeMouseExited
+        btn_ViewType.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_List_24px.png")));
+    }//GEN-LAST:event_btn_ViewTypeMouseExited
 
     private void btn_ThemKHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThemKHMouseEntered
         btn_ThemKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Add_User_Male_24px_2.png")));
@@ -250,23 +308,43 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
         btn_ThemKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Add_User_Male_24px.png")));
     }//GEN-LAST:event_btn_ThemKHMouseExited
 
-    private void btn_ThemKH1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThemKH1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ThemKH1MouseEntered
+    private void btn_ChinhSuaKHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ChinhSuaKHMouseEntered
+        btn_ChinhSuaKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px_1.png")));
+    }//GEN-LAST:event_btn_ChinhSuaKHMouseEntered
 
-    private void btn_ThemKH1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ThemKH1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ThemKH1MouseExited
+    private void btn_ChinhSuaKHMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ChinhSuaKHMouseExited
+        btn_ChinhSuaKH.setIcon(new ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png")));
+    }//GEN-LAST:event_btn_ChinhSuaKHMouseExited
+
+    private void btn_ViewTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ViewTypeActionPerformed
+        pmn_KieuDanhSach.show(btn_ViewType, 0, btn_ViewType.getHeight());
+    }//GEN-LAST:event_btn_ViewTypeActionPerformed
+
+    private void mitem_NVDangLamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitem_NVDangLamActionPerformed
+        doDuLieuLenTable(1);
+    }//GEN-LAST:event_mitem_NVDangLamActionPerformed
+
+    private void mitem_NVDaNghiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitem_NVDaNghiActionPerformed
+        doDuLieuLenTable(2);
+    }//GEN-LAST:event_mitem_NVDaNghiActionPerformed
+
+    private void mitem_TatCaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitem_TatCaNVActionPerformed
+        doDuLieuLenTable(3);
+    }//GEN-LAST:event_mitem_TatCaNVActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SearchBar;
+    private javax.swing.JButton btn_ChinhSuaKH;
     private javax.swing.JButton btn_Search;
-    private javax.swing.JButton btn_SuaKH;
     private javax.swing.JButton btn_ThemKH;
-    private javax.swing.JButton btn_ThemKH1;
-    private javax.swing.JButton btn_TimKH;
+    private javax.swing.JButton btn_ViewType;
+    private javax.swing.JButton btn_update;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem mitem_NVDaNghi;
+    private javax.swing.JMenuItem mitem_NVDangLam;
+    private javax.swing.JMenuItem mitem_TatCaNV;
+    private javax.swing.JPopupMenu pmn_KieuDanhSach;
     private javax.swing.JTable tbl_NhanVien;
     private javax.swing.JTextField txt_QueryInput;
     // End of variables declaration//GEN-END:variables
