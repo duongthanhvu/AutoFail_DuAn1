@@ -189,5 +189,3 @@ INSERT into Quyen VALUES (N'Staff')
 INSERT into NhanVien VALUES (N'Dương Thành Vũ', N'0986390134', 0, CAST(0x091B0B00 AS Date), N'241396557', N'20 Y Ơn, p. Tân Thành, tp. BMT, Đăk Lăk', CAST(0x0000A82A00CE8B13 AS DateTime), N'vudt', N'0000', 1, 0)
 
 
-
-
