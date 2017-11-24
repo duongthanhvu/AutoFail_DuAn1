@@ -10,10 +10,16 @@ import DTO.DTOSanPham;
 import DTO.ThongBao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -23,6 +29,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
     private int id_KH;
     private int[] arrMaKM;
+
     /**
      * Creates new form CommonPanel
      */
@@ -471,19 +478,22 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_TaoMoiActionPerformed
 
     private void txtKhungTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKhungTimKiemKeyReleased
-        if (evt.getKeyCode() == evt.VK_UP || evt.getKeyCode() == evt.VK_DOWN) {
+        if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
             popMenuTimKiem.requestFocus();
             return;
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.out.println("Vừa ấn enter");
         }
         String keyWord = txtKhungTimKiem.getText();
         DTOSanPham arrItem[] = DALSanPham.searchBy(keyWord);
         popMenuTimKiem.removeAll();
         popMenuTimKiem.setVisible(false);
         for (DTOSanPham item : arrItem) {
-            CustomMenuItem menuItem = new CustomMenuItem(item.getMaSP(), item.getTenSP(),true);
+            CustomMenuItem menuItem = new CustomMenuItem(item.getMaSP(), item.getTenSP(), true);
             //Thêm sự kiện cho menuItem: khi click vào item -> đổ thông tin sản phẩm tương ứng lên form
             menuItem.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
                     txtKhungTimKiem.setText("");
                     themSPVaoGioHang(item.getMaSP());
                 }
@@ -496,7 +506,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
     private void btn_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThanhToanActionPerformed
         int soLuongSP = pnl_bg.getComponentCount();
-        if(soLuongSP == 0){
+        if (soLuongSP == 0) {
             XuLyThongBao.hienThiThongBao(new ThongBao("Không có sản phẩm nào trong giỏ hàng!", ThongBao.LOI));
             return;
         }
@@ -521,7 +531,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         popMenuTimKiem.removeAll();
         popMenuTimKiem.setVisible(false);
         for (DTO.DTOKhachHang item : arrItem) {
-            CustomMenuItem menuItem = new CustomMenuItem(item.getID_KH(), item.getTenKH(),false);
+            CustomMenuItem menuItem = new CustomMenuItem(item.getID_KH(), item.getTenKH(), false);
             //Thêm sự kiện cho menuItem: khi click vào item -> đổ thông tin sản phẩm tương ứng lên form
             menuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -538,9 +548,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     private void themSPVaoGioHang(int maSP) {
 //        pnl_bg.setVisible(false);
         int slMatHang = pnl_bg.getComponentCount();
-        for(int i = 0; i < slMatHang; i++){
+        for (int i = 0; i < slMatHang; i++) {
             ChiTietGioHang ctgh = (ChiTietGioHang) pnl_bg.getComponent(i);
-            if(maSP == ctgh.getMaSP()){
+            if (maSP == ctgh.getMaSP()) {
                 ctgh.tangSoLuong(1);
                 updateTongGia();
                 return;
@@ -550,30 +560,30 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         pnl_bg.add(card);
         pnl_bg.revalidate();
     }
-    
+
     public void updateTongGia() {
         int soLuongSP = pnl_bg.getComponentCount();
         int tongGia = 0;
-        for(int i = 0; i < soLuongSP; i++){
+        for (int i = 0; i < soLuongSP; i++) {
             ChiTietGioHang ctgh = (ChiTietGioHang) pnl_bg.getComponent(i);
             tongGia = tongGia + ctgh.getThanhTien();
         }
         lbl_TongTien.setText(String.valueOf(tongGia));
     }
-    
+
     public JLabel getLblTongGia() {
         return lbl_TongTien;
     }
-    
+
     public void loadThongTinKH(int id_KH) {
         DTO.DTOKhachHang kh = DAL.DALKhachHang.layDuLieu(id_KH);
         this.id_KH = id_KH;
         DTO.DTOChuongTrinhKM[] arrKM = DAL.DALChuongTrinhKM.layKMDuocApDung(kh.getMaLoaiKH());
         arrMaKM = new int[arrKM.length];
-        for(int i = 0; i < arrMaKM.length; i++){
+        for (int i = 0; i < arrMaKM.length; i++) {
             arrMaKM[i] = arrKM[i].getMaKhuyenMai();
         }
-        for(DTO.DTOChuongTrinhKM item : arrKM){
+        for (DTO.DTOChuongTrinhKM item : arrKM) {
             JCheckBox chkKM = new JCheckBox(item.getTenKM());
             chkKM.setSelected(true);
             pnl_KhuyenMai.add(chkKM);

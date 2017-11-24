@@ -61,6 +61,22 @@ public class DTONhanVien implements DTO{
         this.available = available;
     }
 
+    public DTONhanVien(String tenNV, String soDT, int gioiTinh, Date ngaySinh, String cmnd, String diaChi, Date ngayTao, String tenDangNhap, String matKhau, int maQuyen, boolean available) {
+        this.tenNV = tenNV;
+        this.soDT = soDT;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.cmnd = cmnd;
+        this.diaChi = diaChi;
+        this.ngayTao = ngayTao;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.maQuyen = maQuyen;
+        this.available = available;
+    }
+    
+    
+
     public int getMaNV() {
         return maNV;
     }
@@ -110,6 +126,11 @@ public class DTONhanVien implements DTO{
         return sNgaySinh;
     }
 
+    public String getNgaySinh_YMD() {
+        String sNgaySinh = ConvertDateFormat.chuyenNgayYMD(ngaySinh);
+        return sNgaySinh;
+    }
+    
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
@@ -139,6 +160,11 @@ public class DTONhanVien implements DTO{
         return sNgayTao;
     }
 
+    public String getNgayTao_YMD() {
+       String sNgayTao = ConvertDateFormat.chuyenNgayVaGio(ngayTao);
+       return sNgayTao;
+    }
+    
     public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }

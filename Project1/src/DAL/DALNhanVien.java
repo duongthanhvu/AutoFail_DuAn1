@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class DALNhanVien {
 
     public static int them(DTONhanVien item) {
-        String query = "Insert into NhanVien Values(N'" + item.getTenNV() + "', '" + item.getSoDT() + "',"+item.getGioiTinh()+", '" + item.getNgaySinh() + "',N'" + item.getDiaChi() + "','" + item.getNgayTao() + "','" + item.getTenDangNhap() + "','"+item.getMatKhau()+"',"+item.getMaQuyen()+","+item.isAvailable()+")";
+        String query = "Insert into NhanVien Values(N'" + item.getTenNV() + "', '" + item.getSoDT() + "',"+item.getGioiTinh()+", '" + item.getNgaySinh_YMD() + "', '"+item.getCmnd()+"', N'" + item.getDiaChi() + "','" + item.getNgayTao_YMD() + "','" + item.getTenDangNhap() + "','"+item.getMatKhau()+"',"+item.getMaQuyen()+",'"+item.isAvailable()+"')";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
@@ -30,7 +30,7 @@ public class DALNhanVien {
     }
 
     public static int sua(int maNV, DTONhanVien newItem) {
-        String query = "Update NhanVien set TenNV = N'" + newItem.getTenNV() + "', SoDT = '"+newItem.getSoDT()+"', GioiTinh = " + newItem.getGioiTinh() + ", NgaySinh = '" + newItem.getNgaySinh() + "', CMND = '"+newItem.getCmnd()+"', DiaChi = '" + newItem.getDiaChi() + "', NgayTao = '"+newItem.getNgayTao()+"', TenDangNhap = '"+newItem.getTenDangNhap()+"', MatKhau = '"+newItem.getMatKhau()+"', MaQuyen = " + newItem.getMaQuyen() + ", TinhTrang = "+newItem.isAvailable()+" where MaNV = " + maNV;
+        String query = "Update NhanVien set TenNV = N'" + newItem.getTenNV() + "', SoDT = '"+newItem.getSoDT()+"', GioiTinh = " + newItem.getGioiTinh() + ", NgaySinh = '" + newItem.getNgaySinh_YMD() + "', CMND = '"+newItem.getCmnd()+"', DiaChi = '" + newItem.getDiaChi() + "', NgayTao = '"+newItem.getNgayTao_YMD()+"', TenDangNhap = '"+newItem.getTenDangNhap()+"', MatKhau = '"+newItem.getMatKhau()+"', MaQuyen = " + newItem.getMaQuyen() + ", TinhTrang = '"+newItem.isAvailable()+"' where MaNV = " + maNV;
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }

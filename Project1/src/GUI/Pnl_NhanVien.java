@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import DTO.ThongBao;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
@@ -158,6 +159,11 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
                 btn_updateMouseExited(evt);
             }
         });
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
         btn_ViewType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_List_24px.png"))); // NOI18N
         btn_ViewType.setContentAreaFilled(false);
@@ -185,6 +191,11 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
                 btn_ThemKHMouseExited(evt);
             }
         });
+        btn_ThemKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ThemKHActionPerformed(evt);
+            }
+        });
 
         btn_ChinhSuaKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png"))); // NOI18N
         btn_ChinhSuaKH.setContentAreaFilled(false);
@@ -194,6 +205,11 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn_ChinhSuaKHMouseExited(evt);
+            }
+        });
+        btn_ChinhSuaKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChinhSuaKHActionPerformed(evt);
             }
         });
 
@@ -331,6 +347,35 @@ public class Pnl_NhanVien extends javax.swing.JPanel {
     private void mitem_TatCaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitem_TatCaNVActionPerformed
         doDuLieuLenTable(3);
     }//GEN-LAST:event_mitem_TatCaNVActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        this.revalidate();
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_ThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemKHActionPerformed
+        dlg_ThemNhanVien dlg = new dlg_ThemNhanVien(null, true);
+        dlg.setLocationRelativeTo(this);
+        dlg.setVisible(true);
+        if(dlg.isSuccess()){
+            doDuLieuLenTable(1);
+        }
+    }//GEN-LAST:event_btn_ThemKHActionPerformed
+
+    private void btn_ChinhSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChinhSuaKHActionPerformed
+        DTO.DTONhanVien nv = null;
+        if(tbl_NhanVien.getSelectedRow() == -1){
+            XuLyThongBao.hienThiThongBao(new ThongBao("Vui lòng chọn một nhân viên để sửa", ThongBao.LOI));
+            return;
+        }else{
+            nv = (DTO.DTONhanVien)tbl_NhanVien.getValueAt(tbl_NhanVien.getSelectedRow(), 0);
+        }
+        dlg_SuaNhanVien dlg = new dlg_SuaNhanVien(null, true, nv);
+        dlg.setLocationRelativeTo(this);
+        dlg.setVisible(true);
+        if(dlg.isSuccess()){
+            doDuLieuLenTable(1);
+        }
+    }//GEN-LAST:event_btn_ChinhSuaKHActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
