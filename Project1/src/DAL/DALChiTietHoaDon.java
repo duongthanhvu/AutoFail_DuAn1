@@ -5,9 +5,14 @@
  */
 package DAL;
 
+import DTO.ConvertDateFormat;
+import DTO.DTOBaoCao;
 import DTO.DTOChiTietHoaDon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,5 +97,44 @@ public class DALChiTietHoaDon {
             System.out.println("Lỗi " + ex);
         }
         return arrCTHoaDon;
+    }
+    
+    public static DTO.DTOBaoCao[] layBaoCao(Date ngayBatDau, Date ngayKetThuc){
+        String sNgayBatDau = ConvertDateFormat.chuyenNgayYMD(ngayBatDau);
+        String sNgayKetThuc = ConvertDateFormat.chuyenNgayYMD(ngayKetThuc);
+        String query = "Select Count(MaSP) from (select MaSP from HoaDon join ChiTietHoaDon on HoaDon.MaHD = ChiTietHoaDon.MaHD where NgayTao < '"+sNgayKetThuc+"' and NgayTao > '"+sNgayBatDau+"' Group by MaSP) as a";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        int soLuong = 0;
+        try {
+            if (rs.next()) {
+                soLuong = rs.getInt(1);
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi " + ex);
+        }
+        DTO.DTOBaoCao[] arrBaoCao = new DTO.DTOBaoCao[soLuong];
+        query = "Select a.MaSP , sum(SoLuong) as SoLuong from (select NgayTao,MaCTHD,MaSP,GiaBanLe,SoLuong, GiaBanLe*SoLuong as thanhTien from HoaDon join ChiTietHoaDon on HoaDon.MaHD = ChiTietHoaDon.MaHD where NgayTao < '"+sNgayKetThuc+"' and NgayTao > '"+sNgayBatDau+"') as a group by MaSP";
+        rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            for (int i = 0; rs.next(); i++) {
+                DTOBaoCao bc = new DTOBaoCao();
+                bc.setMaSP(rs.getInt("MaSP"));
+                bc.setSoLuongBan(rs.getInt("SoLuong"));
+                arrBaoCao[i] = bc;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi " + ex);
+        }
+        for(int i = 0; i < arrBaoCao.length; i++){
+            DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(arrBaoCao[i].getMaSP());
+            arrBaoCao[i].setTenSP(sp.getTenSP());
+            arrBaoCao[i].setDonGiaBan(sp.getGiaBanLe());
+            arrBaoCao[i].setTienBan(arrBaoCao[i].getDonGiaBan()*arrBaoCao[i].getSoLuongBan());
+            arrBaoCao[i].setTienKM(0);
+            arrBaoCao[i].setDoanhThu(arrBaoCao[i].getDonGiaBan()-arrBaoCao[i].getTienKM());
+        }
+        return arrBaoCao;
     }
 }

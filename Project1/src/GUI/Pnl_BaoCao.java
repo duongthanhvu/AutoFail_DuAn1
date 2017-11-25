@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import DTO.ConvertDateFormat;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author vudt9
@@ -16,6 +20,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
      */
     public Pnl_BaoCao() {
         initComponents();
+        doDuLieuLenTableBaoCao();
     }
 
     /**
@@ -31,7 +36,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_BaoCao = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -43,7 +48,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm 2015", "Năm 2016", "Năm 2017" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_BaoCao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -54,7 +59,8 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
                 "STT", "Tên sản phẩm", "Số lượng bán", "Đơn giá bán", "Tiền bán", "Tiền khuyến mãi", "Doanh thu"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tbl_BaoCao.setRowHeight(24);
+        jScrollPane1.setViewportView(tbl_BaoCao);
 
         jButton1.setText("Xuất ra file Excel");
 
@@ -95,6 +101,40 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void doDuLieuLenTableBaoCao() {
+        Date ngayBatDau = ConvertDateFormat.chuyenNgay("01/11/2017");
+        Date ngayKetThuc = ConvertDateFormat.chuyenNgay("01/12/2017");
+        DTO.DTOBaoCao[] arrBC = DAL.DALChiTietHoaDon.layBaoCao(ngayBatDau, ngayKetThuc);
+        DefaultTableModel model = (DefaultTableModel) tbl_BaoCao.getModel();
+        model.setRowCount(0);
+        int sumSoLuongBan = 0;
+        int sumTienBan = 0;
+        int sumDoanhThu = 0;
+        for (int i = 0; i < arrBC.length; i++) {
+            Object[] obj = new Object[7];
+            obj[0] = i + 1;
+            obj[1] = arrBC[i].getTenSP();
+            obj[2] = arrBC[i].getSoLuongBan();
+            sumSoLuongBan = sumSoLuongBan + arrBC[i].getSoLuongBan();
+            obj[3] = arrBC[i].getDonGiaBan();
+            obj[4] = arrBC[i].getTienBan();
+            sumTienBan = sumTienBan + arrBC[i].getTienBan();
+            obj[5] = arrBC[i].getTienKM();
+            obj[6] = arrBC[i].getDoanhThu();
+            sumDoanhThu = sumDoanhThu + arrBC[i].getDoanhThu();
+            model.addRow(obj);
+        }
+        //Last row
+        Object[] obj = new Object[7];
+        obj[0] = "";
+        obj[1] = "<html><h3><b><font color='green'>Tổng cộng</font></b></h3></html>";
+        obj[2] = "<html><h3><b><font color='blue'>"+sumSoLuongBan+"</font></b></h3></html>";
+        obj[3] = "";
+        obj[4] = "<html><h3><b><font color='blue'>"+sumTienBan+"</font></b></h3></html>";
+        obj[5] = "";
+        obj[6] = "<html><h3><b><font color='blue'>"+sumDoanhThu+"</font></b></h3></html>";
+        model.addRow(obj);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -102,6 +142,6 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_BaoCao;
     // End of variables declaration//GEN-END:variables
 }

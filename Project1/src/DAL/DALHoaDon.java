@@ -91,28 +91,39 @@ public class DALHoaDon {
         return arrHoaDon;
     }
 
-    public static ThongBao taoHoaDonTransaction(int id_KH, int maNV, String ngayTao, String ghiChu, int[][] dsSanPham, int thanhTien) {
+    public static ThongBao taoHoaDonTransaction(int id_KH, int maNV, int[][] dsSanPham, int tongTien) {
         try {
             Conn.connection.setAutoCommit(false);
-            String query = "Insert into HoaDon values(" + maNV + "," + id_KH + ", "+thanhTien+", Getdate())";
+            String query = "Insert into HoaDon values(" + maNV + "," + id_KH + ", "+tongTien+", Getdate())";
             Conn.connection.ExcuteNonQuery(query);
-            query = "select top 1 MaHD from HoaDon order by MaHD desc";
+            //Cộng điểm cho khách hàng, cộng thêm 1 điểm mỗi 10.000 giá trị hóa đơn
+            query = "Select Diem from KhachHang where ID_KH = "+id_KH;
             ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+            int diem = -1;
+            if (rs.next()) {
+                    diem = rs.getInt(1);
+                }
+            diem = diem + (tongTien / 10000);
+            query = "Update KhachHang set Diem = " + diem + " where ID_KH = "+id_KH;
+            Conn.connection.ExcuteNonQuery(query);
+            //Add chi tiết hóa đơn
+            query = "select top 1 MaHD from HoaDon order by MaHD desc";
+            rs = Conn.connection.ExcuteQuerySelect(query);
             int maHDVuaTao = -1;
             if (rs.next()) {
                 maHDVuaTao = rs.getInt(1);
             }
             for (int i = 0; i < dsSanPham.length; i++) {
-                int idSanPham = dsSanPham[i][0];
+                int maSP = dsSanPham[i][0];
                 int soLuong = dsSanPham[i][1];
-                query = "select GiaBan from SanPham where IDSanPham = " + idSanPham;
+                query = "select GiaBanLe from SanPham where MaSP = " + maSP;
                 rs = Conn.connection.ExcuteQuerySelect(query);
                 int giaBan = -1;
                 if (rs.next()) {
                     giaBan = rs.getInt(1);
                 }
-                int tongTien = giaBan * soLuong;
-                query = "Insert into ChiTietHoaDon Values(" + idSanPham + "," + soLuong + "," + giaBan + "," + maHDVuaTao + "," + tongTien + ",null)";
+//                int tongTien = giaBan * soLuong;
+                query = "Insert into ChiTietHoaDon Values("+maHDVuaTao+"," + maSP + "," + giaBan + "," + soLuong + ")";
                 Conn.connection.ExcuteNonQuery(query);
             }
 //            query = "Select GiaBan from ChiTietHoaDon where MaHD = "+maHDVuaTao;
@@ -121,8 +132,8 @@ public class DALHoaDon {
 //            while(rs.next()){
 //                tongTien = tongTien + rs.getInt(1);
 //            }
-            query = "Update HoaDon set TongTien = "+thanhTien+" where MaHD = "+maHDVuaTao;
-            Conn.connection.ExcuteNonQuery(query);
+//            query = "Update HoaDon set TongTien = "+tongTien+" where MaHD = "+maHDVuaTao;
+//            Conn.connection.ExcuteNonQuery(query);
             Conn.connection.commit();
             return new ThongBao("Tạo hóa đơn thành công", ThongBao.THANH_CONG);
         } catch (SQLException ex) {

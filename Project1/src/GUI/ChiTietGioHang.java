@@ -146,7 +146,7 @@ public class ChiTietGioHang extends javax.swing.JPanel {
     private void doDuLieuLenPanel() {
         DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(maSP);
         lbl_TenSP.setText(sp.getTenSP());
-        lbl_ChietKhau.setText("waiting");
+        lbl_ChietKhau.setText("");
         lbl_ThanhTien.setText(String.valueOf(sp.getGiaBanLe()));
         giaSP = sp.getGiaBanLe();
     }
@@ -162,6 +162,9 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         return Integer.parseInt(lbl_ThanhTien.getText());
     }
     
+    public int getSoLuongMua() {
+        return (int)spn_SoLuong.getValue();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xoa;
     private javax.swing.JLabel lbl_ChietKhau;
