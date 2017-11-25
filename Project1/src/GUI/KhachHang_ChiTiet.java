@@ -292,7 +292,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Ngày mua", "Trị giá hóa đơn", "Điểm cộng", "Sản phẩm đã mua"
             }
         ));
         jScrollPane3.setViewportView(tbl_LSMuaHang);

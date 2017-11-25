@@ -8,6 +8,8 @@ package DAL;
 import DTO.DTOSanPham;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -122,6 +124,20 @@ public class DALSanPham {
             System.out.println("Lỗi " + ex);
         }
         return arrSanPham;
+    }
+    
+    public static int layMaSPQuaBarcode(String Barcode) {
+        String query = "Select MaSP from SanPham where Barcode = '"+Barcode+"'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            if(rs.next()){
+                return rs.getInt(1);
+            }else{
+                return -1;
+            }
+        } catch (SQLException ex) {
+            return -1;
+        }
     }
     
     public static DTOSanPham[] layDuLieuTheoMaLoai(int maLoaiSP) {

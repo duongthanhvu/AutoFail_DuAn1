@@ -139,6 +139,20 @@ public class DALKhachHang {
         return arrKhachHang;
     }
     
+    public static int layIDKHQuaMaKH(String maKH) {
+        String query = "Select ID_KH from KhachHang where MaKH = '"+maKH+"'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            if(rs.next()){
+                return rs.getInt(1);
+            }else{
+                return -1;
+            }
+        } catch (SQLException ex) {
+            return -1;
+        }
+    }
+    
     public static DTOKhachHang layKHVuaThem(){
         String query = "Select top 1 ID_KH, MaKH, TenKH, KhachHang.MaLoaiKH, GioiTinh, SoDT, Email, DiaChi, NgaySinh, Diem, NgayTao, GhiChu from KhachHang order by ID_KH desc";
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);

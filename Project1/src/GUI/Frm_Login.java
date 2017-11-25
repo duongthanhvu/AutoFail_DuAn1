@@ -26,6 +26,7 @@ public class Frm_Login extends javax.swing.JFrame {
     MessagePopup loiSaiMatKhau;
     MessagePopup loiDangNhap;
     public static boolean checkLoadDone = false;
+    public static int maNVPhienHienTai = 1;
 
     /**
      * Creates new form Frm_Login
