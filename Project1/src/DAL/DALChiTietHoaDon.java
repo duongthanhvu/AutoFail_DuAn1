@@ -133,7 +133,7 @@ public class DALChiTietHoaDon {
             arrBaoCao[i].setDonGiaBan(sp.getGiaBanLe());
             arrBaoCao[i].setTienBan(arrBaoCao[i].getDonGiaBan()*arrBaoCao[i].getSoLuongBan());
             arrBaoCao[i].setTienKM(0);
-            arrBaoCao[i].setDoanhThu(arrBaoCao[i].getDonGiaBan()-arrBaoCao[i].getTienKM());
+            arrBaoCao[i].setDoanhThu(arrBaoCao[i].getTienBan()-arrBaoCao[i].getTienKM());
         }
         return arrBaoCao;
     }

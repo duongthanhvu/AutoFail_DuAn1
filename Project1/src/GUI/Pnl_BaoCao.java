@@ -5,9 +5,22 @@
  */
 package GUI;
 
-import DTO.ConvertDateFormat;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -32,21 +45,34 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dlg_ChonViTriLuu = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbb_Thang = new javax.swing.JComboBox<>();
+        cbb_Nam = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_BaoCao = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_XuatExcel = new javax.swing.JButton();
+
+        dlg_ChonViTriLuu.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("BÁO CÁO BÁN HÀNG");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3" }));
+        cbb_Thang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
+        cbb_Thang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbb_ThangActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm 2015", "Năm 2016", "Năm 2017" }));
+        cbb_Nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm 2014", "Năm 2015", "Năm 2016", "Năm 2017" }));
+        cbb_Nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbb_NamActionPerformed(evt);
+            }
+        });
 
         tbl_BaoCao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,7 +88,12 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
         tbl_BaoCao.setRowHeight(24);
         jScrollPane1.setViewportView(tbl_BaoCao);
 
-        jButton1.setText("Xuất ra file Excel");
+        btn_XuatExcel.setText("Xuất ra file Excel");
+        btn_XuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XuatExcelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,11 +108,11 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 289, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbb_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbb_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btn_XuatExcel))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -92,19 +123,55 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(cbb_Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbb_Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_XuatExcel))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private Date layNgayBatDau() {
+        String temp = cbb_Nam.getSelectedItem().toString();
+        int nam = Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
+        temp = cbb_Thang.getSelectedItem().toString();
+        int thang = Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
+        Date ngayBatDau = java.sql.Date.valueOf(LocalDate.of(nam, thang, 1));
+        return ngayBatDau;
+    }
+
+    private Date layNgayKetThuc() {
+        String temp = cbb_Nam.getSelectedItem().toString();
+        int nam = Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
+        temp = cbb_Thang.getSelectedItem().toString();
+        int thang = 1 + Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
+        if(thang > 12){
+            thang = 1;
+            nam = nam + 1;
+        }
+        Date ngayKetThuc = java.sql.Date.valueOf(LocalDate.of(nam, thang, 1));
+        return ngayKetThuc;
+    }
+
+    private void btn_XuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XuatExcelActionPerformed
+        int returnVal = dlg_ChonViTriLuu.showSaveDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File file = dlg_ChonViTriLuu.getSelectedFile();
+            xuatBaoCaoToExcel(DAL.DALChiTietHoaDon.layBaoCao(layNgayBatDau(), layNgayKetThuc()), 9, 1,file);
+        }
+    }//GEN-LAST:event_btn_XuatExcelActionPerformed
+
+    private void cbb_ThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_ThangActionPerformed
+        doDuLieuLenTableBaoCao();
+    }//GEN-LAST:event_cbb_ThangActionPerformed
+
+    private void cbb_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_NamActionPerformed
+        doDuLieuLenTableBaoCao();
+    }//GEN-LAST:event_cbb_NamActionPerformed
+
     private void doDuLieuLenTableBaoCao() {
-        Date ngayBatDau = ConvertDateFormat.chuyenNgay("01/11/2017");
-        Date ngayKetThuc = ConvertDateFormat.chuyenNgay("01/12/2017");
-        DTO.DTOBaoCao[] arrBC = DAL.DALChiTietHoaDon.layBaoCao(ngayBatDau, ngayKetThuc);
+        DTO.DTOBaoCao[] arrBC = DAL.DALChiTietHoaDon.layBaoCao(layNgayBatDau(), layNgayKetThuc());
         DefaultTableModel model = (DefaultTableModel) tbl_BaoCao.getModel();
         model.setRowCount(0);
         int sumSoLuongBan = 0;
@@ -128,18 +195,138 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
         Object[] obj = new Object[7];
         obj[0] = "";
         obj[1] = "<html><h3><b><font color='green'>Tổng cộng</font></b></h3></html>";
-        obj[2] = "<html><h3><b><font color='blue'>"+sumSoLuongBan+"</font></b></h3></html>";
+        obj[2] = "<html><h3><b><font color='blue'>" + sumSoLuongBan + "</font></b></h3></html>";
         obj[3] = "";
-        obj[4] = "<html><h3><b><font color='blue'>"+sumTienBan+"</font></b></h3></html>";
+        obj[4] = "<html><h3><b><font color='blue'>" + sumTienBan + "</font></b></h3></html>";
         obj[5] = "";
-        obj[6] = "<html><h3><b><font color='blue'>"+sumDoanhThu+"</font></b></h3></html>";
+        obj[6] = "<html><h3><b><font color='blue'>" + sumDoanhThu + "</font></b></h3></html>";
         model.addRow(obj);
     }
 
+    private void xuatBaoCaoToExcel(DTO.DTOBaoCao[] arrBC, int row, int col, File saveLoc) { //vi tri cua cell = row và col - 1
+        try {
+            FileInputStream file = new FileInputStream(".\\data\\MauBaoCao.xlsx");
+
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            Cell cell = null;
+            sheet.shiftRows(row, row + 4, arrBC.length); //dịch các hàng cuối xuống 1 khoảng vừa đủ để lưu các dòng của arrBC
+            //định nghĩa kiểu border style cho các row
+            XSSFCellStyle style = workbook.createCellStyle();
+            style.setBorderBottom(BorderStyle.DOTTED);
+            style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderLeft(BorderStyle.THIN);
+            style.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderRight(BorderStyle.THIN);
+            style.setRightBorderColor(IndexedColors.BLACK.getIndex());
+            style.setBorderTop(BorderStyle.DOTTED);
+            style.setTopBorderColor(IndexedColors.BLACK.getIndex());
+
+            int sumSoLuongBan = 0;
+            int sumTienBan = 0;
+            int sumDoanhThu = 0;
+            for (int i = 0; i < arrBC.length; i++) {
+                //Retrieve the row and check for null
+                XSSFRow sheetrow = sheet.getRow(row + i);
+                if (sheetrow == null) {
+                    sheetrow = sheet.createRow(row + i);
+                }
+
+                //Update the value of cell
+                cell = sheetrow.getCell(col);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col);
+                }
+                cell.setCellValue(i + 1);
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 1);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 1);
+                }
+                cell.setCellValue(arrBC[i].getTenSP());
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 2);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 2);
+                }
+                cell.setCellValue(arrBC[i].getSoLuongBan());
+                sumSoLuongBan = sumSoLuongBan + arrBC[i].getSoLuongBan();
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 3);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 3);
+                }
+                cell.setCellValue(arrBC[i].getDonGiaBan());
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 4);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 4);
+                }
+                cell.setCellValue(arrBC[i].getTienBan());
+                sumTienBan = sumTienBan + arrBC[i].getTienBan();
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 5);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 5);
+                }
+                cell.setCellValue(arrBC[i].getTienKM());
+                cell.setCellStyle(style);
+                cell = sheetrow.getCell(col + 6);
+                if (cell == null) {
+                    cell = sheetrow.createCell(col + 6);
+                }
+                cell.setCellValue(arrBC[i].getDoanhThu());
+                sumDoanhThu = sumDoanhThu + arrBC[i].getDoanhThu();
+                cell.setCellStyle(style);
+            }
+            file.close();
+            //set data cho dòng cuối
+            XSSFRow sheetrow = sheet.getRow(row + arrBC.length);
+            if (sheetrow == null) {
+                sheetrow = sheet.createRow(row + arrBC.length);
+            }
+            cell = sheetrow.getCell(col + 2);
+            if (cell == null) {
+                cell = sheetrow.createCell(col + 2);
+            }
+            cell.setCellValue(sumSoLuongBan);
+            cell = sheetrow.getCell(col + 4);
+            if (cell == null) {
+                cell = sheetrow.createCell(col + 4);
+            }
+            cell.setCellValue(sumTienBan);
+            cell = sheetrow.getCell(col + 6);
+            if (cell == null) {
+                cell = sheetrow.createCell(col + 6);
+            }
+            cell.setCellValue(sumDoanhThu);
+            //Set ngay thang
+            sheetrow = sheet.getRow(6);
+            if (sheetrow == null) {
+                sheetrow = sheet.createRow(6);
+            }
+            cell = sheetrow.getCell(4);
+            if (cell == null) {
+                cell = sheetrow.createCell(4);
+            }
+            cell.setCellValue(cbb_Thang.getSelectedItem().toString()+" "+cbb_Nam.getSelectedItem().toString());
+
+            FileOutputStream outFile = new FileOutputStream(saveLoc);
+            workbook.write(outFile);
+            outFile.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton btn_XuatExcel;
+    private javax.swing.JComboBox<String> cbb_Nam;
+    private javax.swing.JComboBox<String> cbb_Thang;
+    private javax.swing.JFileChooser dlg_ChonViTriLuu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_BaoCao;

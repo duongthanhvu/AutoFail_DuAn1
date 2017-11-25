@@ -7,6 +7,7 @@ package GUI;
 
 import DTO.DTOSanPham;
 import java.awt.CardLayout;
+import java.awt.Color;
 
 /**
  *
@@ -402,6 +403,11 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         lbl_Gia.setText(sp.getGiaBanLe_Formatted());
         lbl_SoLuong.setText("");
         lbl_TinhTrang.setText(sp.getTinhTrang());
+        if(sp.getTinhTrang().equals("Còn hàng")){
+            lbl_TinhTrang.setForeground(new Color(0, 121, 107));
+        }else{
+            lbl_TinhTrang.setForeground(Color.RED);
+        }
         //Set text cho phần chỉnh sửa thông tin (Done)
         txt_TenSP.setText(sp.getTenSP());
         txt_Barcode.setText(sp.getBarcode());
