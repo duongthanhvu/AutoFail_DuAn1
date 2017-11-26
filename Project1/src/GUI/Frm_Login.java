@@ -12,10 +12,19 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.properties.EncryptableProperties;
 
 /**
  *
@@ -31,15 +40,21 @@ public class Frm_Login extends javax.swing.JFrame {
     public static int maNVPhienHienTai = 1;
     private final char[] UallowChars = "abcdefghijklmnopqrstuvwxyz0123456789-_".toCharArray();
     private final char[] PallowChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-
+    File file = new File("./data/UserInfo.properties");
+    StandardPBEStringEncryptor encryptor;
     /**
      * Creates new form Frm_Login
      */
     public Frm_Login() {
         initComponents();
-        jLabel4.requestFocus();
+        Thoat.requestFocus();
         loiSaiMatKhau = new MessagePopup(this, "Mật khẩu không đúng");
         loiDangNhap = new MessagePopup(this, "Tên người dùng không tồn tại");
+        encryptor = new StandardPBEStringEncryptor();     
+        encryptor.setPassword("vudtpk00714"); //set mật khẩu dùng để mã hóa và giải mã
+        layTTDN();
+        GhostText userName = new GhostText(txt_UserName, "Tên đăng nhập"); //Hiệu ứng chữ mờ
+        GhostText pwd = new GhostText(pwd_Password, "Mật khẩu");
     }
 
     /**
@@ -62,9 +77,9 @@ public class Frm_Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        Thoat = new javax.swing.JLabel();
+        chk_GhiNho = new javax.swing.JCheckBox();
+        btn_DangNhap = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -104,12 +119,6 @@ public class Frm_Login extends javax.swing.JFrame {
         txt_UserName.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         txt_UserName.setToolTipText("");
         txt_UserName.setBorder(null);
-        GhostText userName = new GhostText(txt_UserName, "Tên đăng nhập");
-        txt_UserName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_UserNameFocusGained(evt);
-            }
-        });
         txt_UserName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_UserNameKeyTyped(evt);
@@ -118,12 +127,6 @@ public class Frm_Login extends javax.swing.JFrame {
 
         pwd_Password.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         pwd_Password.setBorder(null);
-        GhostText pwd = new GhostText(pwd_Password, "Mật khẩu");
-        pwd_Password.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pwd_PasswordFocusGained(evt);
-            }
-        });
         pwd_Password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 pwd_PasswordKeyTyped(evt);
@@ -138,34 +141,39 @@ public class Frm_Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Đăng nhập");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Delete_32px_1.png"))); // NOI18N
-        jLabel4.setToolTipText("");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Delete_32px_1.png"))); // NOI18N
+        Thoat.setToolTipText("");
+        Thoat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                ThoatMouseClicked(evt);
             }
         });
 
-        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Ghi nhớ tài khoản");
+        chk_GhiNho.setBackground(new java.awt.Color(255, 255, 255));
+        chk_GhiNho.setText("Ghi nhớ tài khoản");
 
-        jButton1.setBackground(new java.awt.Color(0, 76, 64));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Đăng nhập");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setOpaque(true);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_DangNhap.setBackground(new java.awt.Color(0, 76, 64));
+        btn_DangNhap.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_DangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DangNhap.setText("Đăng nhập");
+        btn_DangNhap.setContentAreaFilled(false);
+        btn_DangNhap.setOpaque(true);
+        btn_DangNhap.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                btn_DangNhapFocusLost(evt);
+            }
+        });
+        btn_DangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                btn_DangNhapMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                btn_DangNhapMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_DangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_DangNhapActionPerformed(evt);
             }
         });
 
@@ -173,16 +181,16 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_Login.setLayout(pnl_LoginLayout);
         pnl_LoginLayout.setHorizontalGroup(
             pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Thoat, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(pnl_LoginLayout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(pnl_LoginLayout.createSequentialGroup()
-                            .addComponent(jCheckBox1)
+                            .addComponent(chk_GhiNho)
                             .addGap(52, 52, 52)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pnl_LoginLayout.createSequentialGroup()
                             .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel1)
@@ -198,7 +206,7 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_LoginLayout.setVerticalGroup(
             pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_LoginLayout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addComponent(Thoat)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addGap(48, 48, 48)
@@ -215,8 +223,8 @@ public class Frm_Login extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chk_GhiNho)
+                    .addComponent(btn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -237,26 +245,59 @@ public class Frm_Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void ThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoatMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_ThoatMouseClicked
 
     public void doiThe() {
         CardLayout cl = (CardLayout) (pnl_bg.getLayout());
         cl.show(pnl_bg, "card2");
     }
 
-    private void txt_UserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_UserNameFocusGained
-        loiDangNhap.setVisible(false);
-        jSeparator1.setForeground(new Color(160, 160, 160));
-    }//GEN-LAST:event_txt_UserNameFocusGained
-
-    private void pwd_PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_PasswordFocusGained
-        loiSaiMatKhau.setVisible(false);
-        jSeparator2.setForeground(new Color(160, 160, 160));
-    }//GEN-LAST:event_pwd_PasswordFocusGained
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void luuTTDN(String username, String password){
+        OutputStream output = null;
+        try {
+            Properties thongTinDN = new Properties();
+            output = new FileOutputStream(file);
+            thongTinDN.setProperty("username", username);
+            String encryptedPassword = encryptor.encrypt(password); //Mã hóa password
+            thongTinDN.setProperty("password", "ENC("+encryptedPassword+")"); //Lưu password đã mã hóa
+            thongTinDN.store(output, null);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Không tìm thấy file để ghi");
+        } catch (IOException ex) {
+            System.out.println("Lỗi ghi dữ liệu");
+        } finally {
+            try {
+                output.close();
+            } catch (IOException ex) {
+                System.out.println("Lỗi ghi dữ liệu");
+            }
+        }
+    }
+    
+    private void layTTDN(){
+        FileInputStream input = null;
+        try {
+            Properties thongTinDN = new EncryptableProperties(encryptor);
+            input = new FileInputStream(file);
+            thongTinDN.load(input);
+            txt_UserName.setText(thongTinDN.getProperty("username"));
+            pwd_Password.setText(thongTinDN.getProperty("password"));
+        } catch (FileNotFoundException ex) {
+            System.out.println("Không tìm thấy file");
+        } catch (IOException ex) {
+            System.out.println("Lỗi đọc file");
+        } finally {
+            try {
+                input.close();
+            } catch (IOException ex) {
+                System.out.println("cant close");
+            }
+        }
+    }
+    
+    private void btn_DangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DangNhapActionPerformed
         String userName = txt_UserName.getText();
         String passWord = new String(pwd_Password.getPassword());
         if (DAL.DALNhanVien.kiemTraUserName(userName) == false) {
@@ -273,20 +314,25 @@ public class Frm_Login extends javax.swing.JFrame {
             jSeparator2.setForeground(Color.red);
             return;
         }
+        if(chk_GhiNho.isSelected()){
+            luuTTDN(userName, passWord);
+        }else{
+            luuTTDN("", "");
+        }
         DTONhanVien nv = DAL.DALNhanVien.layThongTinNVDaDN(userName, passWord);
         maNVPhienHienTai = nv.getMaNV();
         Frm_Main.main(nv.getTenNV()); // <- set tên của user hiện tại vào đây
         this.setVisible(false);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_DangNhapActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        jButton1.setBackground(new Color(0, 121, 107));
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void btn_DangNhapMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangNhapMouseEntered
+        btn_DangNhap.setBackground(new Color(0, 121, 107));
+    }//GEN-LAST:event_btn_DangNhapMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        jButton1.setBackground(new Color(0, 76, 64));
-    }//GEN-LAST:event_jButton1MouseExited
+    private void btn_DangNhapMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DangNhapMouseExited
+        btn_DangNhap.setBackground(new Color(0, 76, 64));
+    }//GEN-LAST:event_btn_DangNhapMouseExited
 
     private void txt_UserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_UserNameKeyTyped
         if (txt_UserName.getText().length() >= 20 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
@@ -319,6 +365,13 @@ public class Frm_Login extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_pwd_PasswordKeyTyped
+
+    private void btn_DangNhapFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btn_DangNhapFocusLost
+        loiDangNhap.setVisible(false);
+        loiSaiMatKhau.setVisible(false);
+        jSeparator1.setForeground(new Color(160, 160, 160));
+        jSeparator2.setForeground(new Color(160, 160, 160));
+    }//GEN-LAST:event_btn_DangNhapFocusLost
 
     class MessagePopup extends JWindow {
 
@@ -372,12 +425,12 @@ public class Frm_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel Thoat;
+    private javax.swing.JButton btn_DangNhap;
+    private javax.swing.JCheckBox chk_GhiNho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

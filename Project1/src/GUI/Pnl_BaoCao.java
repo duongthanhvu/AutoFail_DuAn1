@@ -155,7 +155,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
     }
 
     private void btn_XuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XuatExcelActionPerformed
-        String tenFileMacDinh = "./"+DTO.ConvertDateFormat.chuyenNgayYMD(new Date())+".xlsx";
+        String tenFileMacDinh = "./" + DTO.ConvertDateFormat.chuyenNgayYMD(new Date()) + ".xlsx";
         dlg_ChonViTriLuu.setSelectedFile(new File(tenFileMacDinh));
         int returnVal = dlg_ChonViTriLuu.showSaveDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
