@@ -707,7 +707,7 @@ public class Frm_Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Frm_Main frm = new Frm_Main();
-                frm.setTitle("Phần mềm quản lý bán hàng v1.0 - User hiện tại: " + tenUser);
+                frm.setTitle("Phần mềm quản lý bán hàng v1.0 - Nhân viên hiện tại: " + tenUser);
                 frm.setVisible(true);
             }
         });

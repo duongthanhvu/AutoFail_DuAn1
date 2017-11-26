@@ -5,11 +5,13 @@
  */
 package GUI;
 
+import DTO.DTONhanVien;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -27,6 +29,8 @@ public class Frm_Login extends javax.swing.JFrame {
     MessagePopup loiDangNhap;
     public static boolean checkLoadDone = false;
     public static int maNVPhienHienTai = 1;
+    private final char[] UallowChars = "abcdefghijklmnopqrstuvwxyz0123456789-_".toCharArray();
+    private final char[] PallowChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 
     /**
      * Creates new form Frm_Login
@@ -51,8 +55,8 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_Loader = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         pnl_Login = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txt_UserName = new javax.swing.JTextField();
+        pwd_Password = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -97,22 +101,32 @@ public class Frm_Login extends javax.swing.JFrame {
         pnl_Login.setBackground(new java.awt.Color(255, 255, 255));
         pnl_Login.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jTextField1.setToolTipText("");
-        jTextField1.setBorder(null);
-        GhostText userName = new GhostText(jTextField1, "Tên đăng nhập");
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_UserName.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        txt_UserName.setToolTipText("");
+        txt_UserName.setBorder(null);
+        GhostText userName = new GhostText(txt_UserName, "Tên đăng nhập");
+        txt_UserName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                txt_UserNameFocusGained(evt);
+            }
+        });
+        txt_UserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_UserNameKeyTyped(evt);
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jPasswordField1.setBorder(null);
-        GhostText pwd = new GhostText(jPasswordField1, "Mật khẩu");
-        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        pwd_Password.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        pwd_Password.setBorder(null);
+        GhostText pwd = new GhostText(pwd_Password, "Mật khẩu");
+        pwd_Password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jPasswordField1FocusGained(evt);
+                pwd_PasswordFocusGained(evt);
+            }
+        });
+        pwd_Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pwd_PasswordKeyTyped(evt);
             }
         });
 
@@ -175,8 +189,8 @@ public class Frm_Login extends javax.swing.JFrame {
                                 .addComponent(jLabel2))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                                .addComponent(jPasswordField1)
+                                .addComponent(txt_UserName, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                .addComponent(pwd_Password)
                                 .addComponent(jSeparator1)
                                 .addComponent(jSeparator2)))))
                 .addGap(143, 143, 143))
@@ -190,13 +204,13 @@ public class Frm_Login extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnl_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwd_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -227,41 +241,41 @@ public class Frm_Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private boolean isCorrect() {
-        return true;
-    }
-    
-    public void doiThe(){
+    public void doiThe() {
         CardLayout cl = (CardLayout) (pnl_bg.getLayout());
         cl.show(pnl_bg, "card2");
     }
-    
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+
+    private void txt_UserNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_UserNameFocusGained
         loiDangNhap.setVisible(false);
         jSeparator1.setForeground(new Color(160, 160, 160));
-    }//GEN-LAST:event_jTextField1FocusGained
+    }//GEN-LAST:event_txt_UserNameFocusGained
 
-    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+    private void pwd_PasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwd_PasswordFocusGained
         loiSaiMatKhau.setVisible(false);
         jSeparator2.setForeground(new Color(160, 160, 160));
-    }//GEN-LAST:event_jPasswordField1FocusGained
+    }//GEN-LAST:event_pwd_PasswordFocusGained
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (!isCorrect()) {
-            Point location = jTextField1.getLocationOnScreen();
-            loiDangNhap.setLocation(location.x + jTextField1.getWidth(), location.y);
+        String userName = txt_UserName.getText();
+        String passWord = new String(pwd_Password.getPassword());
+        if (DAL.DALNhanVien.kiemTraUserName(userName) == false) {
+            Point location = txt_UserName.getLocationOnScreen();
+            loiDangNhap.setLocation(location.x + txt_UserName.getWidth(), location.y);
             loiDangNhap.setVisible(true);
             jSeparator1.setForeground(Color.red);
             return;
         }
-        if (!isCorrect()) {
-            Point location = jPasswordField1.getLocationOnScreen();
-            loiSaiMatKhau.setLocation(location.x + jPasswordField1.getWidth(), location.y);
+        if (DAL.DALNhanVien.kiemTraPassword(userName, passWord) == false) {
+            Point location = pwd_Password.getLocationOnScreen();
+            loiSaiMatKhau.setLocation(location.x + pwd_Password.getWidth(), location.y);
             loiSaiMatKhau.setVisible(true);
             jSeparator2.setForeground(Color.red);
             return;
         }
-        Frm_Main.main("DuongVu"); // <- set tên của user hiện tại vào đây
+        DTONhanVien nv = DAL.DALNhanVien.layThongTinNVDaDN(userName, passWord);
+        maNVPhienHienTai = nv.getMaNV();
+        Frm_Main.main(nv.getTenNV()); // <- set tên của user hiện tại vào đây
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -273,6 +287,38 @@ public class Frm_Login extends javax.swing.JFrame {
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
         jButton1.setBackground(new Color(0, 76, 64));
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void txt_UserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_UserNameKeyTyped
+        if (txt_UserName.getText().length() >= 20 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+            evt.consume();
+        }
+        int count = 0;
+        for (int i = 0; i < UallowChars.length; i++) {
+            if (evt.getKeyChar() == UallowChars[i]) {
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_UserNameKeyTyped
+
+    private void pwd_PasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwd_PasswordKeyTyped
+        if (pwd_Password.getPassword().length >= 20 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+            evt.consume();
+        }
+        int count = 0;
+        for (int i = 0; i < PallowChars.length; i++) {
+            if (evt.getKeyChar() == PallowChars[i]) {
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_pwd_PasswordKeyTyped
 
     class MessagePopup extends JWindow {
 
@@ -333,12 +379,12 @@ public class Frm_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnl_Loader;
     private javax.swing.JPanel pnl_Login;
     private javax.swing.JPanel pnl_bg;
+    private javax.swing.JPasswordField pwd_Password;
+    private javax.swing.JTextField txt_UserName;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,7 +35,7 @@ public class DALNhanVien {
         return result;
     }
 
-    public static DTONhanVien layDuLieu(int maNV) throws SQLException {
+    public static DTONhanVien layDuLieu(int maNV) {
         String query = "Select * from NhanVien join Quyen on NhanVien.MaQuyen = Quyen.MaQuyen where MaNV = " + maNV;
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         try {
@@ -57,7 +57,7 @@ public class DALNhanVien {
                 return nv;
             }
         } catch (SQLException ex) {
-            throw ex;
+            System.out.println("Lỗi DAL Nhân viên " + ex);
         }
         return null;
     }
@@ -100,5 +100,59 @@ public class DALNhanVien {
             System.out.println("Lỗi DALNhanVien " + ex);
         }
         return arrNhanVien;
+    }
+    
+    public static boolean kiemTraUserName(String username){
+        String query = "select * from NhanVien where TenDangNhap = '"+username+"'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public static boolean kiemTraPassword(String username, String password){
+        String query = "select * from NhanVien where TenDangNhap = '"+username+"' and MatKhau = '"+password+"'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
+    
+    public static DTONhanVien layThongTinNVDaDN(String username, String password){
+        String query = "select * from NhanVien where TenDangNhap = '"+username+"' and MatKhau = '"+password+"'";
+        ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
+        try {
+            if (rs.next()) {
+                DTONhanVien nv = new DTONhanVien();
+                nv.setMaNV(rs.getInt("MaNV"));
+                nv.setTenNV(rs.getString("TenNV"));
+                nv.setSoDT(rs.getString("SoDT"));
+                nv.setGioiTinh(rs.getInt("GioiTinh"));
+                nv.setNgaySinh(rs.getTimestamp("NgaySinh"));
+                nv.setCmnd(rs.getString("CMND"));
+                nv.setDiaChi(rs.getString("DiaChi"));
+                nv.setNgayTao(rs.getTimestamp("NgayTao"));
+                nv.setTenDangNhap(rs.getString("TenDangNhap"));
+                nv.setMatKhau(rs.getString("MatKhau"));
+                nv.setMaQuyen(rs.getInt("MaQuyen"));
+                nv.setAvailable(rs.getBoolean("TinhTrang"));
+                return nv;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Lỗi DAL Nhân viên " + ex);
+        }
+        return null;
     }
 }

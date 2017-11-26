@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author vudt9
@@ -28,6 +33,7 @@ public class TestXuatHD extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,7 +50,9 @@ public class TestXuatHD extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(146, 146, 146)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addContainerGap(181, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -52,7 +60,9 @@ public class TestXuatHD extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jButton1)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
@@ -62,6 +72,16 @@ public class TestXuatHD extends javax.swing.JFrame {
         XuLyHoaDon xl = new XuLyHoaDon();
         XuLyThongBao.hienThiThongBao(xl.xuatHoaDon());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sdfasdf() {
+        MaskFormatter formatter;
+        try {
+            formatter = new MaskFormatter("************"); //with however many characters you need
+        } catch (ParseException ex) {
+            formatter = null;
+        }
+        formatter.setValidCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");// whatever characters you would use
+    }
 
     /**
      * @param args the command line arguments
@@ -100,5 +120,6 @@ public class TestXuatHD extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     // End of variables declaration//GEN-END:variables
 }
