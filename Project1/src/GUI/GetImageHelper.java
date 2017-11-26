@@ -24,6 +24,7 @@ public class GetImageHelper {
         try {
             InputStream f = new FileInputStream("./data/images/sp/" + ma + ".png");
             Image img = ImageIO.read(f).getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            f.close();
             imgIcon = new ImageIcon(img);
         } catch (FileNotFoundException ex) {
             imgIcon = new ImageIcon(getClass().getResource("/GUI/Icons/blank.png"));
@@ -38,6 +39,7 @@ public class GetImageHelper {
         try {
             InputStream f = new FileInputStream("./data/images/nv/" + ma + ".png");
             Image img = ImageIO.read(f).getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            f.close();
             imgIcon = new ImageIcon(img);
         } catch (FileNotFoundException ex) {
             imgIcon = new ImageIcon(getClass().getResource("/GUI/Icons/blank.png"));

@@ -146,7 +146,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
         int nam = Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
         temp = cbb_Thang.getSelectedItem().toString();
         int thang = 1 + Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
-        if(thang > 12){
+        if (thang > 12) {
             thang = 1;
             nam = nam + 1;
         }
@@ -155,10 +155,12 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
     }
 
     private void btn_XuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XuatExcelActionPerformed
+        String tenFileMacDinh = "./"+DTO.ConvertDateFormat.chuyenNgayYMD(new Date())+".xlsx";
+        dlg_ChonViTriLuu.setSelectedFile(new File(tenFileMacDinh));
         int returnVal = dlg_ChonViTriLuu.showSaveDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION){
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = dlg_ChonViTriLuu.getSelectedFile();
-            xuatBaoCaoToExcel(DAL.DALChiTietHoaDon.layBaoCao(layNgayBatDau(), layNgayKetThuc()), 9, 1,file);
+            xuatBaoCaoToExcel(DAL.DALChiTietHoaDon.layBaoCao(layNgayBatDau(), layNgayKetThuc()), 9, 1, file);
         }
     }//GEN-LAST:event_btn_XuatExcelActionPerformed
 
@@ -206,11 +208,16 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
     private void xuatBaoCaoToExcel(DTO.DTOBaoCao[] arrBC, int row, int col, File saveLoc) { //vi tri cua cell = row và col - 1
         try {
             FileInputStream file = new FileInputStream(".\\data\\MauBaoCao.xlsx");
-
             XSSFWorkbook workbook = new XSSFWorkbook(file);
+            file.close();
             XSSFSheet sheet = workbook.getSheetAt(0);
             Cell cell = null;
-            sheet.shiftRows(row, row + 4, arrBC.length); //dịch các hàng cuối xuống 1 khoảng vừa đủ để lưu các dòng của arrBC
+            if (arrBC.length > 0) {
+                sheet.shiftRows(row, row + 4, arrBC.length); //dịch các hàng cuối xuống 1 khoảng vừa đủ để lưu các dòng của arrBC
+            } else {
+                XuLyThongBao.hienThiThongBao(new DTO.ThongBao("Không có dữ liệu để xuất", DTO.ThongBao.LOI));
+                return;
+            }
             //định nghĩa kiểu border style cho các row
             XSSFCellStyle style = workbook.createCellStyle();
             style.setBorderBottom(BorderStyle.DOTTED);
@@ -279,7 +286,6 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
                 sumDoanhThu = sumDoanhThu + arrBC[i].getDoanhThu();
                 cell.setCellStyle(style);
             }
-            file.close();
             //set data cho dòng cuối
             XSSFRow sheetrow = sheet.getRow(row + arrBC.length);
             if (sheetrow == null) {
@@ -309,7 +315,7 @@ public class Pnl_BaoCao extends javax.swing.JPanel {
             if (cell == null) {
                 cell = sheetrow.createCell(4);
             }
-            cell.setCellValue(cbb_Thang.getSelectedItem().toString()+" "+cbb_Nam.getSelectedItem().toString());
+            cell.setCellValue(cbb_Thang.getSelectedItem().toString() + " " + cbb_Nam.getSelectedItem().toString());
 
             FileOutputStream outFile = new FileOutputStream(saveLoc);
             workbook.write(outFile);
