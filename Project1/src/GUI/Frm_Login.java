@@ -254,7 +254,7 @@ public class Frm_Login extends javax.swing.JFrame {
         cl.show(pnl_bg, "card2");
     }
 
-    private void luuTTDN(String username, String password){
+    private void luuTTDN(String username, String password, boolean isRemember){
         OutputStream output = null;
         try {
             Properties thongTinDN = new Properties();
@@ -262,6 +262,11 @@ public class Frm_Login extends javax.swing.JFrame {
             thongTinDN.setProperty("username", username);
             String encryptedPassword = encryptor.encrypt(password); //Mã hóa password
             thongTinDN.setProperty("password", "ENC("+encryptedPassword+")"); //Lưu password đã mã hóa
+            if(isRemember){
+                thongTinDN.setProperty("RememberMe", "yes");
+            }else{
+                thongTinDN.setProperty("RememberMe", "no");
+            }
             thongTinDN.store(output, null);
         } catch (FileNotFoundException ex) {
             System.out.println("Không tìm thấy file để ghi");
@@ -284,6 +289,11 @@ public class Frm_Login extends javax.swing.JFrame {
             thongTinDN.load(input);
             txt_UserName.setText(thongTinDN.getProperty("username"));
             pwd_Password.setText(thongTinDN.getProperty("password"));
+            if(thongTinDN.getProperty("RememberMe").equals("yes")){
+                chk_GhiNho.setSelected(true);
+            }else{
+                chk_GhiNho.setSelected(false);
+            }
         } catch (FileNotFoundException ex) {
             System.out.println("Không tìm thấy file");
         } catch (IOException ex) {
@@ -315,9 +325,9 @@ public class Frm_Login extends javax.swing.JFrame {
             return;
         }
         if(chk_GhiNho.isSelected()){
-            luuTTDN(userName, passWord);
+            luuTTDN(userName, passWord, true);
         }else{
-            luuTTDN("", "");
+            luuTTDN("", "", false);
         }
         DTONhanVien nv = DAL.DALNhanVien.layThongTinNVDaDN(userName, passWord);
         maNVPhienHienTai = nv.getMaNV();
