@@ -604,9 +604,7 @@
         </Component>
         <Container class="javax.swing.JPanel" name="pnl_KhuyenMai">
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-            <Property name="axis" type="int" value="1"/>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
         </Container>
         <Container class="javax.swing.JPanel" name="pnl_Header">
 

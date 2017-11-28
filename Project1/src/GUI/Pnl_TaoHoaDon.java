@@ -10,16 +10,10 @@ import DTO.DTOSanPham;
 import DTO.ThongBao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
-import javax.swing.ButtonModel;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -29,6 +23,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
     private int id_KH;
     private int[] arrMaKM;
+    public static int chietKhau = 0;
 
     /**
      * Creates new form CommonPanel
@@ -337,7 +332,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
         jLabel7.setText("Khuyễn mãi áp dụng: ");
 
-        pnl_KhuyenMai.setLayout(new javax.swing.BoxLayout(pnl_KhuyenMai, javax.swing.BoxLayout.Y_AXIS));
+        pnl_KhuyenMai.setLayout(new javax.swing.BoxLayout(pnl_KhuyenMai, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel16.setText("Số lượng");
         jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(255, 255, 255)));
@@ -530,7 +525,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
         this.removeAll();
         initComponents();
-        loadThongTinKH(1);
+        id_KH = 1;
+        chietKhau = 0;
+        loadThongTinKH(id_KH);
     }//GEN-LAST:event_btn_TaoMoiActionPerformed
 
     private void txtKhungTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKhungTimKiemKeyReleased
@@ -542,7 +539,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
             int maSP = DAL.DALSanPham.layMaSPQuaBarcode(txtKhungTimKiem.getText());
             if(maSP != -1){
                 txtKhungTimKiem.setText("");
+                popMenuTimKiem.setVisible(false);
                 themSPVaoGioHang(maSP);
+                return;
             }else{
                 XuLyThongBao.hienThiThongBao(new ThongBao("Mã vạch không đúng", ThongBao.LOI));
                 return;
@@ -609,6 +608,8 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
             if(id_KH != -1){
                 txtKhungTimKiemKH.setText("");
                 loadThongTinKH(id_KH);
+                popMenuTimKiem.setVisible(false);
+                return;
             }else{
                 XuLyThongBao.hienThiThongBao(new ThongBao("Mã vạch không đúng", ThongBao.LOI));
                 return;
@@ -639,6 +640,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         int tienChuaThue = tongTien - thue;
         lbl_TongChuaThue.setText(String.valueOf(tienChuaThue));
         lbl_Thue.setText(String.valueOf(thue));
+        lbl_GiamGia.setText(String.valueOf((chietKhau*tongTien) / (100 - chietKhau)));
     }//GEN-LAST:event_lbl_TongTienPropertyChange
 
     private void themSPVaoGioHang(int maSP) {
@@ -681,9 +683,11 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         }
         pnl_KhuyenMai.removeAll();
         for (DTO.DTOChuongTrinhKM item : arrKM) {
-            JCheckBox chkKM = new JCheckBox(item.getTenKM());
-            chkKM.setSelected(true);
-            pnl_KhuyenMai.add(chkKM);
+            JLabel KMinfo = new JLabel(item.getTenKM());
+            KMinfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            KMinfo.setText(item.getTenKM());
+            pnl_KhuyenMai.add(KMinfo);
+            chietKhau = item.getChietKhau();
         }
         txt_TenKH.setText(kh.getTenKH());
         txt_MaKH.setText(kh.getMaKH());

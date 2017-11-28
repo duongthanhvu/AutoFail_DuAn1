@@ -6,12 +6,10 @@
 package GUI;
 
 import DTO.DTONhanVien;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,8 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
@@ -120,6 +116,9 @@ public class Frm_Login extends javax.swing.JFrame {
         txt_UserName.setToolTipText("");
         txt_UserName.setBorder(null);
         txt_UserName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_UserNameKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_UserNameKeyTyped(evt);
             }
@@ -128,6 +127,9 @@ public class Frm_Login extends javax.swing.JFrame {
         pwd_Password.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         pwd_Password.setBorder(null);
         pwd_Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pwd_PasswordKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 pwd_PasswordKeyTyped(evt);
             }
@@ -345,8 +347,9 @@ public class Frm_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_DangNhapMouseExited
 
     private void txt_UserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_UserNameKeyTyped
-        if (txt_UserName.getText().length() >= 20 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (txt_UserName.getText().length() >= 20) {
             evt.consume();
+            return;
         }
         int count = 0;
         for (int i = 0; i < UallowChars.length; i++) {
@@ -361,8 +364,9 @@ public class Frm_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_UserNameKeyTyped
 
     private void pwd_PasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwd_PasswordKeyTyped
-        if (pwd_Password.getPassword().length >= 20 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (pwd_Password.getPassword().length >= 20) {
             evt.consume();
+            return;
         }
         int count = 0;
         for (int i = 0; i < PallowChars.length; i++) {
@@ -382,6 +386,18 @@ public class Frm_Login extends javax.swing.JFrame {
         jSeparator1.setForeground(new Color(160, 160, 160));
         jSeparator2.setForeground(new Color(160, 160, 160));
     }//GEN-LAST:event_btn_DangNhapFocusLost
+
+    private void txt_UserNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_UserNameKeyPressed
+        if(evt.isControlDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_UserNameKeyPressed
+
+    private void pwd_PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwd_PasswordKeyPressed
+        if(evt.isControlDown()){
+            evt.consume();
+        }
+    }//GEN-LAST:event_pwd_PasswordKeyPressed
 
     class MessagePopup extends JWindow {
 

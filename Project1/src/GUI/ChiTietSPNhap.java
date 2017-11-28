@@ -17,7 +17,8 @@ import javax.swing.text.NumberFormatter;
 public class ChiTietSPNhap extends javax.swing.JPanel {
 
     private int maSP;
-    private int giaBanLe;
+    private int giaNhap;
+    private int sumGiaNhap;
     private final char[] chuSo = "0123456789".toCharArray();
 
     /**
@@ -25,6 +26,22 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
      */
     public ChiTietSPNhap() {
         initComponents();
+    }
+
+    public int getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(int giaNhap) {
+        this.giaNhap = giaNhap;
+    }
+
+    public int getSumGiaNhap() {
+        return sumGiaNhap;
+    }
+
+    public void setSumGiaNhap(int sumGiaNhap) {
+        this.sumGiaNhap = sumGiaNhap;
     }
 
     public int getMaSP() {
@@ -58,6 +75,7 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 234, 234)));
 
+        lbl_TenSP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl_TenSP.setText("Tên sản phẩm");
         lbl_TenSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
 
@@ -91,6 +109,9 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
         txt_GiaNhap.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txt_GiaNhap.setBorder(null);
         txt_GiaNhap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_GiaNhapKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_GiaNhapKeyTyped(evt);
             }
@@ -115,7 +136,7 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btn_xoa)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(txt_GiaNhap, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(txt_GiaNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(lbl_TenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spn_SoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -137,13 +158,15 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
 
     private void spn_SoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spn_SoLuongStateChanged
         int soLuong = (Integer) spn_SoLuong.getValue();
-        int thanhTien = soLuong * giaBanLe;
-//        ((Pnl_TaoPhieuNhap)(this.getParent().getParent().getParent().getParent().getParent())).updateTongGia();
+        sumGiaNhap = soLuong * giaNhap;
+        ((Pnl_TaoPhieuNhap) (this.getParent().getParent().getParent().getParent().getParent())).updateSumSoLuong();
+        ((Pnl_TaoPhieuNhap) (this.getParent().getParent().getParent().getParent().getParent())).updateSumGiaNhap();
     }//GEN-LAST:event_spn_SoLuongStateChanged
 
     private void txt_GiaNhapKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_GiaNhapKeyTyped
-        if (txt_GiaNhap.getText().length() >= 10 || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+        if (txt_GiaNhap.getText().length() >= 10) {
             evt.consume();
+            return;
         }
         int count = 0;
         for (int i = 0; i < chuSo.length; i++) {
@@ -157,11 +180,20 @@ public class ChiTietSPNhap extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txt_GiaNhapKeyTyped
 
+    private void txt_GiaNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_GiaNhapKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            giaNhap = Integer.parseInt(txt_GiaNhap.getText());
+            sumGiaNhap = giaNhap * getSoLuongNhap();
+            ((Pnl_TaoPhieuNhap) (this.getParent().getParent().getParent().getParent().getParent())).updateSumGiaNhap();
+        }
+    }//GEN-LAST:event_txt_GiaNhapKeyPressed
+
     private void doDuLieuLenPanel() {
         DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(maSP);
         lbl_TenSP.setText(sp.getTenSP());
         txt_GiaNhap.setText(String.valueOf(sp.getGiaBanLe()));
-        giaBanLe = sp.getGiaBanLe();
+        giaNhap = sp.getGiaBanLe();
+        sumGiaNhap = giaNhap * getSoLuongNhap();
     }
 
     public void tangSoLuong(int amount) {

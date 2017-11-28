@@ -57,13 +57,15 @@ public class ChiTietGioHang extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(234, 234, 234)));
 
+        lbl_TenSP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl_TenSP.setText("Tên sản phẩm");
         lbl_TenSP.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
 
         lbl_ChietKhau.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_ChietKhau.setText("Chiết khấu");
+        lbl_ChietKhau.setText("0");
         lbl_ChietKhau.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
 
+        lbl_ThanhTien.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl_ThanhTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_ThanhTien.setText("0");
         lbl_ThanhTien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(234, 234, 234)));
@@ -137,33 +139,34 @@ public class ChiTietGioHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void spn_SoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spn_SoLuongStateChanged
-        int soLuong = (Integer)spn_SoLuong.getValue();
-        int thanhTien = soLuong * giaSP;
+        int soLuong = (Integer) spn_SoLuong.getValue();
+        int thanhTien = soLuong * giaSP - (soLuong * giaSP * Pnl_TaoHoaDon.chietKhau / 100);
         lbl_ThanhTien.setText(String.valueOf(thanhTien));
-        ((Pnl_TaoHoaDon)(this.getParent().getParent().getParent().getParent().getParent())).updateTongGia();
+        ((Pnl_TaoHoaDon) (this.getParent().getParent().getParent().getParent().getParent())).updateTongGia();
     }//GEN-LAST:event_spn_SoLuongStateChanged
 
     private void doDuLieuLenPanel() {
         DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(maSP);
         lbl_TenSP.setText(sp.getTenSP());
-        lbl_ChietKhau.setText("");
-        lbl_ThanhTien.setText(String.valueOf(sp.getGiaBanLe()));
+        String chietKhau = String.valueOf(Pnl_TaoHoaDon.chietKhau) + "%";
+        lbl_ChietKhau.setText(chietKhau);
+        lbl_ThanhTien.setText(String.valueOf(sp.getGiaBanLe() - sp.getGiaBanLe() * (Pnl_TaoHoaDon.chietKhau) / 100));
         giaSP = sp.getGiaBanLe();
     }
-    
+
     public void tangSoLuong(int amount) {
-        int soLuong = (Integer)spn_SoLuong.getValue() + amount;
+        int soLuong = (Integer) spn_SoLuong.getValue() + amount;
         spn_SoLuong.setValue(soLuong);
-        int thanhTien = soLuong * giaSP;
+        int thanhTien = soLuong * giaSP - (soLuong * giaSP * Pnl_TaoHoaDon.chietKhau / 100);
         lbl_ThanhTien.setText(String.valueOf(thanhTien));
     }
-    
+
     public int getThanhTien() {
         return Integer.parseInt(lbl_ThanhTien.getText());
     }
-    
+
     public int getSoLuongMua() {
-        return (int)spn_SoLuong.getValue();
+        return (int) spn_SoLuong.getValue();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_xoa;

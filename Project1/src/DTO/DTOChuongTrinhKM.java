@@ -88,6 +88,16 @@ public class DTOChuongTrinhKM {
     public String getKieuKhuyenMai() {
         return kieuKhuyenMai;
     }
+    
+    public int getChietKhau() {
+        String temp = getKieuKhuyenMai();
+        String kieuKM = temp.substring(0, temp.lastIndexOf(" "));
+        if(kieuKM.equals("CK")){
+            return Integer.parseInt(temp.substring(temp.lastIndexOf(" ") + 1));
+        }else{
+            return 0;
+        }
+    }
 
     public void setKieuKhuyenMai(String kieuKhuyenMai) {
         this.kieuKhuyenMai = kieuKhuyenMai;
