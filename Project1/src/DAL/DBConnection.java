@@ -5,6 +5,7 @@
  */
 package DAL;
 
+import DTO.ThongBao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,8 +19,8 @@ import java.util.logging.Logger;
  * @author vudtpk00714
  */
 public class DBConnection {
-    String connectionString = "jdbc:sqlserver://DESKTOP-QI78FEN;"
-            + "databaseName=AutoFail_Project1_db; user=sa; password=ngay12thang9;";
+    String connectionString = Conn.serverUrl+";"
+            + "databaseName="+Conn.database+"; user="+Conn.user+"; password="+Conn.password+";";
     Connection conn;
     
     public DBConnection(){
@@ -30,9 +31,11 @@ public class DBConnection {
                 System.out.println("Kết nối CSDL thành công");
             }
         } catch (ClassNotFoundException ex) {
-            System.out.println("Lỗi JDBC: " + ex.getMessage() );
+            GUI.XuLyThongBao.hienThiThongBao(new ThongBao("Lỗi JDBC: " + ex.getMessage(), ThongBao.LOI));
+            System.exit(0);
         } catch (SQLException ex) {
-            System.out.println("Lỗi kết nối CSDL: " + ex.getMessage());
+            GUI.XuLyThongBao.hienThiThongBao(new ThongBao("Lỗi kết nối CSDL: " + ex.getMessage(), ThongBao.LOI));
+            System.exit(0);
         }                     
     }
     

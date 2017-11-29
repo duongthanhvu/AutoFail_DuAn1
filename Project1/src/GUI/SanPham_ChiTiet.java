@@ -8,6 +8,14 @@ package GUI;
 import DTO.DTOSanPham;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -134,6 +142,11 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         btn_ChangePP.setText("Thay đổi ảnh");
         btn_ChangePP.setContentAreaFilled(false);
         btn_ChangePP.setOpaque(true);
+        btn_ChangePP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChangePPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -455,6 +468,24 @@ public class SanPham_ChiTiet extends javax.swing.JPanel {
         jPanel5.setVisible(false);
     }//GEN-LAST:event_jPanel5MouseExited
 
+    private void btn_ChangePPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChangePPActionPerformed
+        JFileChooser chonFile = new JFileChooser();
+        int returnVal = chonFile.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File file = chonFile.getSelectedFile();
+            replaceAnhSP(file);
+            doDuLieuLenPanel();
+        }
+    }//GEN-LAST:event_btn_ChangePPActionPerformed
+
+    private void replaceAnhSP(File sourceFile){
+        File destFile = new File("./data/images/sp/"+maSP+".png");
+        try {
+            FileUtils.copyFile(sourceFile, destFile);
+        } catch (IOException ex) {
+            System.out.println("Lỗi chép file");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CapNhat;

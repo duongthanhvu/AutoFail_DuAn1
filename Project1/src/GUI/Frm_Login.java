@@ -33,9 +33,7 @@ public class Frm_Login extends javax.swing.JFrame {
     MessagePopup loiSaiMatKhau;
     MessagePopup loiDangNhap;
     public static boolean checkLoadDone = false;
-    public static int maNVPhienHienTai = 1;
-    private final char[] UallowChars = "abcdefghijklmnopqrstuvwxyz0123456789-_".toCharArray();
-    private final char[] PallowChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+    public static int maNVPhienHienTai = 1;    
     File file = new File("./data/UserInfo.properties");
     StandardPBEStringEncryptor encryptor;
     /**
@@ -352,8 +350,8 @@ public class Frm_Login extends javax.swing.JFrame {
             return;
         }
         int count = 0;
-        for (int i = 0; i < UallowChars.length; i++) {
-            if (evt.getKeyChar() == UallowChars[i]) {
+        for (int i = 0; i < KyTuChoPhep.TEN_DANG_NHAP.length; i++) {
+            if (evt.getKeyChar() == KyTuChoPhep.TEN_DANG_NHAP[i]) {
                 count++;
                 break;
             }
@@ -369,8 +367,8 @@ public class Frm_Login extends javax.swing.JFrame {
             return;
         }
         int count = 0;
-        for (int i = 0; i < PallowChars.length; i++) {
-            if (evt.getKeyChar() == PallowChars[i]) {
+        for (int i = 0; i < KyTuChoPhep.MAT_KHAU.length; i++) {
+            if (evt.getKeyChar() == KyTuChoPhep.MAT_KHAU[i]) {
                 count++;
                 break;
             }

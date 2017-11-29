@@ -18,16 +18,16 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
      * Creates new form KhachHang_ChiTiet
      */
     public int id_KH;
-
+    public boolean thongTinNhapHopLe = true;
     public KhachHang_ChiTiet() {
         initComponents();
-        jPanel2.setVisible(false);
+        pnl_MoRong.setVisible(false);
     }
 
     public KhachHang_ChiTiet(int id_KH) {
         this.id_KH = id_KH;
         initComponents();
-        jPanel2.setVisible(false);
+        pnl_MoRong.setVisible(false);
         doDuLieuLenPanel();
     }
 
@@ -40,7 +40,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pnl_MoRong = new javax.swing.JPanel();
         pnl_ChiTietKH = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_TenKH = new javax.swing.JTextField();
@@ -71,11 +71,11 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         pnl_ThongTinTT = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btn_Sua = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_LSMuaHang = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pnl_Goc = new javax.swing.JPanel();
         lbl_Ten = new javax.swing.JLabel();
         lbl_SoDienThoai = new javax.swing.JLabel();
         lbl_Diem = new javax.swing.JLabel();
@@ -84,8 +84,8 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
-        jPanel2.setBackground(new java.awt.Color(239, 239, 239));
-        jPanel2.setLayout(new java.awt.CardLayout());
+        pnl_MoRong.setBackground(new java.awt.Color(239, 239, 239));
+        pnl_MoRong.setLayout(new java.awt.CardLayout());
 
         jLabel5.setText("Tên KH");
 
@@ -94,6 +94,11 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         jLabel6.setText("Mã KH");
 
         txt_MaKH.setText("DW2D5");
+        txt_MaKH.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_MaKHKeyTyped(evt);
+            }
+        });
 
         jLabel7.setText("Loại KH");
 
@@ -102,6 +107,11 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         jLabel9.setText("Số ĐT");
 
         txt_SDT.setText("0985390133");
+        txt_SDT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_SDTKeyTyped(evt);
+            }
+        });
 
         jLabel10.setText("Email");
 
@@ -266,18 +276,18 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(pnl_ChiTietKH, "card3");
+        pnl_MoRong.add(pnl_ChiTietKH, "card3");
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Synchronize_24px.png"))); // NOI18N
         jButton6.setContentAreaFilled(false);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png"))); // NOI18N
-        jButton7.setContentAreaFilled(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Edit_24px.png"))); // NOI18N
+        btn_Sua.setContentAreaFilled(false);
+        btn_Sua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btn_SuaActionPerformed(evt);
             }
         });
 
@@ -316,7 +326,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_ThongTinTTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(btn_Sua))
                 .addContainerGap())
         );
         pnl_ThongTinTTLayout.setVerticalGroup(
@@ -331,7 +341,7 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7)))
+                                .addComponent(btn_Sua)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnl_ThongTinTTLayout.createSequentialGroup()
                         .addComponent(jLabel15)
@@ -339,12 +349,12 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jPanel2.add(pnl_ThongTinTT, "card2");
+        pnl_MoRong.add(pnl_ThongTinTT, "card2");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnl_Goc.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_Goc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
+                pnl_GocMousePressed(evt);
             }
         });
 
@@ -371,11 +381,11 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
 
         lbl_indicator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Expand_Arrow_24px.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_GocLayout = new javax.swing.GroupLayout(pnl_Goc);
+        pnl_Goc.setLayout(pnl_GocLayout);
+        pnl_GocLayout.setHorizontalGroup(
+            pnl_GocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_GocLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_Ten, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -388,16 +398,16 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
                 .addComponent(lbl_indicator)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+        pnl_GocLayout.setVerticalGroup(
+            pnl_GocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_GocLayout.createSequentialGroup()
+                .addGroup(pnl_GocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lbl_Diem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_Ten, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                     .addComponent(lbl_SoDienThoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_NgayTao, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(pnl_GocLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbl_indicator)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -407,15 +417,15 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(pnl_Goc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnl_MoRong, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnl_Goc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnl_MoRong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -457,19 +467,17 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
         txt_DiaChi.setCaretPosition(0);
     }
 
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
-        if (jPanel2.isVisible()) {
-            jPanel2.setVisible(false);
+    private void pnl_GocMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnl_GocMousePressed
+        if (pnl_MoRong.isVisible()) {
+            pnl_MoRong.setVisible(false);
             lbl_indicator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Expand_Arrow_24px.png")));
         } else {
-            jPanel2.setVisible(true);
+            pnl_MoRong.setVisible(true);
             lbl_indicator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Icons/icons8_Collapse_Arrow_24px_1.png")));
         }
-    }//GEN-LAST:event_jPanel1MousePressed
+    }//GEN-LAST:event_pnl_GocMousePressed
 
     private void btn_LuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LuuThayDoiActionPerformed
-        //Code kiểm tra tính hợp lệ của thông tin nhập vào
-
         this.setVisible(false);
         DTOKhachHang kh = new DTOKhachHang(
                 txt_MaKH.getText(),
@@ -489,25 +497,59 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_LuuThayDoiActionPerformed
 
     private void btn_XemLSMuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XemLSMuaHangActionPerformed
-        CardLayout cl = (CardLayout) (jPanel2.getLayout());
-        cl.show(jPanel2, "card2");
+        CardLayout cl = (CardLayout) (pnl_MoRong.getLayout());
+        cl.show(pnl_MoRong, "card2");
     }//GEN-LAST:event_btn_XemLSMuaHangActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        CardLayout cl = (CardLayout) (jPanel2.getLayout());
-        cl.show(jPanel2, "card3");
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
+        CardLayout cl = (CardLayout) (pnl_MoRong.getLayout());
+        cl.show(pnl_MoRong, "card3");
+    }//GEN-LAST:event_btn_SuaActionPerformed
+
+    private void txt_SDTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_SDTKeyTyped
+        if (txt_SDT.getText().length() >= 11) {
+            evt.consume();
+            return;
+        }
+        int count = 0;
+        for (int i = 0; i < KyTuChoPhep.SO_DIEN_THOAI.length; i++) {
+            if (evt.getKeyChar() == KyTuChoPhep.SO_DIEN_THOAI[i]) {
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_SDTKeyTyped
+
+    private void txt_MaKHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MaKHKeyTyped
+        if (txt_MaKH.getText().length() >= 6) {
+            evt.consume();
+            return;
+        }
+        int count = 0;
+        for (int i = 0; i < KyTuChoPhep.MA_KH.length; i++) {
+            if (evt.getKeyChar() == KyTuChoPhep.MA_KH[i]) {
+                count++;
+                break;
+            }
+        }
+        if (count == 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_MaKHKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CapNhat;
     private javax.swing.JButton btn_LuuThayDoi;
+    private javax.swing.JButton btn_Sua;
     private javax.swing.JButton btn_XemLSMuaHang;
     private javax.swing.JComboBox<String> cbb_GioiTinh;
     private javax.swing.JComboBox<String> cbb_LoaiKH;
     private com.toedter.calendar.JDateChooser date_NgaySinh;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -519,8 +561,6 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -532,6 +572,8 @@ public class KhachHang_ChiTiet extends javax.swing.JPanel {
     private javax.swing.JLabel lbl_Ten;
     private javax.swing.JLabel lbl_indicator;
     private javax.swing.JPanel pnl_ChiTietKH;
+    private javax.swing.JPanel pnl_Goc;
+    private javax.swing.JPanel pnl_MoRong;
     private javax.swing.JPanel pnl_ThongTinTT;
     private javax.swing.JTable tbl_LSMuaHang;
     private javax.swing.JTextArea txt_DiaChi;

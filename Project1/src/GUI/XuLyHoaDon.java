@@ -48,10 +48,6 @@ public class XuLyHoaDon {
     
     public ThongBao xuatHoaDon() {
         try {
-            /* User home directory location */
-            String userHomeDirectory = System.getProperty("user.home");
-            /* Output file location */
-//            String outputFile = userHomeDirectory + File.separatorChar + "HoaDon.pdf";
             String outputFile = "HoaDon.pdf";
 
             /* List to hold Items */
@@ -88,14 +84,7 @@ public class XuLyHoaDon {
             outputStream.close();
             System.out.println("File Generated");
             return new ThongBao("Đã xuất hóa đơn", ThongBao.THANH_CONG);
-        } catch (JRException ex) {
-            ex.printStackTrace();
-            return new ThongBao("Lỗi " + ex, ThongBao.LOI);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-            return new ThongBao("Lỗi " + ex, ThongBao.LOI);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (JRException | IOException ex) {
             return new ThongBao("Lỗi " + ex, ThongBao.LOI);
         }
     }

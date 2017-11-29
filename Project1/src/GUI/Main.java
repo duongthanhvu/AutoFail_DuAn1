@@ -35,7 +35,7 @@ public class Main {
         
         Frm_Login login = new Frm_Login();
         login.setVisible(true);
-        new DAL.Conn();
+        DAL.Conn.ketNoiCSDL();
         login.doiThe();
     }
 

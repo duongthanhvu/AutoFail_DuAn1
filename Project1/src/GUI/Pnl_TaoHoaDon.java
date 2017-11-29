@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
-    private int id_KH;
+    private int id_KH = 1;
     private int[] arrMaKM;
     public static int chietKhau = 0;
 
@@ -30,7 +30,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
      */
     public Pnl_TaoHoaDon() {
         initComponents();
-        loadThongTinKH(1);
+        loadThongTinKH(id_KH);
     }
 
     /**
@@ -644,7 +644,6 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_lbl_TongTienPropertyChange
 
     private void themSPVaoGioHang(int maSP) {
-//        pnl_bg.setVisible(false);
         int slMatHang = pnl_bg.getComponentCount();
         for (int i = 0; i < slMatHang; i++) {
             ChiTietGioHang ctgh = (ChiTietGioHang) pnl_bg.getComponent(i);
