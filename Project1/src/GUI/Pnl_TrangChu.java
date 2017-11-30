@@ -18,6 +18,7 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
      */
     public Pnl_TrangChu() {
         initComponents();
+        lbl_hello.setText("Xin chào, " + Frm_Login.tenNVPhienHienTai);
     }
 
     /**
@@ -31,7 +32,7 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_hello = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -45,9 +46,9 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Phần mềm bán hàng AutoFail");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Xin chào, Username!");
+        lbl_hello.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbl_hello.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_hello.setText("Xin chào, Username!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -60,7 +61,7 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(jLabel2)))
+                        .addComponent(lbl_hello)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -69,7 +70,7 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(61, 61, 61)
-                .addComponent(jLabel2)
+                .addComponent(lbl_hello)
                 .addContainerGap(196, Short.MAX_VALUE))
         );
 
@@ -191,8 +192,8 @@ public class Pnl_TrangChu extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbl_hello;
     // End of variables declaration//GEN-END:variables
 }

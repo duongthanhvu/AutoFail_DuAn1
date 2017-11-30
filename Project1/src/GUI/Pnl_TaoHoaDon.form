@@ -32,9 +32,14 @@
                       <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_TaoMoi" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_ThanhToan" min="-2" pref="91" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="chk_LuuBanSao" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="btn_TaoMoi" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_ThanhToan" min="-2" pref="91" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -50,7 +55,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="122" max="32767" attributes="0"/>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
+                      <Component id="chk_LuuBanSao" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btn_ThanhToan" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="btn_TaoMoi" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
@@ -747,6 +754,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ThanhToanActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="chk_LuuBanSao">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="L&#x1b0;u b&#x1ea3;n sao c&#x1ee7;a h&#xf3;a &#x111;&#x1a1;n"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

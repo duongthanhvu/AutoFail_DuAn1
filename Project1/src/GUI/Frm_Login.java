@@ -33,7 +33,8 @@ public class Frm_Login extends javax.swing.JFrame {
     MessagePopup loiSaiMatKhau;
     MessagePopup loiDangNhap;
     public static boolean checkLoadDone = false;
-    public static int maNVPhienHienTai = 1;    
+    public static int maNVPhienHienTai = 1; 
+    public static String tenNVPhienHienTai = "";
     File file = new File("./data/UserInfo.properties");
     StandardPBEStringEncryptor encryptor;
     /**
@@ -331,6 +332,7 @@ public class Frm_Login extends javax.swing.JFrame {
         }
         DTONhanVien nv = DAL.DALNhanVien.layThongTinNVDaDN(userName, passWord);
         maNVPhienHienTai = nv.getMaNV();
+        tenNVPhienHienTai = nv.getTenNV();
         Frm_Main.main(nv.getTenNV()); // <- set tên của user hiện tại vào đây
         this.setVisible(false);
 

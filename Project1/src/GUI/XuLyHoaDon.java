@@ -14,6 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,9 +39,9 @@ public class XuLyHoaDon {
 
     public XuLyHoaDon() {
         this.item = new InvoiceDetail[2];
-        item[0] = new InvoiceDetail("Chuột logitech", 12000, 2, 24000);
-        item[1] = new InvoiceDetail("Chuột logitech", 12000, 2, 24000);
-        this.info = new InvoiceInfo("Dương Thành Vũ", "Nguyễn Phú Thứ", "26-11-2017", 2342342);
+        item[0] = new InvoiceDetail("Smarta IQ 3", 319000, 1, 319000, 0.2);
+        item[1] = new InvoiceDetail("Metacare 5 Olive", 100000, 1, 100000, 0.2);
+        this.info = new InvoiceInfo("Dương Thành Vũ", "Nguyễn Phú Thứ", "26-11-2017", 419000);
     }
 
     public XuLyHoaDon(InvoiceDetail[] item, InvoiceInfo info) {
@@ -48,7 +51,7 @@ public class XuLyHoaDon {
     
     public ThongBao xuatHoaDon() {
         try {
-            String outputFile = "HoaDon.pdf";
+            String outputFile = "./data/hoa_don/HoaDon-"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuuMMdd-HHmmss"))+".pdf";
 
             /* List to hold Items */
             List<InvoiceDetail> listItems = new ArrayList<InvoiceDetail>();

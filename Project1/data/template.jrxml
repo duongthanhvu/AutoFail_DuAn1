@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="template_Table" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a0aa80b-dc07-4dca-bdbc-aa78eeb0d12b">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -38,6 +38,7 @@
 		<field name="donGia" class="java.lang.Integer"/>
 		<field name="soLuong" class="java.lang.Integer"/>
 		<field name="soTien" class="java.lang.Integer"/>
+		<field name="chietKhau" class="java.lang.Double"/>
 	</subDataset>
 	<subDataset name="InfoDataset" uuid="b602244f-dc3d-46dc-ac14-98dff076d576">
 		<queryString>
@@ -74,14 +75,16 @@
 					<datasetRun subDataset="ItemDataset" uuid="d3e1e03a-2c83-4436-9e50-79518bc3d337">
 						<dataSourceExpression><![CDATA[$P{ItemDataSource}]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="157" uuid="dca8961f-ce2d-47ac-879c-b15847d170a9">
+					<jr:column width="119" uuid="dca8961f-ce2d-47ac-879c-b15847d170a9">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:tableHeader height="30" rowSpan="1">
 							<box>
+								<leftPen lineWidth="0.0" lineStyle="Dashed"/>
 								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.0" lineStyle="Dashed"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="157" height="30" uuid="f60d1675-6fb6-4569-93ca-de32b3a8e861"/>
+								<reportElement x="0" y="0" width="119" height="30" uuid="f60d1675-6fb6-4569-93ca-de32b3a8e861"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>
@@ -89,8 +92,11 @@
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell height="30" rowSpan="1">
+							<box>
+								<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+							</box>
 							<textField>
-								<reportElement x="0" y="0" width="157" height="30" uuid="f1de366a-b36f-4200-9b1e-7a0009be5373"/>
+								<reportElement x="0" y="0" width="119" height="30" uuid="f1de366a-b36f-4200-9b1e-7a0009be5373"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>
@@ -103,6 +109,7 @@
 						<jr:tableHeader height="30" rowSpan="1">
 							<box leftPadding="0" bottomPadding="0">
 								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.0" lineStyle="Dashed"/>
 							</box>
 							<staticText>
 								<reportElement x="0" y="0" width="83" height="30" uuid="16679b95-2e6e-4ca1-b8b6-dd7b74267c56"/>
@@ -113,7 +120,10 @@
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell height="30" rowSpan="1">
-							<textField pattern="#,##0.00">
+							<box>
+								<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+							</box>
+							<textField pattern="#,##0" isBlankWhenNull="false">
 								<reportElement x="0" y="0" width="83" height="30" uuid="341e7faf-9680-4941-a9a4-ac78b8f4aae0"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
@@ -122,13 +132,14 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="62" uuid="aadb73b5-18cf-4ac7-a6c1-6779cd37d13d">
+					<jr:column width="60" uuid="aadb73b5-18cf-4ac7-a6c1-6779cd37d13d">
 						<jr:tableHeader height="30" rowSpan="1">
 							<box>
 								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.0" lineStyle="Dashed"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="62" height="30" uuid="30cd6902-348b-4228-904e-a70f10fcab52"/>
+								<reportElement x="0" y="0" width="60" height="30" uuid="30cd6902-348b-4228-904e-a70f10fcab52"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>
@@ -136,8 +147,11 @@
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="62" height="30" uuid="3e7f7758-5140-4ffd-9413-6ab93983912b"/>
+							<box>
+								<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+							</box>
+							<textField pattern="###0">
+								<reportElement x="0" y="0" width="60" height="30" uuid="3e7f7758-5140-4ffd-9413-6ab93983912b"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>
@@ -145,13 +159,41 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="77" uuid="413ef810-14f5-4de2-a7a0-3ac5b6bf68eb">
+					<jr:column width="66" uuid="413ef810-14f5-4de2-a7a0-3ac5b6bf68eb">
 						<jr:tableHeader height="30" rowSpan="1">
 							<box>
 								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.0" lineStyle="Dashed"/>
 							</box>
 							<staticText>
-								<reportElement x="0" y="0" width="77" height="30" uuid="9e3ecae1-f167-4482-aeb7-f04d19369ad2"/>
+								<reportElement x="0" y="0" width="66" height="30" uuid="2ce878a0-c402-4e6e-a17c-f4fab1657909"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans"/>
+								</textElement>
+								<text><![CDATA[Chiết khấu]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<box>
+								<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+							</box>
+							<textField pattern="#,##0 %">
+								<reportElement x="0" y="0" width="66" height="30" uuid="b1ef8386-8d02-4b38-82a5-980c447c7afd"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{chietKhau}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="7119c835-39ab-404b-8e1e-bdd2e1f93c30">
+						<jr:tableHeader height="30" rowSpan="1">
+							<box>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="74" height="30" uuid="9e3ecae1-f167-4482-aeb7-f04d19369ad2"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>
@@ -159,8 +201,11 @@
 							</staticText>
 						</jr:tableHeader>
 						<jr:detailCell height="30" rowSpan="1">
-							<textField pattern="#,##0.00">
-								<reportElement x="0" y="0" width="77" height="30" uuid="2d81d422-621a-4b3e-abf5-15521ddd2a32"/>
+							<box>
+								<bottomPen lineWidth="0.5" lineStyle="Dashed"/>
+							</box>
+							<textField pattern="#,##0">
+								<reportElement x="0" y="0" width="74" height="30" uuid="2d81d422-621a-4b3e-abf5-15521ddd2a32"/>
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans"/>
 								</textElement>

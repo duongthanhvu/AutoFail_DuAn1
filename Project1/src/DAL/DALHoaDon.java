@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class DALHoaDon {
 
     public static int them(DTOHoaDon item) {
-        String query = "Insert into HoaDon Values(" + item.getMaNV() + "," + item.getMaKH() + ",GETDATE()," + item.getTongTien() + ",N'" + item.getGhiChu() + "')";
+        String query = "Insert into HoaDon Values(" + item.getMaNV() + "," + item.getId_KH() +","+item.getTongTien()+",GETDATE())";
         int result = Conn.connection.ExcuteNonQuery(query);
         return result;
     }
@@ -28,26 +28,20 @@ public class DALHoaDon {
         return result;
     }
 
-    public static int sua(int maHD, DTOHoaDon newItem) {
-        String query = "Update HoaDon set MaNV = " + newItem.getMaNV() + ", MaKH = " + newItem.getMaKH() + ", NgayTao = '" + newItem.getNgayTao() + "', TongTien = " + newItem.getTongTien() + ", GhiChu = N'" + newItem.getGhiChu() + "' where MaHD = " + maHD;
-        int result = Conn.connection.ExcuteNonQuery(query);
-        return result;
-    }
 
     public static DTOHoaDon layDuLieu(int maHD){
-        String query = "Select maHD, HoaDon.maNV, tenNV, HoaDon.maKH, TenKH, NgayTao, TongTien, HoaDon.GhiChu from HoaDon join NhanVien on HoaDon.MaNV = NhanVien.MaNV join KhachHang on HoaDon.MaKH = KhachHang.MaKH where MaHD = " + maHD;
+        String query = "Select maHD, HoaDon.maNV, tenNV, HoaDon.id_KH, TenKH, NgayTao, TongTien from HoaDon join NhanVien on HoaDon.MaNV = NhanVien.MaNV join KhachHang on HoaDon.id_KH = KhachHang.id_KH where MaHD = " + maHD;
         ResultSet rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             if (rs.next()) {
                 DTOHoaDon hd = new DTOHoaDon();
-                hd.setMaHD(rs.getInt(1));
-                hd.setMaNV(rs.getInt(2));
-                hd.setTenNV(rs.getString(3));
-                hd.setMaKH(rs.getInt(4));
-                hd.setTenKH(rs.getString(5));
-                hd.setNgayTao(rs.getString(6));
-                hd.setTongTien(rs.getInt(7));
-                hd.setGhiChu(rs.getString(8));
+                hd.setMaHD(rs.getInt("MaHD"));
+                hd.setMaNV(rs.getInt("MaNV"));
+                hd.setTenNV(rs.getString("TenNV"));
+                hd.setId_KH(rs.getInt("ID_KH"));
+                hd.setTenKH(rs.getString("Ten_KH"));
+                hd.setNgayTao(rs.getTimestamp("NgayTao"));
+                hd.setTongTien(rs.getInt("TongTien"));
                 return hd;
             }
         } catch (SQLException ex) {
@@ -70,19 +64,18 @@ public class DALHoaDon {
             System.out.println("Lỗi " + ex);
         }
         DTOHoaDon[] arrHoaDon = new DTOHoaDon[soLuong];
-        query = "Select maHD, HoaDon.maNV, tenNV, HoaDon.maKH, TenKH, NgayTao, TongTien, HoaDon.GhiChu from HoaDon join NhanVien on HoaDon.MaNV = NhanVien.MaNV join KhachHang on HoaDon.MaKH = KhachHang.MaKH";
+        query = "Select maHD, HoaDon.maNV, tenNV, HoaDon.ID_KH, TenKH, NgayTao, TongTien from HoaDon join NhanVien on HoaDon.MaNV = NhanVien.MaNV join KhachHang on HoaDon.id_KH = KhachHang.id_KH";
         rs = Conn.connection.ExcuteQuerySelect(query);
         try {
             for (int i = 0; rs.next(); i++) {
                 DTOHoaDon hd = new DTOHoaDon();
-                hd.setMaHD(rs.getInt(1));
-                hd.setMaNV(rs.getInt(2));
-                hd.setTenNV(rs.getString(3));
-                hd.setMaKH(rs.getInt(4));
-                hd.setTenKH(rs.getString(5));
-                hd.setNgayTao(rs.getString(6));
-                hd.setTongTien(rs.getInt(7));
-                hd.setGhiChu(rs.getString(8));
+                hd.setMaHD(rs.getInt("MaHD"));
+                hd.setMaNV(rs.getInt("MaNV"));
+                hd.setTenNV(rs.getString("TenNV"));
+                hd.setId_KH(rs.getInt("ID_KH"));
+                hd.setTenKH(rs.getString("TenKH"));
+                hd.setNgayTao(rs.getTimestamp("NgayTao"));
+                hd.setTongTien(rs.getInt("TongTien"));
                 arrHoaDon[i] = hd;
             }
         } catch (SQLException ex) {
@@ -91,7 +84,7 @@ public class DALHoaDon {
         return arrHoaDon;
     }
 
-    public static ThongBao taoHoaDonTransaction(int id_KH, int maNV, int[][] dsSanPham, int tongTien) {
+    public static ThongBao taoHoaDonTransaction(int id_KH, int maNV, int[][] dsSanPham, int tongTien, int chietKhau, int[] arrKM) {
         try {
             Conn.connection.setAutoCommit(false);
             String query = "Insert into HoaDon values(" + maNV + "," + id_KH + ", "+tongTien+", Getdate())";
@@ -122,18 +115,13 @@ public class DALHoaDon {
                 if (rs.next()) {
                     giaBan = rs.getInt(1);
                 }
-//                int tongTien = giaBan * soLuong;
                 query = "Insert into ChiTietHoaDon Values("+maHDVuaTao+"," + maSP + "," + giaBan + "," + soLuong + ")";
                 Conn.connection.ExcuteNonQuery(query);
             }
-//            query = "Select GiaBan from ChiTietHoaDon where MaHD = "+maHDVuaTao;
-//            rs = Conn.connection.ExcuteQuerySelect(query);
-//            int tongTien = 0;
-//            while(rs.next()){
-//                tongTien = tongTien + rs.getInt(1);
-//            }
-//            query = "Update HoaDon set TongTien = "+tongTien+" where MaHD = "+maHDVuaTao;
-//            Conn.connection.ExcuteNonQuery(query);
+            if(chietKhau > 0 && chietKhau < 100){
+                query = "Insert into ChiTietKhuyenMai Values("+maHDVuaTao+","+arrKM[0]+",NULL,NULL,"+chietKhau+")";
+                Conn.connection.ExcuteNonQuery(query);
+            }
             Conn.connection.commit();
             return new ThongBao("Tạo hóa đơn thành công", ThongBao.THANH_CONG);
         } catch (SQLException ex) {

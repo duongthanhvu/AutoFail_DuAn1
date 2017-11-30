@@ -16,6 +16,7 @@ import javax.swing.text.NumberFormatter;
 public class ChiTietGioHang extends javax.swing.JPanel {
 
     private int maSP;
+    private String tenSP;
     private int giaSP;
 
     /**
@@ -31,6 +32,22 @@ public class ChiTietGioHang extends javax.swing.JPanel {
 
     public void setMaSP(int maSP) {
         this.maSP = maSP;
+    }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+
+    public int getGiaSP() {
+        return giaSP;
+    }
+
+    public void setGiaSP(int giaSP) {
+        this.giaSP = giaSP;
     }
 
     public ChiTietGioHang(int maSP) {
@@ -148,6 +165,7 @@ public class ChiTietGioHang extends javax.swing.JPanel {
     private void doDuLieuLenPanel() {
         DTO.DTOSanPham sp = DAL.DALSanPham.layDuLieu(maSP);
         lbl_TenSP.setText(sp.getTenSP());
+        setTenSP(sp.getTenSP());
         String chietKhau = String.valueOf(Pnl_TaoHoaDon.chietKhau) + "%";
         lbl_ChietKhau.setText(chietKhau);
         lbl_ThanhTien.setText(String.valueOf(sp.getGiaBanLe() - sp.getGiaBanLe() * (Pnl_TaoHoaDon.chietKhau) / 100));

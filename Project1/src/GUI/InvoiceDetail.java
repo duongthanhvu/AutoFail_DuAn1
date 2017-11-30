@@ -15,12 +15,17 @@ public class InvoiceDetail {
     private Integer donGia;
     private Integer soLuong;
     private Integer soTien;
+    private Double chietKhau;
 
-    public InvoiceDetail(String sanPham, Integer donGia, Integer soLuong, Integer soTien) {
+    public InvoiceDetail(String sanPham, Integer donGia, Integer soLuong, Integer soTien, Double chietKhau) {
         this.sanPham = sanPham;
         this.donGia = donGia;
         this.soLuong = soLuong;
         this.soTien = soTien;
+        this.chietKhau = chietKhau;
+    }
+
+    public InvoiceDetail() {
     }
 
     
@@ -55,4 +60,13 @@ public class InvoiceDetail {
     public void setSoTien(Integer soTien) {
         this.soTien = soTien;
     }
+
+    public Double getChietKhau() {
+        return chietKhau;
+    }
+
+    public void setChietKhau(Double chietKhau) {
+        this.chietKhau = chietKhau;
+    }
+    
 }

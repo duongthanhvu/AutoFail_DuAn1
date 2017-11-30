@@ -6,6 +6,8 @@
 
 package DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author vudtpk0074
@@ -14,32 +16,30 @@ public class DTOHoaDon {
     int maHD;
     int maNV;
     String tenNV;
-    int maKH;
+    int id_KH;
     String tenKH;
-    String ngayTao;
+    Date ngayTao;
     int tongTien;
-    String ghiChu;
 
     public DTOHoaDon() {
     }
 
-    public DTOHoaDon(int maHD, int maNV, String tenNV, int maKH, String tenKH, String ngayTao, int tongTien, String ghiChu) {
+    public DTOHoaDon(int maHD, int maNV, String tenNV, int maKH, String tenKH, Date ngayTao, int tongTien) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.tenNV = tenNV;
-        this.maKH = maKH;
+        this.id_KH = maKH;
         this.tenKH = tenKH;
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
-        this.ghiChu = ghiChu;
+
     }
 
-    public DTOHoaDon(int maNV, int maKH, String ngayTao, int tongTien, String ghiChu) {
+    public DTOHoaDon(int maNV, int maKH, Date ngayTao, int tongTien) {
         this.maNV = maNV;
-        this.maKH = maKH;
+        this.id_KH = maKH;
         this.ngayTao = ngayTao;
         this.tongTien = tongTien;
-        this.ghiChu = ghiChu;
     }
 
     public int getMaHD() {
@@ -66,12 +66,12 @@ public class DTOHoaDon {
         this.tenNV = tenNV;
     }
 
-    public int getMaKH() {
-        return maKH;
+    public int getId_KH() {
+        return id_KH;
     }
 
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
+    public void setId_KH(int id_KH) {
+        this.id_KH = id_KH;
     }
 
     public String getTenKH() {
@@ -82,11 +82,11 @@ public class DTOHoaDon {
         this.tenKH = tenKH;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return ngayTao;
     }
 
-    public void setNgayTao(String ngayTao) {
+    public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
 
@@ -97,14 +97,5 @@ public class DTOHoaDon {
     public void setTongTien(int tongTien) {
         this.tongTien = tongTien;
     }
-
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
-    
     
 }

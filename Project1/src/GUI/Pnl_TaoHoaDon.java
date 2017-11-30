@@ -11,6 +11,7 @@ import DTO.ThongBao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
 public class Pnl_TaoHoaDon extends javax.swing.JPanel {
 
     private int id_KH = 1;
+    private String tenKH;
     private int[] arrMaKM;
     public static int chietKhau = 0;
 
@@ -80,6 +82,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         btn_TaoMoi = new javax.swing.JButton();
         btn_ThanhToan = new javax.swing.JButton();
+        chk_LuuBanSao = new javax.swing.JCheckBox();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -462,6 +465,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
             }
         });
 
+        chk_LuuBanSao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        chk_LuuBanSao.setText("Lưu bản sao của hóa đơn");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -473,9 +479,12 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_TaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(chk_LuuBanSao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_TaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(45, 45, 45)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -487,7 +496,9 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addComponent(chk_LuuBanSao)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_TaoMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -537,12 +548,12 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int maSP = DAL.DALSanPham.layMaSPQuaBarcode(txtKhungTimKiem.getText());
-            if(maSP != -1){
+            if (maSP != -1) {
                 txtKhungTimKiem.setText("");
                 popMenuTimKiem.setVisible(false);
                 themSPVaoGioHang(maSP);
                 return;
-            }else{
+            } else {
                 XuLyThongBao.hienThiThongBao(new ThongBao("Mã vạch không đúng", ThongBao.LOI));
                 return;
             }
@@ -575,19 +586,32 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         //Transaction tạo hóa đơn
         int tongTien = Integer.parseInt(lbl_TongTien.getText());
         //Tạo mảng 2 chiều lưu danh sách gồm mã sp và số lượng mua của sản phẩm tương ứng.
-        int[][] dsSanPham = new int[pnl_bg.getComponentCount()][2];
-        for (int i = 0; i < pnl_bg.getComponentCount(); i++) {
+        int[][] dsSanPham = new int[soLuongSP][2];
+        for (int i = 0; i < soLuongSP; i++) {
             dsSanPham[i][0] = ((ChiTietGioHang) pnl_bg.getComponent(i)).getMaSP();
             dsSanPham[i][1] = ((ChiTietGioHang) pnl_bg.getComponent(i)).getSoLuongMua();
         }
-        ThongBao tb = DAL.DALHoaDon.taoHoaDonTransaction(id_KH, Frm_Login.maNVPhienHienTai, dsSanPham, tongTien);
+        ThongBao tb = DAL.DALHoaDon.taoHoaDonTransaction(id_KH, Frm_Login.maNVPhienHienTai, dsSanPham, tongTien, chietKhau, arrMaKM);
         if (tb.getLoaiThongBao() == ThongBao.LOI) {
             XuLyThongBao.hienThiThongBao(tb);
-        } else {
-            this.removeAll();
-            initComponents();
-            loadThongTinKH(1);
+            return;
         }
+        if (chk_LuuBanSao.isSelected()) {
+            InvoiceInfo info = new InvoiceInfo(tenKH, Frm_Login.tenNVPhienHienTai, DTO.ConvertDateFormat.chuyenNgayVaGio(new Date()), tongTien);
+            InvoiceDetail[] detail = new InvoiceDetail[soLuongSP];
+            for (int i = 0; i < soLuongSP; i++) {
+                detail[i] = new InvoiceDetail();
+                detail[i].setSanPham(((ChiTietGioHang) pnl_bg.getComponent(i)).getTenSP());
+                detail[i].setDonGia(((ChiTietGioHang) pnl_bg.getComponent(i)).getGiaSP());
+                detail[i].setSoLuong(((ChiTietGioHang) pnl_bg.getComponent(i)).getSoLuongMua());
+                detail[i].setChietKhau(((double)chietKhau)/100);
+                detail[i].setSoTien(((ChiTietGioHang) pnl_bg.getComponent(i)).getThanhTien());
+            }
+            new XuLyHoaDon(detail, info).xuatHoaDon();
+        }
+        this.removeAll();
+        initComponents();
+        loadThongTinKH(1);
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void pnl_bgComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_pnl_bgComponentAdded
@@ -605,12 +629,12 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         }
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int id_KH = DAL.DALKhachHang.layIDKHQuaMaKH(txtKhungTimKiemKH.getText());
-            if(id_KH != -1){
+            if (id_KH != -1) {
                 txtKhungTimKiemKH.setText("");
                 loadThongTinKH(id_KH);
                 popMenuTimKiem.setVisible(false);
                 return;
-            }else{
+            } else {
                 XuLyThongBao.hienThiThongBao(new ThongBao("Mã vạch không đúng", ThongBao.LOI));
                 return;
             }
@@ -640,7 +664,7 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         int tienChuaThue = tongTien - thue;
         lbl_TongChuaThue.setText(String.valueOf(tienChuaThue));
         lbl_Thue.setText(String.valueOf(thue));
-        lbl_GiamGia.setText(String.valueOf((chietKhau*tongTien) / (100 - chietKhau)));
+        lbl_GiamGia.setText(String.valueOf((chietKhau * tongTien) / (100 - chietKhau)));
     }//GEN-LAST:event_lbl_TongTienPropertyChange
 
     private void themSPVaoGioHang(int maSP) {
@@ -692,12 +716,14 @@ public class Pnl_TaoHoaDon extends javax.swing.JPanel {
         txt_MaKH.setText(kh.getMaKH());
         txt_DiaChi.setText(kh.getDiaChi());
         txt_SoDT.setText(kh.getSoDT());
+        this.tenKH = kh.getTenKH();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SearchBar;
     private javax.swing.JButton btn_Search;
     private javax.swing.JButton btn_TaoMoi;
     private javax.swing.JButton btn_ThanhToan;
+    private javax.swing.JCheckBox chk_LuuBanSao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
